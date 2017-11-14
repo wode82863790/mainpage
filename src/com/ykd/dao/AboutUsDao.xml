@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ykd.dao.AboutUsDao">
+	<resultMap type="AboutUs" id="aboutUsResultMap">
+	</resultMap>
+	<resultMap type="Banner" id="bannerResultMap"></resultMap>
+	<resultMap type="AboutUs_Img" id="aboutUs_ImgResultMap"></resultMap>
+	<resultMap type="Timeline" id="timelineResultMap"></resultMap>
+	<resultMap type="News" id="newsResultMap"></resultMap>
+	<resultMap type="News_img" id="news_imgResultMap"></resultMap>
+	<resultMap type="Honor" id="honorResultMap"></resultMap>
+	<resultMap type="Blog" id="blogResultMap"></resultMap>
+	<resultMap type="Blog_img" id="blog_imgResultMap"></resultMap>
+	
+	<!--  \\\\\\\\\\\-->
+	<select id="queryAboutUsIntro" parameterType="java.lang.String"
+		resultMap="aboutUsResultMap">
+		select * from ykd_aboutus where
+		aboutus_name='aboutus_intro'
+	</select>
+	<select id="queryAboutUsBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where
+		banner_name='secend_banner1'
+	</select>
+	<select id="queryAboutUsIntroImg" parameterType="java.lang.String"
+		resultMap="aboutUs_ImgResultMap">
+		select * from aboutus_img where
+		aboutusimg_name in
+		('aboutus_out','aboutus_in')
+	</select>
+	<select id="queryAboutUsIntroImgIn" parameterType="java.lang.String"
+		resultMap="aboutUs_ImgResultMap">
+		select * from aboutus_img where
+		aboutusimg_name=
+		'aboutus_in'
+	</select>
+	<select id="queryAboutUsIntroImgOut" parameterType="java.lang.String"
+		resultMap="aboutUs_ImgResultMap">
+		select * from aboutus_img where
+		aboutusimg_name =
+		'aboutus_out'
+	</select>
+	<select id="queryAboutUsIntroImgLit" parameterType="java.lang.String"
+		resultMap="aboutUs_ImgResultMap">
+		select * from aboutus_img where
+		aboutusimg_name like
+		'aboutus_lit%' 
+	</select>
+	<select id="queryAboutUsImgById" parameterType="java.lang.String"
+		resultMap="aboutUs_ImgResultMap">
+		select * from aboutus_img where
+		aboutusimg_id=#{0}
+	</select>
+	<select id="queryTimeline" parameterType="java.lang.String"
+		resultMap="timelineResultMap">
+		select * from ykd_timeline  order BY
+		timeline_date DESC
+	</select>
+	<select id="queryNews" parameterType="java.lang.String"
+		resultMap="newsResultMap">
+		select * from ykd_news  order BY
+		news_date DESC
+	</select>
+	<select id="queryNewsInner" parameterType="java.lang.String" resultMap="newsResultMap">
+		select * from ykd_news where
+		news_id=#{0}
+	</select>
+	<select id="queryNewsInnerImg" parameterType="java.lang.String" resultMap="news_imgResultMap">
+		select * from news_img where
+		newsimg_outid=#{0}
+	</select>
+	<select id="queryHonor" parameterType="java.lang.String"
+		resultMap="honorResultMap">
+		select * from ykd_honor  order BY
+		honor_date DESC
+	</select>
+	<select id="queryHonorById" parameterType="java.lang.String"
+		resultMap="honorResultMap">
+		select * from ykd_honor  where honor_id=#{0}
+	</select>
+	<select id="queryBlog" parameterType="java.lang.String"
+		resultMap="blogResultMap">
+		select * from ykd_blog  order BY
+		blog_date DESC
+	</select>
+	<select id="queryBlogInner" parameterType="java.lang.String"
+		resultMap="blog_imgResultMap">
+		select * from blog_img where
+		blogimg_outid =#{0} 
+	</select>
+	<update id="updateaboutUsinner" parameterType="java.lang.String" >
+		update ykd_aboutus set aboutus_inner=#{0} where aboutus_name='aboutus_intro';
+	</update>
+	<insert id="insertaboutUsinner" parameterType="java.lang.String" >
+		insert into ykd_aboutus (aboutus_name,aboutus_inner) values('aboutus_intro',#{0})
+	</insert>
+	<update id="updateaboutus_in" parameterType="java.lang.String" >
+		update aboutus_img set aboutusimg_src=#{0} where aboutusimg_name='aboutus_in';
+	</update>
+	<insert id="insertaboutus_in" parameterType="java.lang.String" >
+		insert into aboutus_img (aboutusimg_name,aboutusimg_src) values('aboutus_in',#{0})
+	</insert>
+	<update id="updateaboutus_out" parameterType="java.lang.String" >
+		update aboutus_img set aboutusimg_src=#{0} where aboutusimg_name='aboutus_out';
+	</update>
+	<insert id="insertaboutus_out" parameterType="java.lang.String" >
+		insert into aboutus_img (aboutusimg_name,aboutusimg_src) values('aboutus_out',#{0})
+	</insert>
+	
+	<insert id="updateaboutus_lit" parameterType="java.lang.String">
+		insert into aboutus_img (aboutusimg_name,aboutusimg_src) values(#{0},#{1})
+	</insert>
+	<delete id="delete_lit" parameterType="java.lang.String">
+		DELETE FROM aboutus_img WHERE aboutusimg_id=#{0};
+	</delete>
+	<delete id="delete_timeline" parameterType="java.lang.String">
+		DELETE FROM ykd_timeline WHERE timeline_id=#{0};
+	</delete>
+	<delete id="delete_news" parameterType="java.lang.String">
+		DELETE FROM ykd_news WHERE news_id=#{0};
+	</delete>
+	<delete id="delete_honor" parameterType="java.lang.String">
+		DELETE FROM ykd_honor WHERE honor_id=#{0};
+	</delete>
+	<insert id="inserttimeline" parameterType="java.lang.String">
+		insert into ykd_timeline (timeline_title,timeline_inner,timeline_date) values(#{0},#{2},#{1})
+	</insert>
+	<insert id="insertnews" parameterType="java.lang.String">
+		insert into ykd_news (news_title,news_date,news_lit,news_inner) values(#{0},#{1},#{2},#{3})
+	</insert>
+	<insert id="insertnewsimg" parameterType="java.lang.String">
+		insert into news_img (newsimg_name,newsimg_src,newsimg_outid) values(#{0},#{1},#{2})
+	</insert>
+	<insert id="inserthonor" parameterType="java.lang.String">
+		insert into ykd_honor (honor_title,honor_inner,honor_date,honor_src) values(#{0},#{1},#{2},#{3})
+	</insert>
+</mapper>

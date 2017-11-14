@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ykd.dao.GoodsDao">
+	<resultMap type="Banner" id="bannerResultMap"></resultMap>
+	<resultMap type="Goods" id="goodsResultMap"></resultMap>
+	<resultMap type="Goods_intro" id="goods_introResultMap"></resultMap>
+	<resultMap type="Down" id="downResultMap"></resultMap>
+	<select id="queryGoodsBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_name='secend_banner_goods'
+	</select>
+
+	<select id="queryGoodsThirdBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_outid is not null order BY
+		banner_id DESC LIMIT 3;
+	</select>
+	<select id="queryGoodsBannerById" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_id=#{0}
+	</select>
+	<select id="queryGoodsBannerByOutId" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_outid=#{0}
+	</select>
+	
+
+	<select id="queryGoods" parameterType="java.lang.String"
+		resultMap="goodsResultMap">
+		select * from ykd_goods;
+	</select>
+
+	<select id="queryGoodsById" parameterType="java.lang.String"
+		resultMap="goodsResultMap">
+		select * from ykd_goods where goods_id=#{0}
+	</select>
+
+	<select id="queryGoodsMian" parameterType="java.lang.String"
+		resultMap="goods_introResultMap">
+		select * from goods_intro where goodsintro_outid=#{0} and
+		goodsintro_name='main'order BY
+		goodsintro_id DESC LIMIT 1
+	</select>
+
+	<select id="queryGoodsIntro" parameterType="java.lang.String"
+		resultMap="goods_introResultMap">
+		select * from goods_intro where goodsintro_outid=#{0} and
+		goodsintro_name like 'intro%'
+	</select>
+
+	<select id="queryDown" parameterType="java.lang.String"
+		resultMap="downResultMap">
+		select * from ykd_down
+	</select>
+	<select id="queryDownById" parameterType="java.lang.String"
+		resultMap="downResultMap">
+		select * from ykd_down where down_id=#{0}
+	</select>
+	<insert id="inserthonor" parameterType="java.lang.String">
+		insert into ykd_down (down_img,down_name,down_inner,down_url) values(#{2},#{0},#{1},#{3})
+	</insert>
+	<update id="updategoodsbanner" parameterType="java.lang.String">
+		update banner set banner_src=#{0} where banner_name='secend_banner_goods';
+	</update>
+	<insert id="insertgoods" parameterType="java.lang.String">
+		insert into ykd_goods (goods_name,goods_mainimg) values(#{0},#{1})
+	</insert>
+	<insert id="insertgoodsbanner" parameterType="java.lang.String">
+		insert into banner (banner_name,banner_src) values('secend_banner_goods',#{0})
+	</insert>
+	<delete id="delete_goods" parameterType="java.lang.String">
+		DELETE FROM ykd_goods WHERE goods_id=#{0};
+	</delete>
+	<delete id="delete_down" parameterType="java.lang.String">
+		DELETE FROM ykd_down WHERE down_id=#{0};
+	</delete>
+	<insert id="insertgoodsintro" parameterType="java.lang.String">
+		insert into goods_intro (goodsintro_name,goodsintro_inner,goodsintro_outid,goodsintro_img) values('intro',#{0},#{1},#{2})
+	</insert>
+	<insert id="insertgoodsmain" parameterType="java.lang.String">
+		insert into goods_intro (goodsintro_name,goodsintro_inner,goodsintro_outid) values('main',#{1},#{0})
+	</insert>
+	<insert id="insert3banner" parameterType="java.lang.String">
+		insert into banner (banner_name,banner_src,banner_outid) values(#{1},#{2},#{0})
+	</insert>
+	<delete id="delete_goodsbanner" parameterType="java.lang.String">
+		DELETE FROM banner WHERE banner_id=#{0};
+	</delete>
+</mapper>

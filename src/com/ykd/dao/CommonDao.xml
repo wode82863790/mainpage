@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ykd.dao.CommonDao">
+	<resultMap type="Logo" id="logoResultMap"></resultMap>
+	<resultMap type="BackManager" id="manResultMap"></resultMap>
+	<resultMap type="Banner" id="bannerResultMap"></resultMap>
+	<select id="queryLogo" parameterType="java.lang.String"
+		resultMap="logoResultMap">
+		select * from logo GROUP BY
+		logo_id DESC LIMIT 1;
+	</select>
+	<select id="queryS_banner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where
+		banner_name='secend_banner1'
+	</select>
+	<select id="queryBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where
+		banner_name like 'banner%'
+	</select>
+	<select id="queryBannerById" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where
+		banner_id=#{0}
+	</select>
+	<select id="queryMBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where
+		banner_name = 'mainbanner' limit 1
+	</select>
+	<select id="login" parameterType="java.lang.String" resultMap="manResultMap">
+		select * from ykd_manager where manager_name=#{0} and
+		manager_pass=#{1}
+	</select>
+	<update id="updates_banner" parameterType="java.lang.String">
+		update banner set
+		banner_src=#{0} where banner_name='secend_banner1';
+	</update>
+	<insert id="insertLogo" parameterType="java.lang.String">
+		insert into
+		logo (logo_src)
+		values(#{0});
+	</insert>
+	<update id="updateLogo" parameterType="java.lang.String">
+		update logo set
+		logo_src=#{0}
+	</update>
+	<insert id="inserts_banner" parameterType="java.lang.String">
+		insert into
+		banner (banner_name,banner_src)
+		values('secend_banner1',#{0});
+	</insert>
+	<insert id="insertMbanner" parameterType="java.lang.String">
+		insert into
+		banner (banner_name,banner_src)
+		values('mainbanner',#{0});
+	</insert>
+	<update id="updateMbanner" parameterType="java.lang.String">
+		update banner set
+		banner_src=#{0} where banner_name='mainbanner'
+	</update>
+	<insert id="updatebanner" parameterType="java.lang.String">
+		insert into
+		banner (banner_name,banner_src)
+		values(#{0},#{1});
+	</insert>
+	<delete id="delete_banner" parameterType="java.lang.String">
+		DELETE FROM banner WHERE banner_id=#{0};
+	</delete>
+</mapper>
