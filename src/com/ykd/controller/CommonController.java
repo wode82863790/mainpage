@@ -174,6 +174,27 @@ public class CommonController {
 	public String queryCommon(HttpServletRequest request,HttpServletResponse response
 		) throws IllegalStateException, IOException {
 			List<Banner> queryBanner = commonService.queryBanner();
+			Banner queryS_banner = commonService.queryS_banner();
+			Logo queryLogo = commonService.queryLogo();
+			Banner queryMBanner = commonService.queryMBanner();
+			if (queryLogo==null) {
+				request.setAttribute("logo_src", null);
+			}else {
+				String logo_src = queryLogo.getLogo_src();
+				request.setAttribute("logo_src", logo_src);
+			}
+			if (queryS_banner==null) {
+				request.setAttribute("banner_src", null);
+			}else {
+				String banner_src = queryS_banner.getBanner_src();
+				request.setAttribute("banner_src", banner_src);
+			}
+			if (queryMBanner==null) {
+				request.setAttribute("queryMBanner", null);
+			}else {
+				String banner_src2 = queryMBanner.getBanner_src();
+				request.setAttribute("banner_src2", banner_src2);
+			}
 			request.setAttribute("queryBanner", queryBanner);
 			return "manager/Common";
 	}

@@ -62,8 +62,8 @@ public class GoodsController {
 		}else {
 			String getGoodsintro_inner = queryGoodsMian.getGoodsintro_inner();
 			List<Goods_intro> queryGoodsIntro = goodsService.queryGoodsIntro(id);
-			Banner queryGoodsBanner = goodsService.queryGoodsBanner();
-			String banner_src = queryGoodsBanner.getBanner_src();
+			Banner queryGoodsInnerBanner = goodsService.queryGoodsInnerBanner(id);
+			String banner_src = queryGoodsInnerBanner.getBanner_src();
 			Logo queryLogo = commonService.queryLogo();
 			String logo_src = queryLogo.getLogo_src();
 			List<Goods> queryGoods = goodsService.queryGoods();
@@ -155,6 +155,8 @@ public class GoodsController {
 		response.setContentType("text/html;charset=utf-8");
 		List<Goods> queryGoods = goodsService.queryGoods();
 		List<Banner> queryGoodsThirdBanner = goodsService.queryGoodsThirdBanner();
+		List<Banner> queryAllGoodsBanner = goodsService.queryAllGoodsBanner();
+		request.setAttribute("queryAllGoodsBanner", queryAllGoodsBanner);
 		request.setAttribute("queryGoodsThirdBanner", queryGoodsThirdBanner);
 		request.setAttribute("queryGoods", queryGoods);
 		return "manager/Goods";
@@ -165,6 +167,8 @@ public class GoodsController {
 			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		System.out.println(id);
 		if(!file.isEmpty()) {
 			//上传文件路径
 			String path=updateServer();
@@ -178,11 +182,11 @@ public class GoodsController {
 			//将上传文件保存到一个目标文件当中
 			file.transferTo(new File(path + File.separator + filename));
 			String src="images/"+filename;
-			Banner queryGoodsBanner = goodsService.queryGoodsBanner();
+			Banner queryGoodsBanner = goodsService.queryGoodsBannerByOutId1(id);
 			if (queryGoodsBanner!=null) {
-				goodsService.updategoodsbanner(src);
+				goodsService.updategoodsbanner(id,src);
 			}else {
-				goodsService.insertgoodsbanner(src);
+				goodsService.insertgoodsbanner(id,src);
 			}
 
 			return true;

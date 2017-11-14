@@ -10,7 +10,12 @@
 	<select id="queryJoinBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
 		select * from banner where
-		banner_name='secend_banner1'
+		banner_name='join_banner'
+	</select>
+	<select id="queryJoin_banner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where
+		banner_name='join_banner'
 	</select>
 	<select id="queryAll" parameterType="java.lang.String"
 		resultMap="joinResultMap">
@@ -23,10 +28,20 @@
 	<insert id="insertjoin" parameterType="java.lang.String">
 		insert into ykd_join
 		(join_title, join_num, join_back, join_date, join_time,
-		join_class, join_place, join_inner, join_need)
+		join_class,
+		join_place, join_inner, join_need)
 		values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8})
 	</insert>
-	<delete id="deletejoin"  parameterType="java.lang.String">
-		DELETE FROM ykd_join WHERE join_id=#{0};
+	<insert id="insertjoin_banner" parameterType="java.lang.String">
+		insert into banner
+		(banner_name,banner_src)
+		values('join_banner',#{0})
+	</insert>
+	<update id="updatejoin_banner" parameterType="java.lang.String" >
+		update banner set banner_src=#{0} where banner_name='join_banner';
+	</update>
+	<delete id="deletejoin" parameterType="java.lang.String">
+		DELETE FROM ykd_join WHERE
+		join_id=#{0};
 	</delete>
 </mapper>

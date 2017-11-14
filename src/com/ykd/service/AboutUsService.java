@@ -74,5 +74,17 @@ public interface AboutUsService {
 
 	void insertaboutus_out(String src);
 
+	void insertblog(String title, String date, String src);
+
+	Blog queryBlogById(String blogid);
+
+	void delete_blog(String blogid);
+
+	void insertblogimg(String filename, String intro, String id, String src);
+
+	List<News_img> queryAllNewsImg();
+
+	List<Blog_img> queryAllBlogImg();
+
 
 }

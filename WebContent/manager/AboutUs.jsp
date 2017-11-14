@@ -33,7 +33,7 @@
 		</div>
 	</nav>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<form class="form-inline" id="aboutUSinner">
 				<table class="table table-bordered">
 					<tr>
@@ -50,38 +50,55 @@
 				</table>
 			</form>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6 ">
-			<div class="cloumn">
-				<div class="col-md-12">
-					<form class="form-inline" id="aboutus_in">
-						<table class="table table-bordered">
-							<tr>
-								<td>添加/替换公司介绍的第一张大图</td>
-							</tr>
-							<tr>
-								<td><p>
-										上传文件： <input type="file" name="file" />
-									</p> <input type="button" value="上传" onclick="updateaboutus_in()" /></td>
-							</tr>
-						</table>
-					</form>
-				</div>
-				<div class="col-md-12">
-					<form class="form-inline" id="aboutus_out">
-						<table class="table table-bordered">
-							<tr>
-								<td>添加/替换公司介绍的第二张大图</td>
-							</tr>
-							<tr>
-								<td><p>
-										上传文件： <input type="file" name="file" />
-									</p> <input type="button" value="上传" onclick="updateaboutus_out()" /></td>
-							</tr>
-						</table>
-					</form>
-				</div>
+			<form class="form-inline" id="aboutus_in">
+				<table class="table table-bordered">
+					<tr>
+						<td>添加/替换公司介绍的第一张大图</td>
+					</tr>
+					<tr>
+						<td><p>
+								上传文件： <input type="file" name="file" />
+							</p> <input type="button" value="上传" onclick="updateaboutus_in()" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="col-md-6 ">
+			<%
+				String aboutusimg_src = (String) request.getAttribute("aboutusimg_src");
+			%>
+			<div class="col-md-3 ">
+				<img src="${contextPath}/<%=aboutusimg_src %>" alt="news1"
+					class="img-responsive ">
 			</div>
-
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<form class="form-inline" id="aboutus_out">
+				<table class="table table-bordered">
+					<tr>
+						<td>添加/替换公司介绍的第二张大图</td>
+					</tr>
+					<tr>
+						<td><p>
+								上传文件： <input type="file" name="file" />
+							</p> <input type="button" value="上传" onclick="updateaboutus_out()" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="col-md-6 ">
+			<%
+				String aboutusimg_src2 = (String) request.getAttribute("aboutusimg_src2");
+			%>
+			<div class="col-md-3 ">
+				<img src="${contextPath}/<%=aboutusimg_src2 %>" alt="news1"
+					class="img-responsive ">
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -205,16 +222,18 @@
 				</table>
 			</form>
 		</div>
-		<%-- <div class="col-md-6 ">
-			<c:forEach items="${requestScope.queryNews }" var="list3"
+		<div class="col-md-6 ">
+			<c:forEach items="${requestScope.queryAllNewsImg }" var="list10"
 				varStatus="num">
-				<p>
-					<c:out value="${list3.getNews_title()}" />
-					<input type="button" value="删除"
-						onclick="delete_news(${list3.getNews_id()})">
-				</p>
+				<div class="col-md-3 ">
+					<img
+						src="${contextPath}/<c:out value="${list10.getNewsimg_src()}" />"
+						alt="news1" class="img-responsive ">
+					<%-- 	<input type="button" value="删除"
+						onclick="delete_news(${list3.getNews_id()})"> --%>
+				</div>
 			</c:forEach>
-		</div> --%>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6 ">
@@ -249,11 +268,90 @@
 		<div class="col-md-6 ">
 			<c:forEach items="${requestScope.queryHonor }" var="list4"
 				varStatus="num">
-				<p>
+				<div class="col-md-3  animate-box">
 					<c:out value="${list4.getHonor_title()}" />
-					<input type="button" value="删除"
-						onclick="delete_honor(${list4.getHonor_id()})">
-				</p>
+					<img src="${contextPath}/<c:out value="${list4.getHonor_src()}" />"
+						alt="news1" class="img-responsive "> <input type="button"
+						value="删除" onclick="delete_blog(${list4.getHonor_id()})">
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<form class="form-inline" id="insertblog"
+				enctype="multipart/form-data">
+				<table class="table table-bordered">
+					<tr>
+						<td>添加团建活动</td>
+					</tr>
+					<tr>
+						<td>标题<input id="blog_title">
+						</td>
+					</tr>
+					<tr>
+						<td>团建时间（若浏览器不支持时间插件请使用XXXX-XX-XX的格式写）:<input id="blog_date"
+							type="date" /></td>
+					</tr>
+					<tr>
+						<td>主图（只一张）<input type="file" name="file" />
+						</td>
+					</tr>
+					<tr>
+						<td><input type="button" value="提交" onclick="insertblog()"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="col-md-6 ">
+			<c:forEach items="${requestScope.queryBlog }" var="list5"
+				varStatus="num">
+				<div class="col-md-3  animate-box">
+					<c:out value="${list5.getBlog_title()}" />
+					<img
+						src="${contextPath}/<c:out value="${list5.getBlog_banner()}" />"
+						alt="news1" class="img-responsive "> <input type="button"
+						value="删除" onclick="delete_blog(${list5.getBlog_id()})">
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<form id="insertblogimg" enctype="multipart/form-data">
+				<table class="table table-bordered">
+					<tr>
+						<td>上传团建图片</td>
+					</tr>
+					<tr>
+						<td>选择上传的图片并在相应新闻标题下点击上传： <input type="file" name="file" /></td>
+					</tr>
+					<tr>
+						<td>图片描述<input id="blogimg_intro">
+						</td>
+					</tr>
+					<c:forEach items="${requestScope.queryBlog }" var="list5"
+						varStatus="num">
+						<tr>
+							<td><c:out value="${list5.getBlog_title()}" /><br> <input
+								type="button" value="上传"
+								onclick="insertblogimg(<c:out value="${list5.getBlog_id()}" />)" />
+
+							</td>
+						</tr>
+					</c:forEach>
+
+				</table>
+			</form>
+		</div>
+		<div class="col-md-6 ">
+			<c:forEach items="${requestScope.queryAllBlogImg }" var="list9"
+				varStatus="num">
+				<div class="col-md-3  animate-box">
+					<img
+						src="${contextPath}/<c:out value="${list9.getBlogimg_src()}" />"
+						alt="news1" class="img-responsive "> 
+				</div>
 			</c:forEach>
 		</div>
 	</div>
@@ -409,6 +507,20 @@
 				}
 			);
 		};
+		function delete_blog(id) {
+			$.post(
+				"${contextPath}/delete_blog",
+				{
+					blogid : id,
+				},
+				function(data, textStatus) {
+					if (data) {
+						alert('OK👌');
+						window.location.reload();
+					}
+				}
+			);
+		};
 		function inserttimeline() {
 			$.post(
 				"${contextPath}/inserttimeline",
@@ -495,6 +607,48 @@
 				location.href="${contextPath}/manager/back.jsp";
 			}
 		});
+		function insertblog() {
+			var formData = new FormData($('#insertblog')[0]);
+			formData.append("title",$('#blog_title').val());
+			formData.append("date",$('#blog_date').val());
+			$.ajax({  
+		          url: '${contextPath}/insertblog' ,  
+		          type: 'POST',  
+		          data: formData,  
+		          async: false,  
+		          cache: false,  
+		          contentType: false,  
+		          processData: false,  
+		          success: function (returndata) {  
+		        	 		alert('OK👌');
+						window.location.reload();
+		          },  
+		          error: function (returndata) {  
+		              alert(returndata);  
+		          }  
+		     });  
+		};
+		function insertblogimg(id) {
+			var formData = new FormData($('#insertblogimg')[0]);
+			formData.append("intro",$('#blogimg_intro').val());
+			formData.append("id",id);
+			$.ajax({  
+		          url: '${contextPath}/insertblogimg' ,  
+		          type: 'POST',  
+		          data: formData,  
+		          async: false,  
+		          cache: false,  
+		          contentType: false,  
+		          processData: false,  
+		          success: function (returndata) {  
+		        	 		alert('OK👌');
+						window.location.reload();
+		          },  
+		          error: function (returndata) {  
+		              alert(returndata);  
+		          }  
+		     });  
+		};
 	</script>
 </body>
 </html>

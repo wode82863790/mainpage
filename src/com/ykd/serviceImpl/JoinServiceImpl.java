@@ -47,6 +47,24 @@ public class JoinServiceImpl implements JoinService{
 		
 	}
 
+	@Transactional
+	public Banner queryJoin_banner() {
+		Banner queryJoin_banner = joinDao.queryJoin_banner();
+		return queryJoin_banner;
+	}
+
+	@Transactional
+	public void insertjoin_banner(String src) {
+		joinDao.insertjoin_banner(src);
+		
+	}
+
+	@Transactional
+	public void updatejoin_banner(String src) {
+		joinDao.updatejoin_banner(src);
+		
+	}
+
 	
 
 }

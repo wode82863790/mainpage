@@ -18,5 +18,11 @@ public interface JoinDao {
 
 	void deletejoin(String joinid);
 
+	Banner queryJoin_banner();
+
+	void insertjoin_banner(String src);
+
+	void updatejoin_banner(String src);
+
 
 }

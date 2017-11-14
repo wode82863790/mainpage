@@ -31,7 +31,7 @@
 			</div>
 		</div>
 	</nav>
-	<div class="cloum">
+	<div class="row">
 		<div class="col-md-6 ">
 			<form class="form-inline" id="logo">
 				<table class="table table-bordered">
@@ -47,6 +47,15 @@
 			</form>
 		</div>
 		<div class="col-md-6 ">
+			<%
+				String logo_src = (String) request.getAttribute("logo_src");
+			%>
+			<img src="${contextPath}/<%=logo_src %>" alt="news1"
+				class="img-responsive ">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
 			<form class="form-inline" id="s_banner">
 				<table class="table table-bordered">
 					<tr>
@@ -60,6 +69,17 @@
 				</table>
 			</form>
 		</div>
+		<div class="col-md-6 ">
+			<%
+				String banner_src = (String) request.getAttribute("banner_src");
+			%>
+			<div class="col-md-6 ">
+				<img src="${contextPath}/<%=banner_src %>" alt="news1"
+					class="img-responsive ">
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6 ">
 			<form class="form-inline" id="qr">
 				<table class="table table-bordered">
@@ -75,6 +95,14 @@
 			</form>
 		</div>
 		<div class="col-md-6 ">
+			<div class="col-md-3 ">
+				<img src="${contextPath}/images/qr.jpg" alt="news1"
+					class="img-responsive ">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
 			<form class="form-inline" id="mbanner">
 				<table class="table table-bordered">
 					<tr>
@@ -88,6 +116,17 @@
 				</table>
 			</form>
 		</div>
+		<div class="col-md-6 ">
+			<%
+				String banner_src2 = (String) request.getAttribute("banner_src2");
+			%>
+			<div class="col-md-6 ">
+				<img src="${contextPath}/<%=banner_src2 %>" alt="news1"
+					class="img-responsive ">
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6 ">
 			<form class="form-inline" id="banner1">
 				<table class="table table-bordered">
@@ -106,8 +145,7 @@
 			<c:forEach items="${requestScope.queryBanner }" var="list"
 				varStatus="num">
 				<div class="col-md-3  animate-box">
-					<img
-						src="${contextPath}/<c:out value="${list.getBanner_src()}" />"
+					<img src="${contextPath}/<c:out value="${list.getBanner_src()}" />"
 						alt="news1" class="img-responsive "> <input type="button"
 						value="删除" onclick="delete_banner(${list.getBanner_id()})">
 				</div>

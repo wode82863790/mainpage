@@ -33,22 +33,6 @@
 	</nav>
 	<div class="row">
 		<div class="col-md-6 ">
-			<form class="form-inline" id="goodsbanner">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加/替换商品主宣</td>
-					</tr>
-					<tr>
-						<td><p>
-								上传文件： <input type="file" name="file" />
-							</p> <input type="button" value="上传" onclick="updategoodsbanner()" /></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 ">
 			<form class="form-inline" id="insertgoods"
 				enctype="multipart/form-data">
 				<table class="table table-bordered">
@@ -72,11 +56,13 @@
 		<div class="col-md-6 ">
 			<c:forEach items="${requestScope.queryGoods }" var="list2"
 				varStatus="num">
-				<p>
+				<div class="col-md-3  animate-box">
 					<c:out value="${list2.getGoods_name()}" />
-					<input type="button" value="删除"
-						onclick="delete_goods(${list2.getGoods_id()})">
-				</p>
+					<img
+						src="${contextPath}/<c:out value="${list2.getGoods_mainimg()}" />"
+						alt="news1" class="img-responsive "><input type="button"
+						value="删除" onclick="delete_goods(${list2.getGoods_id()})">
+				</div>
 			</c:forEach>
 		</div>
 	</div>
@@ -135,6 +121,39 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6 ">
+			<form class="form-inline" id="goodsbanner">
+				<table class="table table-bordered">
+					<tr>
+						<td>添加/替换产品详情宽图</td>
+					</tr>
+					<tr>
+						<td><p>
+								上传文件： <input type="file" name="file" />
+							</p> </td>
+					</tr>
+					<c:forEach items="${requestScope.queryGoods }" var="list2"
+						varStatus="num">
+						<tr>
+							<td><c:out value="${list2.getGoods_name()}" /><br><input type="button" value="上传" onclick="updategoodsbanner(<c:out value="${list2.getGoods_id()}" />)" />
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</form>
+		</div>
+		<div class="col-md-6 ">
+			<c:forEach items="${requestScope.queryAllGoodsBanner }" var="list8"
+				varStatus="num">
+				<div class="col-md-5  animate-box">
+					<img
+						src="${contextPath}/<c:out value="${list8.getBanner_src()}" />"
+						alt="news1" class="img-responsive "> 
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
 			<form class="form-inline" id="thirdbanner"
 				enctype="multipart/form-data">
 				<table class="table table-bordered">
@@ -175,8 +194,9 @@
 	<!-- Bootstrap -->
 	<script src="${contextPath}/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-		function updategoodsbanner() {
+		function updategoodsbanner(id) {
 			var formData = new FormData($("#goodsbanner")[0]);
+			formData.append("id",id);
 			$.ajax({
 				url : '${contextPath}/updategoodsbanner',
 				type : 'POST',

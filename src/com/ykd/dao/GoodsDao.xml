@@ -8,13 +8,21 @@
 	<resultMap type="Down" id="downResultMap"></resultMap>
 	<select id="queryGoodsBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
-		select * from banner where banner_name='secend_banner_goods'
+		select * from banner where banner_name='secend_banner1'
 	</select>
 
 	<select id="queryGoodsThirdBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
-		select * from banner where banner_outid is not null order BY
+		select * from banner where banner_outid is not null and banner_name like 'goodsbanner%'order BY
 		banner_id DESC LIMIT 3;
+	</select>
+	<select id="queryGoodsInnerBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_outid =#{0}and banner_name='secend_banner_goods'
+	</select>
+	<select id="queryAllGoodsBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_outid is not null and banner_name= 'secend_banner_goods'
 	</select>
 	<select id="queryGoodsBannerById" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
@@ -24,7 +32,10 @@
 		resultMap="bannerResultMap">
 		select * from banner where banner_outid=#{0}
 	</select>
-	
+	<select id="queryGoodsBannerByOutId1" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_outid=#{0} and banner_name='secend_banner_goods'
+	</select>
 
 	<select id="queryGoods" parameterType="java.lang.String"
 		resultMap="goodsResultMap">
@@ -61,13 +72,13 @@
 		insert into ykd_down (down_img,down_name,down_inner,down_url) values(#{2},#{0},#{1},#{3})
 	</insert>
 	<update id="updategoodsbanner" parameterType="java.lang.String">
-		update banner set banner_src=#{0} where banner_name='secend_banner_goods';
+		update banner set banner_src=#{1} where banner_name='secend_banner_goods' and banner_outid=#{0};
 	</update>
 	<insert id="insertgoods" parameterType="java.lang.String">
 		insert into ykd_goods (goods_name,goods_mainimg) values(#{0},#{1})
 	</insert>
 	<insert id="insertgoodsbanner" parameterType="java.lang.String">
-		insert into banner (banner_name,banner_src) values('secend_banner_goods',#{0})
+		insert into banner (banner_name,banner_src,banner_outid) values('secend_banner_goods',#{1},${0})
 	</insert>
 	<delete id="delete_goods" parameterType="java.lang.String">
 		DELETE FROM ykd_goods WHERE goods_id=#{0};

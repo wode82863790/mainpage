@@ -75,8 +75,8 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 	@Transactional
-	public void updategoodsbanner(String src) {
-		goodsDao.updategoodsbanner(src);
+	public void updategoodsbanner(String id,String src) {
+		goodsDao.updategoodsbanner(id,src);
 
 	}
 
@@ -115,8 +115,8 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 	@Transactional
-	public void insertgoodsbanner(String src) {
-		goodsDao.insertgoodsbanner(src);
+	public void insertgoodsbanner(String id,String src) {
+		goodsDao.insertgoodsbanner(id,src);
 	}
 
 	@Transactional
@@ -135,6 +135,24 @@ public class GoodsServiceImpl implements GoodsService{
 	public Down queryDownById(String downid) {
 		Down queryDownById = goodsDao.queryDownById(downid);
 		return queryDownById;
+	}
+
+	@Transactional
+	public Banner queryGoodsInnerBanner(String id) {
+		Banner queryGoodsInnerBanner = goodsDao.queryGoodsInnerBanner(id);
+		return queryGoodsInnerBanner;
+	}
+
+	@Transactional
+	public Banner queryGoodsBannerByOutId1(String id) {
+		Banner queryGoodsBannerById = goodsDao.queryGoodsBannerByOutId1(id);
+		return queryGoodsBannerById;
+	}
+
+	@Transactional
+	public List<Banner> queryAllGoodsBanner() {
+		List<Banner> queryAllGoodsBanner = goodsDao.queryAllGoodsBanner();
+		return queryAllGoodsBanner;
 	}
 
 

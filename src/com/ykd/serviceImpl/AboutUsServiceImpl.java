@@ -192,4 +192,41 @@ public class AboutUsServiceImpl implements AboutUsService{
 	public void insertaboutus_out(String src) {
 		aboutUsDao.insertaboutus_out(src);
 	}
+
+	@Transactional
+	public void insertblog(String title, String date, String src) {
+		aboutUsDao.insertblog(title,date,src);
+		
+	}
+
+	@Transactional
+	public Blog queryBlogById(String blogid) {
+		Blog queryBlogById = aboutUsDao.queryBlogById(blogid);
+		return queryBlogById;
+		
+	}
+
+	@Transactional
+	public void delete_blog(String blogid) {
+		aboutUsDao.delete_blog(blogid);
+		
+	}
+
+	@Transactional
+	public void insertblogimg(String filename, String intro, String id, String src) {
+		aboutUsDao.insertblogimg( filename,  intro, id, src);
+		
+	}
+
+	@Transactional
+	public List<News_img> queryAllNewsImg() {
+		List<News_img> queryAllNewsImg = aboutUsDao.queryAllNewsImg();
+		return queryAllNewsImg;
+	}
+
+	@Transactional
+	public List<Blog_img> queryAllBlogImg() {
+		List<Blog_img> queryAllBlogImg = aboutUsDao.queryAllBlogImg();
+		return queryAllBlogImg;
+	}
 }

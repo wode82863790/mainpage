@@ -208,7 +208,7 @@ public class AboutUsController {
 		out.println(jsonStr);
 		out.flush();
 		out.close();
-		
+
 	}
 	@RequestMapping(value="updateaboutUsinner",method=RequestMethod.POST)
 	@ResponseBody
@@ -379,6 +379,24 @@ public class AboutUsController {
 			return false;
 		}
 	}
+	@RequestMapping(value="delete_blog",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean delete_blog(HttpServletRequest request,HttpServletResponse response
+			) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String blogid = request.getParameter("blogid");
+		String deleteServer = deleteServer();
+		Blog queryBlogById = aboutUsService.queryBlogById(blogid);
+		String blog_banner = queryBlogById.getBlog_banner();
+		boolean deleteimg = deleteimg(deleteServer, blog_banner);
+		if (deleteimg==true) {
+			aboutUsService.delete_blog(blogid);
+			return true;
+		}else{
+			return false;
+		}
+	}
 	@RequestMapping(value="querylit",method=RequestMethod.GET)
 	public String querylit(HttpServletRequest request,HttpServletResponse response
 			) throws IllegalStateException, IOException {
@@ -388,12 +406,32 @@ public class AboutUsController {
 		List<Timeline> queryTimeline = aboutUsService.queryTimeline();
 		List<Honor> queryHonor = aboutUsService.queryHonor();
 		List<News> queryNews = aboutUsService.queryNews();
-		if (queryAboutUsIntroImgLit==null||queryTimeline==null||queryHonor==null||queryNews==null) {
+		List<Blog> queryBlog = aboutUsService.queryBlog();
+		AboutUs_Img queryAboutUsIntroImgIn = aboutUsService.queryAboutUsIntroImgIn();
+		AboutUs_Img queryAboutUsIntroImgOut = aboutUsService.queryAboutUsIntroImgOut();
+		List<News_img> queryAllNewsImg = aboutUsService.queryAllNewsImg();
+		List<Blog_img> queryAllBlogImg = aboutUsService.queryAllBlogImg();
+		if (queryAboutUsIntroImgLit==null||queryTimeline==null||queryHonor==null||queryNews==null||queryBlog==null) {
 			return null;
 		}else {
+			if (queryAboutUsIntroImgIn==null) {
+				request.setAttribute("aboutusimg_src", null);
+			}else {
+				String aboutusimg_src = queryAboutUsIntroImgIn.getAboutusimg_src();
+				request.setAttribute("aboutusimg_src", aboutusimg_src);
+			}
+			if (queryAboutUsIntroImgOut==null) {
+				request.setAttribute("aboutusimg_src2", null);
+			}else {
+				String aboutusimg_src2 = queryAboutUsIntroImgOut.getAboutusimg_src();
+				request.setAttribute("aboutusimg_src2", aboutusimg_src2);
+			}
+			request.setAttribute("queryBlog", queryBlog);
 			request.setAttribute("queryTimeline", queryTimeline);
+			request.setAttribute("queryAllNewsImg", queryAllNewsImg);
 			request.setAttribute("queryHonor", queryHonor);
 			request.setAttribute("queryNews", queryNews);
+			request.setAttribute("queryAllBlogImg", queryAllBlogImg);
 			request.setAttribute("querylit", queryAboutUsIntroImgLit);
 			return "manager/AboutUs";
 		}
@@ -474,6 +512,62 @@ public class AboutUsController {
 			file.transferTo(new File(path + File.separator + filename));
 			String src="images/"+filename;
 			aboutUsService.inserthonor(title,inner,date,src);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	@RequestMapping(value="insertblog",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean insertblog(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String title = request.getParameter("title");
+		String date = request.getParameter("date");
+		if(!file.isEmpty()) {
+			//上传文件路径
+			String path = updateServer();
+			//上传文件名
+			long currentTimeMillis = System.currentTimeMillis();
+			String filename = "blogbanner"+currentTimeMillis+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			String src="images/"+filename;
+			aboutUsService.insertblog(title,date,src);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	@RequestMapping(value="insertblogimg",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean insertblogimg(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		String intro = request.getParameter("intro");
+		if(!file.isEmpty()) {
+			//上传文件路径
+			String path = updateServer();
+			//上传文件名
+			long currentTimeMillis = System.currentTimeMillis();
+			String filename = "blogintro"+currentTimeMillis+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			String src="images/"+filename;
+			aboutUsService.insertblogimg(filename,intro,id,src);
 			return true;
 		} else {
 			return false;

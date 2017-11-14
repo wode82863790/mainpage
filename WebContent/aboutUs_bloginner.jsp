@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="theme-color" content="#fff">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>关于我们 - 翼开店</title>
+<title>企业风采 - 山东挥付</title>
 <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"
 	rel="stylesheet">
@@ -59,14 +59,13 @@
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
 								<li><a href="#">会员入口</a></li>
-								<li class="has-dropdown"><a
-									href="${contextPath}/queryCall">联系我们</a>
+								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
 										<li><a href="${contextPath}/queryAlly">加盟代理</a></li>
 										<li><a href="${contextPath}/queryCall">合作伙伴</a></li>
 									</ul></li>
-								<li> 
+								<li>
 							</ul>
 						</div>
 						<div class="col-md-2 ">
@@ -100,9 +99,12 @@
 					<c:forEach items="${requestScope.queryBlogInner }" var="list"
 						varStatus="num">
 						<div class="col-md-6 text-center">
-							<img src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />" alt="banner"
-								class="img-responsive img-rounded ">
-								<p><c:out value="${list.getBlogimg_intro()}" /></p>
+							<img
+								src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
+								alt="banner" class="img-responsive img-rounded ">
+							<p>
+								<c:out value="${list.getBlogimg_intro()}" />
+							</p>
 						</div>
 					</c:forEach>
 				</div>

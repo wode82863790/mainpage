@@ -21,6 +21,8 @@ public interface GoodsService {
 
 	
 	Goods_intro queryGoodsMian(String id);
+	
+	Banner queryGoodsBannerByOutId1(String id);
 
 
 	List<Down> queryDown();
@@ -29,7 +31,7 @@ public interface GoodsService {
 
 	void delete_down(String downid);
 
-	void updategoodsbanner(String filename);
+	void updategoodsbanner(String id, String src);
 
 	void insertgoods(String name, String src);
 
@@ -43,13 +45,17 @@ public interface GoodsService {
 
 	void delete_goodsbanner(String bannerid);
 
-	void insertgoodsbanner(String src);
+	void insertgoodsbanner(String id, String src);
 
 	Banner queryGoodsBannerById(String bannerid);
 
 	List<Banner> queryGoodsBannerByOutId(String goodsid);
 
 	Down queryDownById(String downid);
+
+	Banner queryGoodsInnerBanner(String id);
+
+	List<Banner> queryAllGoodsBanner();
 	
 
 }

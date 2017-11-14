@@ -71,6 +71,9 @@
 		select * from news_img where
 		newsimg_outid=#{0}
 	</select>
+	<select id="queryAllNewsImg" parameterType="java.lang.String" resultMap="news_imgResultMap">
+		select * from news_img 
+	</select>
 	<select id="queryHonor" parameterType="java.lang.String"
 		resultMap="honorResultMap">
 		select * from ykd_honor  order BY
@@ -85,10 +88,18 @@
 		select * from ykd_blog  order BY
 		blog_date DESC
 	</select>
+	<select id="queryBlogById" parameterType="java.lang.String"
+		resultMap="blogResultMap">
+		select * from ykd_blog  where blog_id=#{0}
+	</select>
 	<select id="queryBlogInner" parameterType="java.lang.String"
 		resultMap="blog_imgResultMap">
 		select * from blog_img where
 		blogimg_outid =#{0} 
+	</select>
+	<select id="queryAllBlogImg" parameterType="java.lang.String"
+		resultMap="blog_imgResultMap">
+		select * from blog_img
 	</select>
 	<update id="updateaboutUsinner" parameterType="java.lang.String" >
 		update ykd_aboutus set aboutus_inner=#{0} where aboutus_name='aboutus_intro';
@@ -124,6 +135,9 @@
 	<delete id="delete_honor" parameterType="java.lang.String">
 		DELETE FROM ykd_honor WHERE honor_id=#{0};
 	</delete>
+	<delete id="delete_blog" parameterType="java.lang.String">
+		DELETE FROM ykd_blog WHERE blog_id=#{0};
+	</delete>
 	<insert id="inserttimeline" parameterType="java.lang.String">
 		insert into ykd_timeline (timeline_title,timeline_inner,timeline_date) values(#{0},#{2},#{1})
 	</insert>
@@ -135,5 +149,11 @@
 	</insert>
 	<insert id="inserthonor" parameterType="java.lang.String">
 		insert into ykd_honor (honor_title,honor_inner,honor_date,honor_src) values(#{0},#{1},#{2},#{3})
+	</insert>
+	<insert id="insertblog" parameterType="java.lang.String">
+		insert into ykd_blog (blog_title,blog_date,blog_banner) values(#{0},#{1},#{2})
+	</insert>
+	<insert id="insertblogimg" parameterType="java.lang.String">
+		insert into blog_img (blogimg_name,blogimg_src,blogimg_outid,blogimg_intro) values(#{0},#{3},#{2},#{1})
 	</insert>
 </mapper>

@@ -31,6 +31,31 @@
 		</div>
 	</nav>
 	<div class="row">
+		<div class="col-md-6 ">
+			<form class="form-inline" id="join_banner">
+				<table class="table table-bordered">
+					<tr>
+						<td>添加/替换招聘宽图</td>
+					</tr>
+					<tr>
+						<td><p>
+								上传文件： <input type="file" name="file" />
+							</p> <input type="button" value="上传" onclick="updatejoin_banner()" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="col-md-6 ">
+			<%
+				String banner_src = (String) request.getAttribute("banner_src");
+			%>
+			<div class="col-md-6 ">
+				<img src="${contextPath}/<%=banner_src %>" alt="news1"
+					class="img-responsive ">
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-12">
 			<form class="form-inline">
 				<table class="table table-bordered">
@@ -149,6 +174,25 @@
 			location.href="${contextPath}/manager/back.jsp";
 		}
 	});
+	function updatejoin_banner() {
+		var formData = new FormData($("#join_banner")[0]);
+		$.ajax({
+			url : '${contextPath}/updatejoin_banner',
+			type : 'POST',
+			data : formData,
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function(returndata) {
+				alert('OK👌');
+				window.location.reload();
+			},
+			error : function(returndata) {
+				alert('怎么可能会失败呢请联系技术');
+			}
+		});
+	};
 	</script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="theme-color" content="#fff">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>联系我们 - 翼开店</title>
+<title>帮助中心 - 山东挥付</title>
 <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"
 	rel="stylesheet">
@@ -54,7 +54,7 @@
 										<li><a href="${contextPath}/queryAboutUsNews">新闻中心</a></li>
 										<li><a href="${contextPath}/queryAboutUsCulture">企业文化</a></li>
 										<li><a href="${contextPath}/queryAboutUsHonor">企业荣誉</a></li>
-										<%-- <li><a href="${contextPath}/queryAboutUsBlog">企业风采</a></li> --%>
+										<li><a href="${contextPath}/queryAboutUsBlog">企业风采</a></li>
 									</ul></li>
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>

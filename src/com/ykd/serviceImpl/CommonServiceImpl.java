@@ -36,13 +36,13 @@ public class CommonServiceImpl implements CommonService{
 	@Transactional
 	public void insertLogo(String src) {
 		commonDao.insertLogo(src);
-		
+
 	}
 
 	@Transactional
 	public void updates_banner(String src) {
 		commonDao.updates_banner(src);
-		
+
 	}
 
 	@Transactional
@@ -59,7 +59,7 @@ public class CommonServiceImpl implements CommonService{
 	@Transactional
 	public void inserts_banner(String src) {
 		commonDao.inserts_banner(src);
-		
+
 	}
 
 	@Transactional
@@ -77,19 +77,19 @@ public class CommonServiceImpl implements CommonService{
 	@Transactional
 	public void insertMbanner(String src) {
 		commonDao.insertMbanner(src);
-		
+
 	}
 
 	@Transactional
 	public void updateMbanner(String src) {
 		commonDao.updateMbanner(src);
-		
+
 	}
 
 	@Transactional
 	public void updatebanner(String filename, String src) {
 		commonDao.updatebanner( filename,src);
-		
+
 	}
 
 	@Transactional
@@ -101,7 +101,7 @@ public class CommonServiceImpl implements CommonService{
 	@Transactional
 	public void delete_banner(String bannerid) {
 		commonDao.delete_banner(bannerid);
-		
+
 	}
 
 

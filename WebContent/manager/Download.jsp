@@ -66,11 +66,13 @@
 		<div class="col-md-6 ">
 			<c:forEach items="${requestScope.queryDown }" var="list4"
 				varStatus="num">
-				<p>
+				<div class="col-md-3  animate-box">
 					<c:out value="${list4.getDown_name()}" />
-					<input type="button" value="删除"
+					<img
+						src="${contextPath}/<c:out value="${list4.getDown_img()}" />"
+						alt="news1" class="img-responsive "><input type="button" value="删除"
 						onclick="delete_down(<c:out value="${list4.getDown_id()}" />)">
-				</p>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
