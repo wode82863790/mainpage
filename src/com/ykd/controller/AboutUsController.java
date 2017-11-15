@@ -195,13 +195,12 @@ public class AboutUsController {
 			payload.put("iat", date.getTime());//生成时间
 			payload.put("ext",date.getTime()+1000*60*60);//过期时间1小时
 			String token=Jwt.createToken(payload);
-			System.out.println(token);
+			System.out.println(token);//查看产生的token
 			resultJSON.put("success", true);
 			resultJSON.put("msg","登陆成功");
 			output(resultJSON.toJSONString(), response);
 		}
 	}
-
 	public void output(String jsonStr,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=UTF-8;");
 		PrintWriter out = response.getWriter();

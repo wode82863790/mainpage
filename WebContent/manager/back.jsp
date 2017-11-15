@@ -162,18 +162,21 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-3 col-md-6">
-				<form class="form-horizontal" method="post" >
+				<form class="form-horizontal">
 					<span class="heading">后台登录</span>
 					<div class="form-group">
 						<input class="form-control" id="userName" name="userName"
-							placeholder="维护账户" required="required"> <i class="fa fa-user"></i>
+							placeholder="维护账户" required="required"> <i
+							class="fa fa-user"></i>
 					</div>
 					<div class="form-group help">
-						<input type="password" class="form-control" id="password" name="password"
-							placeholder="密　码" required="required"> <i class="fa fa-lock"></i> 
+						<input type="password" class="form-control" id="password"
+							name="password" placeholder="密　码" required="required"> <i
+							class="fa fa-lock"></i>
 					</div>
-					<div class="form-group"><spanp>请使用Chrome（谷歌）或具有Chrome内核的浏览器</spanp>
-						<button id="login" class="btn btn-default">登录</button>
+					<div class="form-group">
+						<spanp>请使用Chrome（谷歌）或具有Chrome内核的浏览器</spanp>
+						<button class="btn btn-default" id="login">登录</button>
 					</div>
 				</form>
 			</div>
@@ -184,33 +187,31 @@
 	<!-- Bootstrap -->
 	<script src="${contextPath}/js/bootstrap.min.js"></script>
 	<script>
-			$('#login').on('click',function (e) {
-				var userName=$.trim($('#userName').val());
-				var password=$.trim($('#password').val());
-				$.ajax({
-					type:"post",
-					url:"${contextPath}/back_login",
-					data:{
-						userName:userName,
-						password:password
-					},
-					dataType:'json',
-					success:function (resp) {
-						alert(resp.msg);
-						if(resp.success){
-							//将token存在本地存储，然后跳转到主页面
-							localStorage.setItem('token',resp.token);
-							location.href="${contextPath}/querycommon";
-						}
-					},
-					error : function(resp) {
-						alert('怎么可能会失败呢请联系技术');
+		$('#login').on('click',function (e) {
+			window.event.returnValue=false;
+			var userName=$.trim($('#userName').val());
+			var password=$.trim($('#password').val());
+			$.ajax({
+				type:"post",
+				url:"${contextPath}/back_login",
+				data:{
+					userName:userName,
+					password:password
+				},
+				dataType:'json',
+				success:function (resp) {
+					alert(resp.msg);
+					if(resp.success){
+						//将token存在本地存储，然后跳转到主页面
+						localStorage.setItem('token',resp.token);
+						location.href="${contextPath}/querycommon";
 					}
-				});
-				
-				
-			})
-			
-		</script>
+				},
+				error : function(resp) {
+					alert('怎么可能会失败呢请联系技术');
+				}
+			});
+		}) 
+	</script>
 </body>
 </html>
