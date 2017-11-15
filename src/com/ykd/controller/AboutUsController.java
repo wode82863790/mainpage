@@ -198,6 +198,7 @@ public class AboutUsController {
 			System.out.println(token);//查看产生的token
 			resultJSON.put("success", true);
 			resultJSON.put("msg","登陆成功");
+			resultJSON.put("token", token);
 			output(resultJSON.toJSONString(), response);
 		}
 	}

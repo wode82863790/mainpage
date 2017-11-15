@@ -167,13 +167,6 @@
 			}
 		);
 	};
-	$().ready(function(){
-		var token=localStorage.getItem("token");
-		if (token==null) {
-			alert('你还没有登录');
-			location.href="${contextPath}/manager/back.jsp";
-		}
-	});
 	function updatejoin_banner() {
 		var formData = new FormData($("#join_banner")[0]);
 		$.ajax({
@@ -193,6 +186,27 @@
 			}
 		});
 	};
+	$().ready(function(){
+		var token=localStorage.getItem("token");
+		if (token==null) {
+			alert('你还没有登录');
+			location.href="${contextPath}/manager/back.jsp";
+		}else{
+			$.post(
+				"${contextPath}/judgeToken",
+				{
+					token:token,
+				},
+				function(data, textStatus) {
+					if (data) {
+					}else{
+						alert('无效的安全验证（token）,请重新登录:-D');
+						location.href="${contextPath}/manager/back.jsp";
+					}
+				}
+			);
+		}
+	});
 	</script>
 </body>
 </html>

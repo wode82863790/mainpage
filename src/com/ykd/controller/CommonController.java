@@ -3,7 +3,8 @@ package com.ykd.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
+import java.util.Map;
+import com.ykd.jwt.TokenState;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ykd.entity.Banner;
 import com.ykd.entity.Logo;
+import com.ykd.jwt.Jwt;
 import com.ykd.service.CommonService;
+
 
 @Component
 @RequestMapping()
@@ -216,7 +219,36 @@ public class CommonController {
 			return false;
 		}
 	}
+	@RequestMapping(value="judgeToken",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean judgeToken(HttpServletRequest request,HttpServletResponse response) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String token = request.getParameter("token");
+		Map<String, Object> resultMap = Jwt.validToken(token);
+		TokenState tokenState = TokenState.getTokenState((String)resultMap.get("state"));
+		String flag=null;
+		switch (tokenState) {
+		case VALID:
+			flag="true";
+			break;
+		case EXPIRED:
+		case INVALID:
+			break;
+		}
+		if (flag.equals("true")) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
+	
+	
+	
+	
+	
+	
 	////////
 	public  String updateServer() {
 		return "/Library/Tomcat/res/images";
