@@ -272,7 +272,7 @@
 					<c:out value="${list4.getHonor_title()}" />
 					<img src="${contextPath}/<c:out value="${list4.getHonor_src()}" />"
 						alt="news1" class="img-responsive "> <input type="button"
-						value="删除" onclick="delete_blog(${list4.getHonor_id()})">
+						value="删除" onclick="delete_honor(${list4.getHonor_id()})">
 				</div>
 			</c:forEach>
 		</div>

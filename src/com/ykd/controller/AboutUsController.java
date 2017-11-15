@@ -388,6 +388,11 @@ public class AboutUsController {
 		String deleteServer = deleteServer();
 		Blog queryBlogById = aboutUsService.queryBlogById(blogid);
 		String blog_banner = queryBlogById.getBlog_banner();
+		List<Blog_img> queryAllBlogImgByOutId = aboutUsService.queryAllBlogImgByOutId(blogid);
+		for (Blog_img blog_img : queryAllBlogImgByOutId) {
+			String blogimg_src = blog_img.getBlogimg_src();
+			deleteimg(deleteServer, blogimg_src);
+		}
 		boolean deleteimg = deleteimg(deleteServer, blog_banner);
 		if (deleteimg==true) {
 			aboutUsService.delete_blog(blogid);

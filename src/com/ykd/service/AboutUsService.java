@@ -86,5 +86,7 @@ public interface AboutUsService {
 
 	List<Blog_img> queryAllBlogImg();
 
+	List<Blog_img> queryAllBlogImgByOutId(String blogid);
+
 
 }

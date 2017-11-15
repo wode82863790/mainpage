@@ -101,6 +101,10 @@
 		resultMap="blog_imgResultMap">
 		select * from blog_img
 	</select>
+	<select id="queryAllBlogImgByOutId" parameterType="java.lang.String"
+		resultMap="blog_imgResultMap">
+		select * from blog_img where blogimg_outid=#{0};
+	</select>
 	<update id="updateaboutUsinner" parameterType="java.lang.String" >
 		update ykd_aboutus set aboutus_inner=#{0} where aboutus_name='aboutus_intro';
 	</update>

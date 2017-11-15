@@ -229,4 +229,10 @@ public class AboutUsServiceImpl implements AboutUsService{
 		List<Blog_img> queryAllBlogImg = aboutUsDao.queryAllBlogImg();
 		return queryAllBlogImg;
 	}
+
+	@Transactional
+	public List<Blog_img> queryAllBlogImgByOutId(String blogid) {
+		List<Blog_img> queryAllBlogImgByOutId = aboutUsDao.queryAllBlogImgByOutId(blogid);
+		return queryAllBlogImgByOutId;
+	}
 }
