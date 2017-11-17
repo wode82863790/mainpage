@@ -37,6 +37,7 @@ public interface CommonService {
 
 	void delete_banner(String bannerid);
 
+	BackManager queryMnagerById(String uid);
 
 	
 }

@@ -117,8 +117,8 @@
 					<div class="col-md-6 text-left">
 						<p>
 							<small class="block"><i class="fa fa-phone"></i>联系方式:4009-222-166</small>
-							<small class="block"><i class="fa fa-wechat"></i>官方微信:XXXXX</small>
-							<small class="block"><i class="fa fa-comments"></i>微信公众号:XXXXX</small>
+							<small class="block"><i class="fa fa-wechat"></i>官方微信:18253118868（挥付云商客服）</small>
+							<small class="block"><i class="fa fa-comments"></i>微信公众号:zcl@hfpay.net</small>
 						</p>
 					</div>
 					<div class="col-md-3"></div>

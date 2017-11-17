@@ -28,6 +28,7 @@
 					<li><a href="${contextPath}/querybackjoin">招聘部分</a></li>
 					<li><a href="${contextPath}/querybackgoods">产品部分</a></li>
 					<li><a href="${contextPath}/querybackdown">下载中心部分</a></li>
+					<li><a id="loginout">退出到登陆页面</a></li>
 				</ul>
 			</div>
 		</div>
@@ -345,12 +346,15 @@
 			</form>
 		</div>
 		<div class="col-md-6 ">
-			<c:forEach items="${requestScope.queryAllBlogImg }" var="list9"
+			<c:forEach items="${requestScope.queryCommonWithBlog }" var="list9"
 				varStatus="num">
 				<div class="col-md-3  animate-box">
+				<c:out value="${list9.getBlog_title()}" /><br>
 					<img
 						src="${contextPath}/<c:out value="${list9.getBlogimg_src()}" />"
-						alt="news1" class="img-responsive "> 
+						alt="news1" class="img-responsive ">
+						 <input type="button"
+						value="删除" onclick="delete_blogimg(${list9.getBlogimg_id()})">
 				</div>
 			</c:forEach>
 		</div>
@@ -525,6 +529,20 @@
 				}
 			);
 		};
+		function delete_blogimg(id) {
+			$.post(
+				"${contextPath}/delete_blogimg",
+				{
+					blogimgid : id,
+				},
+				function(data, textStatus) {
+					if (data) {
+						alert('OK👌');
+						window.location.reload();
+					}
+				}
+			);
+		};
 		function inserttimeline() {
 			$.post(
 				"${contextPath}/inserttimeline",
@@ -667,6 +685,10 @@
 		          }  
 		     });  
 		};
+		$("#loginout").on("click",function(){
+			localStorage.removeItem("token");
+			location.href="${contextPath}/manager/back.jsp";
+		});
 	</script>
 </body>
 </html>

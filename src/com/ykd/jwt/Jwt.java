@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JOSEObjectType;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -20,9 +21,10 @@ import net.minidev.json.JSONObject;
  *
  */
 public class Jwt {
-	
-    
-    /**
+
+
+
+	/**
      * 秘钥
      */
     private static final byte[] SECRET="3d990d2276917dfac04467df11fff26d".getBytes();
@@ -57,8 +59,6 @@ public class Jwt {
 		return tokenString;
 	}
     
-    
-    
     /**
      * 校验token是否合法，返回Map集合,集合中主要包含    state状态码   data鉴权成功后从token中提取的数据
      * 该方法在过滤器中调用，每次请求API时都校验
@@ -87,7 +87,6 @@ public class Jwt {
 					}
 				}
 				resultMap.put("data", jsonOBj);
-
 			} else {
 				// 校验失败
 				resultMap.put("state", TokenState.INVALID.toString());

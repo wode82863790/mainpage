@@ -25,6 +25,7 @@ import com.ykd.entity.BackManager;
 import com.ykd.entity.Banner;
 import com.ykd.entity.Blog;
 import com.ykd.entity.Blog_img;
+import com.ykd.entity.CommonwithBlog;
 import com.ykd.entity.Honor;
 import com.ykd.entity.Logo;
 import com.ykd.entity.News;
@@ -389,7 +390,7 @@ public class AboutUsController {
 		String deleteServer = deleteServer();
 		Blog queryBlogById = aboutUsService.queryBlogById(blogid);
 		String blog_banner = queryBlogById.getBlog_banner();
-		List<Blog_img> queryAllBlogImgByOutId = aboutUsService.queryAllBlogImgByOutId(blogid);
+		List<Blog_img> queryAllBlogImgByOutId = aboutUsService.queryBlogInner(blogid);
 		for (Blog_img blog_img : queryAllBlogImgByOutId) {
 			String blogimg_src = blog_img.getBlogimg_src();
 			deleteimg(deleteServer, blogimg_src);
@@ -402,6 +403,22 @@ public class AboutUsController {
 			return false;
 		}
 	}
+	@RequestMapping(value="delete_blogimg",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean delete_blogimg(HttpServletRequest request,HttpServletResponse response
+			) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String blogimgid = request.getParameter("blogimgid");
+		String deleteServer = deleteServer();
+		List<Blog_img> queryBlogInner = aboutUsService.queryBlogImgById(blogimgid);
+		for (Blog_img blog_img : queryBlogInner) {
+			String blogimg_src = blog_img.getBlogimg_src();
+			deleteimg(deleteServer, blogimg_src);
+		}
+		aboutUsService.delete_blogimg(blogimgid);
+		return true;
+	}
 	@RequestMapping(value="querylit",method=RequestMethod.GET)
 	public String querylit(HttpServletRequest request,HttpServletResponse response
 			) throws IllegalStateException, IOException {
@@ -412,10 +429,10 @@ public class AboutUsController {
 		List<Honor> queryHonor = aboutUsService.queryHonor();
 		List<News> queryNews = aboutUsService.queryNews();
 		List<Blog> queryBlog = aboutUsService.queryBlog();
+		List<CommonwithBlog> queryCommonWithBlog = aboutUsService.queryCommonWithBlog();
 		AboutUs_Img queryAboutUsIntroImgIn = aboutUsService.queryAboutUsIntroImgIn();
 		AboutUs_Img queryAboutUsIntroImgOut = aboutUsService.queryAboutUsIntroImgOut();
 		List<News_img> queryAllNewsImg = aboutUsService.queryAllNewsImg();
-		List<Blog_img> queryAllBlogImg = aboutUsService.queryAllBlogImg();
 		if (queryAboutUsIntroImgLit==null||queryTimeline==null||queryHonor==null||queryNews==null||queryBlog==null) {
 			return null;
 		}else {
@@ -432,11 +449,11 @@ public class AboutUsController {
 				request.setAttribute("aboutusimg_src2", aboutusimg_src2);
 			}
 			request.setAttribute("queryBlog", queryBlog);
+			request.setAttribute("queryCommonWithBlog", queryCommonWithBlog);
 			request.setAttribute("queryTimeline", queryTimeline);
 			request.setAttribute("queryAllNewsImg", queryAllNewsImg);
 			request.setAttribute("queryHonor", queryHonor);
 			request.setAttribute("queryNews", queryNews);
-			request.setAttribute("queryAllBlogImg", queryAllBlogImg);
 			request.setAttribute("querylit", queryAboutUsIntroImgLit);
 			return "manager/AboutUs";
 		}

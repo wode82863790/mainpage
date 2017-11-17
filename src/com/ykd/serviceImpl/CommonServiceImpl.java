@@ -104,5 +104,12 @@ public class CommonServiceImpl implements CommonService{
 
 	}
 
+	@Transactional
+	public BackManager queryMnagerById(String uid) {
+		System.out.println("进来了");
+		BackManager queryManagerById = commonDao.queryManagerById(uid);
+		return queryManagerById;
+	}
+
 
 }

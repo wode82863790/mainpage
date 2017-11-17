@@ -26,6 +26,7 @@
 					<li class="active"><a href="${contextPath}/querybackjoin">招聘部分</a></li>
 					<li><a href="${contextPath}/querybackgoods">产品部分</a></li>
 					<li><a href="${contextPath}/querybackdown">下载中心部分</a></li>
+					<li><a id="loginout">退出到登陆页面</a></li>
 				</ul>
 			</div>
 		</div>
@@ -206,6 +207,10 @@
 				}
 			);
 		}
+	});
+	$("#loginout").on("click",function(){
+		localStorage.removeItem("token");
+		location.href="${contextPath}/manager/back.jsp";
 	});
 	</script>
 </body>

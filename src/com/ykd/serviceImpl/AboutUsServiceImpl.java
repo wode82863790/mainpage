@@ -13,6 +13,7 @@ import com.ykd.entity.AboutUs_Img;
 import com.ykd.entity.Banner;
 import com.ykd.entity.Blog;
 import com.ykd.entity.Blog_img;
+import com.ykd.entity.CommonwithBlog;
 import com.ykd.entity.Honor;
 import com.ykd.entity.News;
 import com.ykd.entity.News_img;
@@ -230,9 +231,22 @@ public class AboutUsServiceImpl implements AboutUsService{
 		return queryAllBlogImg;
 	}
 
+
 	@Transactional
-	public List<Blog_img> queryAllBlogImgByOutId(String blogid) {
-		List<Blog_img> queryAllBlogImgByOutId = aboutUsDao.queryAllBlogImgByOutId(blogid);
-		return queryAllBlogImgByOutId;
+	public List<CommonwithBlog> queryCommonWithBlog() {
+		List<CommonwithBlog> queryCommonWithBlog = aboutUsDao.queryCommonWithBlog();
+		return queryCommonWithBlog;
+	}
+
+	@Transactional
+	public List<Blog_img> queryBlogImgById(String blogimgid) {
+		List<Blog_img> queryBlogImgById = aboutUsDao.queryBlogImgById(blogimgid);
+		return queryBlogImgById;
+	}
+
+	@Transactional
+	public void delete_blogimg(String blogimgid) {
+		aboutUsDao.delete_blogimg(blogimgid);
+		
 	}
 }

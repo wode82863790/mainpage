@@ -236,7 +236,7 @@ public class CommonController {
 		case INVALID:
 			break;
 		}
-		if (flag.equals("true")) {
+		if (flag!=null) {
 			return true;
 		}else {
 			return false;

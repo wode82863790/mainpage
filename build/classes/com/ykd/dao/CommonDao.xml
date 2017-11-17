@@ -10,6 +10,10 @@
 		select * from logo GROUP BY
 		logo_id DESC LIMIT 1;
 	</select>
+	<select id="queryManagerById" parameterType="java.lang.String"
+		resultMap="manResultMap">
+		select * from ykd_manager where manager_id=#{0};
+	</select>
 	<select id="queryS_banner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
 		select * from banner where

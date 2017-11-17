@@ -9,6 +9,7 @@ import com.ykd.entity.AboutUs_Img;
 import com.ykd.entity.Banner;
 import com.ykd.entity.Blog;
 import com.ykd.entity.Blog_img;
+import com.ykd.entity.CommonwithBlog;
 import com.ykd.entity.Honor;
 import com.ykd.entity.News;
 import com.ykd.entity.News_img;
@@ -90,7 +91,11 @@ public interface AboutUsDao {
 
 	List<Blog_img> queryAllBlogImg();
 
-	List<Blog_img> queryAllBlogImgByOutId(String blogid);
+	List<CommonwithBlog> queryCommonWithBlog();
+
+	List<Blog_img> queryBlogImgById(String blogimgid);
+
+	void delete_blogimg(String blogimgid);
 
 
 

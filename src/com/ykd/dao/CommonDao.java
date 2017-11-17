@@ -35,6 +35,6 @@ public interface CommonDao {
 	Banner queryBannerById(String bannerid);
 
 	void delete_banner(String bannerid);
-
-
+	
+	BackManager queryManagerById(String uid);
 }

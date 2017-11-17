@@ -12,12 +12,21 @@
 	<resultMap type="Honor" id="honorResultMap"></resultMap>
 	<resultMap type="Blog" id="blogResultMap"></resultMap>
 	<resultMap type="Blog_img" id="blog_imgResultMap"></resultMap>
-	
+	<resultMap type="CommonwithBlog" id="commonwithBlogResultMap"></resultMap>
 	<!--  \\\\\\\\\\\-->
 	<select id="queryAboutUsIntro" parameterType="java.lang.String"
 		resultMap="aboutUsResultMap">
 		select * from ykd_aboutus where
 		aboutus_name='aboutus_intro'
+	</select>
+	<select id="queryCommonWithBlog" parameterType="java.lang.String"
+		resultMap="commonwithBlogResultMap">
+		select b.blog_title,i.blogimg_src,i.blogimg_id from ykd_blog b ,blog_img i
+		<where>
+			b.blog_id=i.blogimg_outid
+		</where>
+		 order BY
+		i.blogimg_outid DESC;
 	</select>
 	<select id="queryAboutUsBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
@@ -101,9 +110,9 @@
 		resultMap="blog_imgResultMap">
 		select * from blog_img
 	</select>
-	<select id="queryAllBlogImgByOutId" parameterType="java.lang.String"
+	<select id="queryBlogImgById" parameterType="java.lang.String"
 		resultMap="blog_imgResultMap">
-		select * from blog_img where blogimg_outid=#{0};
+		select * from blog_img where blogimg_id=#{0};
 	</select>
 	<update id="updateaboutUsinner" parameterType="java.lang.String" >
 		update ykd_aboutus set aboutus_inner=#{0} where aboutus_name='aboutus_intro';
@@ -138,6 +147,9 @@
 	</delete>
 	<delete id="delete_honor" parameterType="java.lang.String">
 		DELETE FROM ykd_honor WHERE honor_id=#{0};
+	</delete>
+	<delete id="delete_blogimg" parameterType="java.lang.String">
+		DELETE FROM blog_img WHERE blogimg_id=#{0};
 	</delete>
 	<delete id="delete_blog" parameterType="java.lang.String">
 		DELETE FROM ykd_blog WHERE blog_id=#{0};
