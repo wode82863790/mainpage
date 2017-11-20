@@ -101,14 +101,18 @@
 						<div class="col-md-6 text-center">
 							<img
 								src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
-								alt="banner" class="img-responsive img-rounded ">
+								alt="banner" class="img-responsive img-rounded "  onclick="show(this)">
 							<p>
 								<c:out value="${list.getBlogimg_intro()}" />
 							</p>
 						</div>
 					</c:forEach>
 				</div>
+				<div class="col-md-12 text-center">
+				<a href="#" onclick="back2top()"><i class="fa fa-caret-square-o-up"></i>关闭页面</a>
 			</div>
+			</div>
+			
 		</div>
 
 		<footer id="fh5co-footer" role="contentinfo">
@@ -135,33 +139,6 @@
 			</div>
 		</footer>
 	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<img src="${contextPath}/images/portfolio-4.jpg" alt="news2"
-						class="img-responsive img-rounded	">
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
-	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<img src="${contextPath}/images/portfolio-5.jpg" alt="news2"
-						class="img-responsive img-rounded	">
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-
-	</div>
 	<!-- jQuery -->
 	<script src="${contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -175,12 +152,12 @@
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
 	<script type="text/javascript">
-		/* 	$('#news1').click(function(){
-				window.open("images/portfolio-4.jpg");
-			})
-			$('#news2').click(function(){
-				window.open("images/portfolio-4.jpg");
-			}) */
+		function back2top(){
+			location.href="${contextPath}/queryAboutUsBlog";
+		};
+		function show(temp){
+			window.open(temp.src);
+		};
 	</script>
 </body>
 </html>

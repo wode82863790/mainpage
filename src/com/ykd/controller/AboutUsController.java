@@ -567,33 +567,60 @@ public class AboutUsController {
 			return false;
 		}
 	}
+//	@RequestMapping(value="insertblogimg",method=RequestMethod.POST)
+//	@ResponseBody
+//	public boolean insertblogimg(HttpServletRequest request,HttpServletResponse response
+//			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+//		request.setCharacterEncoding("utf-8");
+//		response.setContentType("text/html;charset=utf-8");
+//		String id = request.getParameter("id");
+//		String intro = request.getParameter("intro");
+//		if(!file.isEmpty()) {
+//			//上传文件路径
+//			String path = updateServer();
+//			//上传文件名
+//			long currentTimeMillis = System.currentTimeMillis();
+//			String filename = "blogintro"+currentTimeMillis+".jpg";
+//			File filepath = new File(path,filename);
+//			//判断路径是否存在，如果不存在就创建一个
+//			if (!filepath.getParentFile().exists()) { 
+//				filepath.getParentFile().mkdirs();
+//			}
+//			//将上传文件保存到一个目标文件当中
+//			file.transferTo(new File(path + File.separator + filename));
+//			String src="images/"+filename;
+//			aboutUsService.insertblogimg(filename,intro,id,src);
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 	@RequestMapping(value="insertblogimg",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean insertblogimg(HttpServletRequest request,HttpServletResponse response
-			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+			,@RequestParam("file-zh") MultipartFile[] files) throws IllegalStateException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String id = request.getParameter("id");
-		String intro = request.getParameter("intro");
-		if(!file.isEmpty()) {
-			//上传文件路径
-			String path = updateServer();
-			//上传文件名
-			long currentTimeMillis = System.currentTimeMillis();
-			String filename = "blogintro"+currentTimeMillis+".jpg";
-			File filepath = new File(path,filename);
-			//判断路径是否存在，如果不存在就创建一个
-			if (!filepath.getParentFile().exists()) { 
-				filepath.getParentFile().mkdirs();
+		String intro="";
+			for (int i = 0; i < files.length; i++) {
+				MultipartFile file=files[i];
+				//上传文件路径
+				String path = updateServer();
+				//上传文件名
+				int s = (int) (Math.random() * 90000) + 10000;
+				String filename = "blogintro"+s+".jpg";
+				File filepath = new File(path,filename);
+				//判断路径是否存在，如果不存在就创建一个
+				if (!filepath.getParentFile().exists()) { 
+					filepath.getParentFile().mkdirs();
+				}
+				//将上传文件保存到一个目标文件当中
+				file.transferTo(new File(path + File.separator + filename));
+				String src="images/"+filename;
+				aboutUsService.insertblogimg(filename,intro,id,src);
 			}
-			//将上传文件保存到一个目标文件当中
-			file.transferTo(new File(path + File.separator + filename));
-			String src="images/"+filename;
-			aboutUsService.insertblogimg(filename,intro,id,src);
 			return true;
-		} else {
-			return false;
-		}
 	}
 
 

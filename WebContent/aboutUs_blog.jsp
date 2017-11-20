@@ -173,33 +173,6 @@
 			</div>
 		</footer>
 	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<img src="${contextPath}/portfolio-4.jpg" alt="news2"
-						class="img-responsive img-rounded	">
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-	</div>
-	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<img src="${contextPath}/images/portfolio-5.jpg" alt="news2"
-						class="img-responsive img-rounded	">
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal -->
-
-	</div>
 	<!-- jQuery -->
 	<script src="${contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->

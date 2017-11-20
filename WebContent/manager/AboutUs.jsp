@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
-
+<!--Fileinput-->
+<link rel="stylesheet" href="${contextPath}/css/fileinput.css">
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -317,7 +318,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	<div class="row">
+	<%-- <div class="row">
 		<div class="col-md-6 ">
 			<form id="insertblogimg" enctype="multipart/form-data">
 				<table class="table table-bordered">
@@ -349,11 +350,36 @@
 			<c:forEach items="${requestScope.queryCommonWithBlog }" var="list9"
 				varStatus="num">
 				<div class="col-md-3  animate-box">
-				<c:out value="${list9.getBlog_title()}" /><br>
-					<img
+					<c:out value="${list9.getBlog_title()}" />
+					<br> <img
 						src="${contextPath}/<c:out value="${list9.getBlogimg_src()}" />"
-						alt="news1" class="img-responsive ">
-						 <input type="button"
+						alt="news1" class="img-responsive "> <input type="button"
+						value="删除" onclick="delete_blogimg(${list9.getBlogimg_id()})">
+				</div>
+			</c:forEach>
+		</div>
+	</div> --%>
+	<div class="row">
+		<div class="col-md-6 panel panel-default">
+			<form enctype="multipart/form-data">
+			<h3>批量上传团建照片</h3>
+				<input id="file-zh" name="file-zh" type="file" multiple>
+				<select size="1" name="blogimg_idd"
+						id="blogimg_idd">
+						<c:forEach items="${requestScope.queryBlog }" var="list12" varStatus="num">
+							<option value="<c:out value="${list12.getBlog_id()}" />"><c:out
+									value="${list12.getBlog_title()}" /></option></c:forEach>
+				</select>
+			</form>
+		</div>
+		<div class="col-md-6 ">
+			<c:forEach items="${requestScope.queryCommonWithBlog }" var="list9"
+				varStatus="num">
+				<div class="col-md-3  animate-box">
+					<c:out value="${list9.getBlog_title()}" />
+					<br> <img
+						src="${contextPath}/<c:out value="${list9.getBlogimg_src()}" />"
+						alt="news1" class="img-responsive "> <input type="button"
 						value="删除" onclick="delete_blogimg(${list9.getBlogimg_id()})">
 				</div>
 			</c:forEach>
@@ -363,6 +389,9 @@
 	<script src="${contextPath}/js/jquery.min.js"></script>
 	<!-- Bootstrap -->
 	<script src="${contextPath}/js/bootstrap.min.js"></script>
+	<!--Fileinput-->
+	<script src="${contextPath}/js/fileinput.js"></script>
+	<script src="${contextPath}/js/fileinput_zh.js"></script>
 	<script type="text/javascript">
 		function updateaboutUSinner() {
 			var formData = new FormData($("#aboutUSinner")[0]);
@@ -643,6 +672,13 @@
 				);
 			}
 		});
+		 $(document).ready(function() {
+		        $("#test-upload").fileinput({
+		            'showPreview' : false,
+		            'allowedFileExtensions' : ['jpg', 'png','gif'],
+		            'elErrorContainer': '#errorBlock'
+		        });
+		    });
 		function insertblog() {
 			var formData = new FormData($('#insertblog')[0]);
 			formData.append("title",$('#blog_title').val());
@@ -664,7 +700,7 @@
 		          }  
 		     });  
 		};
-		function insertblogimg(id) {
+		/* function insertblogimg(id) {
 			var formData = new FormData($('#insertblogimg')[0]);
 			formData.append("intro",$('#blogimg_intro').val());
 			formData.append("id",id);
@@ -684,11 +720,29 @@
 		              alert(returndata);  
 		          }  
 		     });  
-		};
+		}; */
 		$("#loginout").on("click",function(){
 			localStorage.removeItem("token");
 			location.href="${contextPath}/manager/back.jsp";
 		});
+		
+		$('#file-zh').fileinput({
+	        language: 'zh',
+	        uploadUrl: '${contextPath}/insertblogimg',
+	        allowedFileExtensions : ['jpg', 'png','gif'],
+	        uploadExtraData: function(previewId, index) {   //额外参数的关键点
+                var obj = {
+	        			id :$("#blogimg_idd").val(),
+                    };
+                return obj;
+            },
+	    });
+		$("#file-zh").on("fileuploaded", function ( data) {
+            if (data) {
+				alert("oK");
+				window.location.reload();
+			}
+         });
 	</script>
 </body>
 </html>
