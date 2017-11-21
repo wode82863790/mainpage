@@ -362,13 +362,14 @@
 	<div class="row">
 		<div class="col-md-6 panel panel-default">
 			<form enctype="multipart/form-data">
-			<h3>批量上传团建照片</h3>
-				<input id="file-zh" name="file-zh" type="file" multiple>
-				<select size="1" name="blogimg_idd"
-						id="blogimg_idd">
-						<c:forEach items="${requestScope.queryBlog }" var="list12" varStatus="num">
-							<option value="<c:out value="${list12.getBlog_id()}" />"><c:out
-									value="${list12.getBlog_title()}" /></option></c:forEach>
+				<h3>批量上传团建照片</h3>
+				<input id="file-zh" name="file-zh" type="file" multiple> <select
+					size="1" name="blogimg_idd" id="blogimg_idd">
+					<c:forEach items="${requestScope.queryBlog }" var="list12"
+						varStatus="num">
+						<option value="<c:out value="${list12.getBlog_id()}" />"><c:out
+									value="${list12.getBlog_title()}" /></option>
+					</c:forEach>
 				</select>
 			</form>
 		</div>

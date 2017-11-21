@@ -131,17 +131,19 @@
 								<div class="col-md-6  animate-box">
 									<img
 										src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
-										alt="news" class="img-responsive img-rounded	" onclick="show(this)">
+										alt="news" class="img-responsive img-rounded	"
+										data-toggle="modal" data-target="#myModal${num.index }">
 								</div>
 							</c:forEach>
 						</div>
 						<div class="row" style="padding-top: 20px">
 							<c:forEach items="${requestScope.queryAboutUsIntroImgLit }"
-								var="list2" varStatus="num">
+								var="list2" varStatus="num2">
 								<div class="col-md-3  animate-box">
 									<img
 										src="${contextPath}/<c:out value="${list2.getAboutusimg_src()}" />"
-										alt="news1" class="img-responsive img-rounded" onclick="showlit(this)" >
+										alt="news1" class="img-responsive img-rounded"
+										data-toggle="modal" data-target="#myModallit${num2.index }">
 								</div>
 							</c:forEach>
 						</div>
@@ -174,8 +176,44 @@
 				</div>
 			</div>
 		</footer>
+		<c:forEach items="${requestScope.queryAboutUsIntroImg }" var="list"
+			varStatus="num">
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal${num.index }" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<img alt=""
+								src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
+								class="img-rounded img-responsive">
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</c:forEach>
+		<c:forEach items="${requestScope.queryAboutUsIntroImgLit }"
+			var="list2" varStatus="num2">
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModallit${num2.index }" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<img alt=""
+								src="${contextPath}/<c:out value="${list2.getAboutusimg_src()}" />"
+								class="img-rounded img-responsive">
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</c:forEach>
 	</div>
-	
+
 	<!-- jQuery -->
 	<script src="${contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -189,12 +227,7 @@
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
 	<script type="text/javascript">
-		function show(temp){
-			window.open(temp.src);
-		};
-		function showlit(temp){
-			window.open(temp.src);
-		}; 
+		
 	</script>
 </body>
 </html>

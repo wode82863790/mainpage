@@ -186,12 +186,6 @@
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
 	<script type="text/javascript">
-		/* 	$('#news1').click(function(){
-				window.open("images/portfolio-4.jpg");
-			})
-			$('#news2').click(function(){
-				window.open("images/portfolio-4.jpg");
-			}) */
 	</script>
 </body>
 </html>

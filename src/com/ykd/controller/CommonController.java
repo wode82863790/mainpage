@@ -242,10 +242,6 @@ public class CommonController {
 			return false;
 		}
 	}
-
-	
-	
-	
 	
 	
 	

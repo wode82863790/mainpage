@@ -26,7 +26,6 @@
 
 <!-- Theme style  -->
 <link rel="stylesheet" href="${contextPath}/css/style.css">
-
 <!-- Modernizr JS -->
 <script src="${contextPath}/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
@@ -98,10 +97,23 @@
 				<div class="row animate-box">
 					<c:forEach items="${requestScope.queryBlogInner }" var="list"
 						varStatus="num">
-						<div class="col-md-6 text-center">
+						<div class="col-md-4 text-center">
+							<%-- <div class="fh5co-portfolio animate-box">
+											<div class="portfolio-entry"
+												style="background-image: url(${contextPath}/<c:out value="${list.getBlogimg_src()}" />);"></div>
+											<div class="portfolio-text">
+												<h3>
+													<c:out value="${list.getBlog_title()}" />
+												</h3>
+												<ul class="stuff">
+													<li><c:out value="${list.getBlog_date()}" /></li>
+												</ul>
+											</div>
+									</div> --%>
 							<img
 								src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
-								alt="banner" class="img-responsive img-rounded "  onclick="show(this)">
+								alt="banner" class="img-responsive img-rounded "
+								data-toggle="modal" data-target="#myModal${num.index }">
 							<p>
 								<c:out value="${list.getBlogimg_intro()}" />
 							</p>
@@ -109,10 +121,11 @@
 					</c:forEach>
 				</div>
 				<div class="col-md-12 text-center">
-				<a href="#" onclick="back2top()"><i class="fa fa-caret-square-o-up"></i>关闭页面</a>
+					<a href="#" onclick="back2top()"><i
+						class="fa fa-caret-square-o-up"></i>关闭页面</a>
+				</div>
 			</div>
-			</div>
-			
+
 		</div>
 
 		<footer id="fh5co-footer" role="contentinfo">
@@ -138,26 +151,37 @@
 				</div>
 			</div>
 		</footer>
-	</div>
-	<!-- jQuery -->
-	<script src="${contextPath}/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="${contextPath}//js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="${contextPath}/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="${contextPath}/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
-	<!-- Main -->
-	<script src="${contextPath}/js/main.js"></script>
-	<script type="text/javascript">
-		function back2top(){
-			location.href="${contextPath}/queryAboutUsBlog";
-		};
-		function show(temp){
-			window.open(temp.src);
-		};
-	</script>
+		<c:forEach items="${requestScope.queryBlogInner }" var="list"
+			varStatus="num">
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal${num.index }" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<img alt=""
+								src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
+								class="img-rounded img-responsive">
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</c:forEach>
+		<!-- jQuery -->
+		<script src="${contextPath}/js/jquery.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="${contextPath}/js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="${contextPath}/js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="${contextPath}/js/jquery.waypoints.min.js"></script>
+		<!-- Flexslider -->
+		<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
+		<!-- Main -->
+		<script src="${contextPath}/js/main.js"></script>
+		<script type="text/javascript">
+		</script>
 </body>
 </html>
