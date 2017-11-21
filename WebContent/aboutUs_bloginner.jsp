@@ -98,25 +98,18 @@
 					<c:forEach items="${requestScope.queryBlogInner }" var="list"
 						varStatus="num">
 						<div class="col-md-4 text-center">
-							<%-- <div class="fh5co-portfolio animate-box">
-											<div class="portfolio-entry"
-												style="background-image: url(${contextPath}/<c:out value="${list.getBlogimg_src()}" />);"></div>
-											<div class="portfolio-text">
-												<h3>
-													<c:out value="${list.getBlog_title()}" />
-												</h3>
-												<ul class="stuff">
-													<li><c:out value="${list.getBlog_date()}" /></li>
-												</ul>
-											</div>
-									</div> --%>
-							<img
+							<div class="fh5co-portfolio animate-box">
+								<div class="portfolio-entry"
+									style="background-image: url(${contextPath}/<c:out value="${list.getBlogimg_src()}" />);"
+									data-toggle="modal" data-target="#myModal${num.index }"></div>
+							</div>
+							<%-- 	<img
 								src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
 								alt="banner" class="img-responsive img-rounded "
 								data-toggle="modal" data-target="#myModal${num.index }">
 							<p>
 								<c:out value="${list.getBlogimg_intro()}" />
-							</p>
+							</p> --%>
 						</div>
 					</c:forEach>
 				</div>
@@ -182,6 +175,7 @@
 		<!-- Main -->
 		<script src="${contextPath}/js/main.js"></script>
 		<script type="text/javascript">
+			
 		</script>
 </body>
 </html>
