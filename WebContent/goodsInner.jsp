@@ -57,16 +57,16 @@
 										<li><a href="${contextPath}/queryAboutUsBlog">企业风采</a></li>
 									</ul></li>
 								<li class="active"><a href="${contextPath}/queryGoods">产品中心</a></li>
+								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
 								<li><a href="#">会员入口</a></li>
-								<li class="has-dropdown"><a
-									href="${contextPath}/queryCall">联系我们</a>
+								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
 										<li><a href="${contextPath}/queryAlly">加盟代理</a></li>
 										<li><a href="${contextPath}/queryCall">合作伙伴</a></li>
 									</ul></li>
-								<li> 
+								<li>
 							</ul>
 						</div>
 						<div class="col-md-2">
@@ -115,35 +115,34 @@
 							<h4><%=goods_name%></h4>
 						</div>
 						<div class="row">
-							<div class="col-md-4  animate-box">
+							<div class="col-md-5  animate-box">
 								<%
 									String goods_mainimg = (String) request.getAttribute("goods_mainimg");
 								%>
 								<img alt="a1" src="${contextPath}/<%=goods_mainimg %>"
 									class=" img-responsive ">
 							</div>
-							<div class="col-md-5  animate-box">
+							<div class="col-md-7  animate-box">
 								<%
 									String getGoodsintro_inner = (String) request.getAttribute("getGoodsintro_inner");
 								%>
 								<small><%=getGoodsintro_inner%></small><a href="#">了解详情</a>
 							</div>
 						</div>
-						<div class="row">
 						<c:forEach items="${requestScope.queryGoodsIntro }" var="list3"
-								varStatus="num">
-							<div class="col-md-5  animate-box">
-							
-								<img alt="a1" src="${contextPath}/<c:out
+							varStatus="num">
+							<div class="row">
+								<div class="col-md-6  animate-box">
+									<img alt="a1"
+										src="${contextPath}/<c:out
 											value="${list3.getGoodsintro_img()}" />"
-									class=" img-responsive ">
+										class=" img-responsive ">
+								</div>
+								<div class="col-md-6  animate-box">
+									<small><c:out value="${list3.getGoodsintro_inner()}" escapeXml="false"/></small>
+								</div>
 							</div>
-							<div class="col-md-4  animate-box">
-								<small><c:out
-											value="${list3.getGoodsintro_inner()}" /></small><a href="#">了解详情</a>
-							</div>
-							</c:forEach>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>

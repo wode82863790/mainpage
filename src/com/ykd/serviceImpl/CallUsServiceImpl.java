@@ -87,6 +87,16 @@ public class CallUsServiceImpl implements CallUsService{
 		Callus_img queryCallUsImgById = callUsDao.queryCallUsImgById(bankid);
 		return queryCallUsImgById;
 	}
+	@Transactional
+	public void updatehelp(String id, String helpask, String helpans) {
+		callUsDao.updatehelp(id,helpask,helpans);
+		
+	}
+	@Transactional
+	public void updateally(String id, String allyname, String allycall) {
+		callUsDao.updateally(id,allyname,allycall);
+		
+	}
 	
 
 }

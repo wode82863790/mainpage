@@ -38,13 +38,18 @@ public class CallUsController {
 		List<Callus_img> queryBank = callUsService.queryBank();
 		List<Callus_img> queryStore = callUsService.queryStore();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		Banner queryCallBanner=callUsService.queryCallBanner();
-		String banner_src = queryCallBanner.getBanner_src();
+		if (queryLogo==null||queryCallBanner==null) {
+			request.setAttribute("banner_src", "");
+			request.setAttribute("logo_src", "");
+		}else {
+			String logo_src = queryLogo.getLogo_src();
+			String banner_src = queryCallBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+			request.setAttribute("logo_src", logo_src);
+		}
 		request.setAttribute("queryBank", queryBank);
 		request.setAttribute("queryStore", queryStore);
-		request.setAttribute("banner_src", banner_src);
-		request.setAttribute("logo_src", logo_src);
 		return "callUs";
 
 	}
@@ -53,12 +58,17 @@ public class CallUsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		Banner queryCallBanner=callUsService.queryCallBanner();
-		String banner_src = queryCallBanner.getBanner_src();
 		List<Help> queryHelp = callUsService.queryHelp();
-		request.setAttribute("banner_src", banner_src);
-		request.setAttribute("logo_src", logo_src);
+		if (queryLogo==null||queryCallBanner==null) {
+			request.setAttribute("banner_src", "");
+			request.setAttribute("logo_src", "");
+		}else {
+			String logo_src = queryLogo.getLogo_src();
+			String banner_src = queryCallBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+			request.setAttribute("logo_src", logo_src);
+		}
 		request.setAttribute("queryHelp", queryHelp);
 		return "callUs_help";
 
@@ -69,13 +79,18 @@ public class CallUsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		Banner queryCallBanner=callUsService.queryCallBanner();
 		List<Ally> queryAlly = callUsService.queryAlly();
-		String banner_src = queryCallBanner.getBanner_src();
-		request.setAttribute("banner_src", banner_src);
+		if (queryLogo==null||queryCallBanner==null) {
+			request.setAttribute("banner_src", "");
+			request.setAttribute("logo_src", "");
+		}else {
+			String logo_src = queryLogo.getLogo_src();
+			String banner_src = queryCallBanner.getBanner_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryAlly1", queryAlly);
-		request.setAttribute("logo_src", logo_src);
 		return "callUs_ally";
 
 	}
@@ -190,6 +205,17 @@ public class CallUsController {
 		callUsService.inserthelp(helpask,helpans);
 		return true;
 	}
+	@RequestMapping(value="updatehelp",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean updatehelp(HttpServletRequest request,HttpServletResponse response) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		String helpask = request.getParameter("helpask");
+		String helpans = request.getParameter("helpans");
+		callUsService.updatehelp(id,helpask,helpans);
+		return true;
+	}
 	@RequestMapping(value="deletehelp",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean deletehelp(HttpServletRequest request,HttpServletResponse response
@@ -209,6 +235,17 @@ public class CallUsController {
 		String allyname = request.getParameter("allyname");
 		String allycall = request.getParameter("allycall");
 		callUsService.insertally(allyname,allycall);
+		return true;
+	}
+	@RequestMapping(value="update_ally",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean update_ally(HttpServletRequest request,HttpServletResponse response) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		String allyname = request.getParameter("allyname");
+		String allycall = request.getParameter("allycall");
+		callUsService.updateally(id,allyname,allycall);
 		return true;
 	}
 	@RequestMapping(value="deleteally",method=RequestMethod.POST)

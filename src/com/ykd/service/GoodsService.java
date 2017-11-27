@@ -3,12 +3,13 @@ package com.ykd.service;
 import java.util.List;
 
 import com.ykd.entity.Banner;
+import com.ykd.entity.CommonwithGoods;
 import com.ykd.entity.Down;
 import com.ykd.entity.Goods;
 import com.ykd.entity.Goods_intro;
 
 public interface GoodsService {
-
+	//下载宽图还是你
 	Banner queryGoodsBanner();
 
 	List<Banner> queryGoodsThirdBanner();
@@ -27,7 +28,7 @@ public interface GoodsService {
 
 	List<Down> queryDown();
 
-	void inserthonor(String name, String inner, String src, String url);
+	void insertdown(String name, String inner, String src, String url, String url2);
 
 	void delete_down(String downid);
 
@@ -45,7 +46,7 @@ public interface GoodsService {
 
 	void delete_goodsbanner(String bannerid);
 
-	void insertgoodsbanner(String id, String src);
+	void insertgoodsbanner(String id, String filename, String src);
 
 	Banner queryGoodsBannerById(String bannerid);
 
@@ -56,6 +57,32 @@ public interface GoodsService {
 	Banner queryGoodsInnerBanner(String id);
 
 	List<Banner> queryAllGoodsBanner();
+
+	void updatedown(String id, String name, String inner, String src, String url1, String url2);
+
+	Banner querygoodSbG();
+
+	void updategoodSbG(String src);
+
+	void insertgoodSbG( String src);
+
+	List<CommonwithGoods> queryCommonWithGoods();
+
+	void updategoodsintromain(String oid, String goodsintro_inner);
+
+	void updategoods(String id, String goods_name, String src);
+
+	List<CommonwithGoods> queryCommonWithGoods2();
+
+	Goods_intro queryGoodsIntroById(String oid);
+
+	void updategoodsintro(String id, String goodsintro_inner, String src);
+
+	void delete_goodsintro(String goodsintroid);
+
+	void insert4banner(String id, String filename, String src);
+
+	List<Banner> queryGoodsFouthBanner();
 	
 
 }

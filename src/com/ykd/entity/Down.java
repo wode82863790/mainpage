@@ -5,12 +5,19 @@ public class Down {
 	private String down_img;
 	private String down_name;
 	private String down_inner;
-	private String down_url;
-	public String getDown_url() {
-		return down_url;
+	private String down_url_Android;
+	private String down_url_iOS;
+	public String getDown_url_Android() {
+		return down_url_Android;
 	}
-	public void setDown_url(String down_url) {
-		this.down_url = down_url;
+	public void setDown_url_Android(String down_url_Android) {
+		this.down_url_Android = down_url_Android;
+	}
+	public String getDown_url_iOS() {
+		return down_url_iOS;
+	}
+	public void setDown_url_iOS(String down_url_iOS) {
+		this.down_url_iOS = down_url_iOS;
 	}
 	public String getDown_id() {
 		return down_id;

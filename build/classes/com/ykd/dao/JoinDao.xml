@@ -32,6 +32,10 @@
 		join_place, join_inner, join_need)
 		values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8})
 	</insert>
+	<update id="updatejoin" parameterType="java.lang.String">
+		update ykd_join set join_title=#{1},join_num=#{2},join_back=#{3},join_date=#{4},join_time=#{5},join_class=#{6},join_place=#{7},join_inner=#{8},join_need=#{9}
+		where join_id=#{0}
+	</update>
 	<insert id="insertjoin_banner" parameterType="java.lang.String">
 		insert into banner
 		(banner_name,banner_src)

@@ -3,6 +3,7 @@ package com.ykd.dao;
 import java.util.List;
 
 import com.ykd.entity.Banner;
+import com.ykd.entity.CommonwithGoods;
 import com.ykd.entity.Down;
 import com.ykd.entity.Goods;
 import com.ykd.entity.Goods_intro;
@@ -24,7 +25,7 @@ public interface GoodsDao {
 
 	List<Down> queryDown();
 
-	void inserthonor(String name, String inner, String src, String url);
+	void insertdown(String name, String inner, String src, String url1, String url2);
 
 	void delete_down(String downid);
 
@@ -42,7 +43,7 @@ public interface GoodsDao {
 
 	void delete_goodsbanner(String bannerid);
 
-	void insertgoodsbanner(String id, String src);
+	void insertgoodsbanner(String id, String filename, String src);
 
 	Banner queryGoodsBannerById(String bannerid);
 
@@ -55,6 +56,31 @@ public interface GoodsDao {
 	Banner queryGoodsBannerByOutId1(String id);
 
 	List<Banner> queryAllGoodsBanner();
+
+	void updatedown(String id, String name, String inner, String src, String url1, String url2);
+
+	Banner querygoodSbG();
+
+	void updategoodSbG(String src);
+
+	void insertgoodSbG(String src);
+
+	List<CommonwithGoods> queryCommonWithGoods();
+
+	void updategoodsintromain(String oid, String goodsintro_inner);
+
+	void updategoods(String id, String goods_name, String src);
+
+	List<CommonwithGoods> queryCommonWithGoods2();
+
+	Goods_intro queryGoodsIntroById(String oid);
+
+	void updategoodsintro(String id, String goodsintro_inner, String src);
+
+	void delete_goodsintro(String goodsintroid);
+
+	List<Banner> queryGoodsFouthBanner();
+
 
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ykd.entity.Banner;
+import com.ykd.entity.CommonwithGoods;
 import com.ykd.entity.Down;
 import com.ykd.entity.Goods;
 import com.ykd.entity.Goods_intro;
@@ -35,16 +36,21 @@ public class GoodsController {
 	public String queryGoods(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		Banner queryGoodsBanner = goodsService.queryGoodsBanner();
-		String banner_src = queryGoodsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		List<Banner> queryGoodsThirdBanner = goodsService.queryGoodsThirdBanner();
 		List<Goods> queryGoods = goodsService.queryGoods();
+		Banner querygoodSbG = goodsService.querygoodSbG();
+		if (queryLogo==null||querygoodSbG==null) {
+			request.setAttribute("logo_src", "");
+			request.setAttribute("banner_src2", "");
+		}else {
+			String logo_src = queryLogo.getLogo_src();
+			String banner_src2 = querygoodSbG.getBanner_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src2", banner_src2);
+		}
 		request.setAttribute("queryGoodsThirdBanner", queryGoodsThirdBanner);
 		request.setAttribute("queryGoods", queryGoods);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
 		return "goods";
 	}
 
@@ -85,12 +91,17 @@ public class GoodsController {
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryGoodsBanner = goodsService.queryGoodsBanner();
 		List<Down> queryDown = goodsService.queryDown();
-		String banner_src = queryGoodsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
+		if (queryGoodsBanner==null||queryLogo==null) {
+			request.setAttribute("logo_src", "");
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = queryGoodsBanner.getBanner_src();
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryDown", queryDown);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
 		return "download";
 	}
 	@RequestMapping(value="querybackdown",method=RequestMethod.GET)
@@ -109,7 +120,10 @@ public class GoodsController {
 		response.setContentType("text/html;charset=utf-8");
 		String name = request.getParameter("name");
 		String inner = request.getParameter("inner");
-		String url = request.getParameter("url");
+		String url1 = request.getParameter("url1");
+		System.out.println(url1);
+		String url2 = request.getParameter("url2");
+		System.out.println(url2);
 		if(!file.isEmpty()) {
 			//上传文件路径
 			String path=updateServer();
@@ -124,11 +138,124 @@ public class GoodsController {
 			//将上传文件保存到一个目标文件当中
 			file.transferTo(new File(path + File.separator + filename));
 			String src="images/"+filename;
-			goodsService.inserthonor(name,inner,src,url);
+			goodsService.insertdown(name,inner,src,url1,url2);
 			return true;
 		} else {
 			return false;
 		}
+	}
+	@RequestMapping(value="updatedown",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean updatedown(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String inner = request.getParameter("inner");
+		String url1 = request.getParameter("url1");
+		String url2 = request.getParameter("url2");
+		Down queryDownById2 = goodsService.queryDownById(id);
+		String src = queryDownById2.getDown_img();
+		if(!file.isEmpty()) {
+			//先把老的删了
+			String deleteServer = deleteServer();
+			Down queryDownById = goodsService.queryDownById(id);
+			String down_img = queryDownById.getDown_img();
+			deleteimg(deleteServer, down_img);
+			//上传文件路径
+			String path=updateServer();
+			//上传文件名
+			long currentTimeMillis = System.currentTimeMillis();
+			String filename = "down"+currentTimeMillis+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			src="images/"+filename;
+			goodsService.updatedown(id,name,inner,src,url1,url2);
+		} else {
+			goodsService.updatedown(id,name,inner,src,url1,url2);
+
+		}
+		return true;
+	}
+	@RequestMapping(value="updategoods",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean updategoods(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		String oid = request.getParameter("oid");
+		String goods_name = request.getParameter("goods_name");
+		String goodsintro_inner = request.getParameter("goodsintro_inner");
+		Goods queryGoodsById = goodsService.queryGoodsById(id);
+		String src = queryGoodsById.getGoods_mainimg();
+		if (goodsintro_inner!=null) {
+			System.out.println(goodsintro_inner);
+			goodsService.updategoodsintromain(oid,goodsintro_inner);
+		}
+		if(!file.isEmpty()) {
+			//先把老的删了
+			String deleteServer = deleteServer();
+			deleteimg(deleteServer, src);
+			//上传文件路径
+			String path=updateServer();
+			//上传文件名
+			long currentTimeMillis = System.currentTimeMillis();
+			String filename = "goodsmain"+currentTimeMillis+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			src="images/"+filename;
+			goodsService.updategoods(id,goods_name,src);
+		} else {
+			goodsService.updategoods(id,goods_name,src);
+
+		}
+		return true;
+	}
+	@RequestMapping(value="updategoodsintro",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean updategoodsintro(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String oid = request.getParameter("oid");
+		String goodsintro_inner = request.getParameter("goodsintro_innertointro");
+		Goods_intro queryGoodsIntroById = goodsService.queryGoodsIntroById(oid);
+		String src = queryGoodsIntroById.getGoodsintro_img();
+		if(!file.isEmpty()) {
+			//先把老的删了
+			String deleteServer = deleteServer();
+			deleteimg(deleteServer, src);
+			//上传文件路径
+			String path=updateServer();
+			//上传文件名
+			long currentTimeMillis = System.currentTimeMillis();
+			String filename = "goodsintro"+currentTimeMillis+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			src="images/"+filename;
+			goodsService.updategoodsintro(oid,goodsintro_inner,src);
+		} else {
+			goodsService.updategoodsintro(oid,goodsintro_inner,src);
+
+		}
+		return true;
 	}
 	@RequestMapping(value="delete_down",method=RequestMethod.POST)
 	@ResponseBody
@@ -147,17 +274,30 @@ public class GoodsController {
 		}else {
 			return false;
 		}
-		
+
 	}
 	@RequestMapping(value="querybackgoods",method=RequestMethod.GET)
 	public String querybackgoods(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		List<Goods> queryGoods = goodsService.queryGoods();
 		List<Banner> queryGoodsThirdBanner = goodsService.queryGoodsThirdBanner();
 		List<Banner> queryAllGoodsBanner = goodsService.queryAllGoodsBanner();
+		List<CommonwithGoods> queryCommonWithGoods = goodsService.queryCommonWithGoods();
+		List<CommonwithGoods> queryCommonWithGoods2 = goodsService.queryCommonWithGoods2();
+		List<Banner> queryGoodsFouthBanner = goodsService.queryGoodsFouthBanner();
+		List<Goods> queryGoods = goodsService.queryGoods();
+		Banner querygoodSbG = goodsService.querygoodSbG();
+		if (querygoodSbG==null) {
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = querygoodSbG.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryAllGoodsBanner", queryAllGoodsBanner);
+		request.setAttribute("queryCommonWithGoods", queryCommonWithGoods);
 		request.setAttribute("queryGoodsThirdBanner", queryGoodsThirdBanner);
+		request.setAttribute("queryGoodsFouthBanner", queryGoodsFouthBanner);
+		request.setAttribute("queryCommonWithGoods2", queryCommonWithGoods2);
 		request.setAttribute("queryGoods", queryGoods);
 		return "manager/Goods";
 	}
@@ -168,12 +308,11 @@ public class GoodsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String id = request.getParameter("id");
-		System.out.println(id);
 		if(!file.isEmpty()) {
 			//上传文件路径
 			String path=updateServer();
 			//上传文件名
-			String filename = "secend_banner_goods"+".jpg";
+			String filename = "secend_banner_goods"+id+".jpg";
 			File filepath = new File(path,filename);
 			//判断路径是否存在，如果不存在就创建一个
 			if (!filepath.getParentFile().exists()) { 
@@ -186,7 +325,39 @@ public class GoodsController {
 			if (queryGoodsBanner!=null) {
 				goodsService.updategoodsbanner(id,src);
 			}else {
-				goodsService.insertgoodsbanner(id,src);
+				goodsService.insertgoodsbanner(id,filename,src);
+			}
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+	@RequestMapping(value="updategoodSbG",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean updategoodSbG(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		if(!file.isEmpty()) {
+			//上传文件路径
+			String path=updateServer();
+			//上传文件名
+			String filename = "secend_banner_SbG"+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			String src="images/"+filename;
+			Banner querygoodSbG = goodsService.querygoodSbG();
+			if (querygoodSbG!=null) {
+				filename=querygoodSbG.getBanner_name();
+				goodsService.updategoodSbG(src);
+			}else {
+				goodsService.insertgoodSbG(src);
 			}
 
 			return true;
@@ -237,6 +408,7 @@ public class GoodsController {
 		if (queryGoodsBannerByOutId.isEmpty()==false) {
 			for (Banner banner : queryGoodsBannerByOutId) {
 				String banner_src = banner.getBanner_src();
+				System.out.println("近来来");
 				deleteimg(deleteServer, banner_src);
 			}
 		}
@@ -248,6 +420,21 @@ public class GoodsController {
 			}
 		}
 		goodsService.delete_goods(goodsid);
+		return true;
+	}
+	@RequestMapping(value="delete_goodsintro",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean delete_goodsintro(HttpServletRequest request,HttpServletResponse response
+			) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String goodsintroid = request.getParameter("goodsintroid");
+		String deleteServer = deleteServer();
+		Goods_intro queryGoodsIntroById = goodsService.queryGoodsIntroById(goodsintroid);
+		String goodsintro_img = queryGoodsIntroById.getGoodsintro_img();
+		@SuppressWarnings("unused")
+		boolean deleteimg = deleteimg(deleteServer, goodsintro_img);
+		goodsService.delete_goodsintro(goodsintroid);
 		return true;
 	}
 	@RequestMapping(value="insertgoodsintro",method=RequestMethod.POST)
@@ -263,7 +450,7 @@ public class GoodsController {
 			String path=updateServer();
 			//上传文件名
 			long currentTimeMillis = System.currentTimeMillis();
-			String filename = "intro"+currentTimeMillis+".jpg";
+			String filename = "goodsintro"+currentTimeMillis+".jpg";
 			File filepath = new File(path,filename);
 			//判断路径是否存在，如果不存在就创建一个
 			if (!filepath.getParentFile().exists()) { 
@@ -316,6 +503,33 @@ public class GoodsController {
 			return false;
 		}
 	}
+	@RequestMapping(value="insert4banner",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean insert4banner(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		if(!file.isEmpty()) {
+			//上传文件路径
+			String path=updateServer();
+			//上传文件名
+			long currentTimeMillis = System.currentTimeMillis();
+			String filename = "goodsfloat"+currentTimeMillis+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			String src="images/"+filename;
+			goodsService.insert4banner(id,filename,src);
+			return true;
+		} else {
+			return false;
+		}
+	}
 	@RequestMapping(value="delete_goodsbanner",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean delete_goodsbanner(HttpServletRequest request,HttpServletResponse response
@@ -333,7 +547,24 @@ public class GoodsController {
 		}else {
 			return false;
 		}
-
+	}
+	@RequestMapping(value="delete_4banner",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean delete_4banner(HttpServletRequest request,HttpServletResponse response
+			) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String bannerid = request.getParameter("id");
+		String deleteServer = deleteServer();
+		Banner queryGoodsBannerById = goodsService.queryGoodsBannerById(bannerid);
+		String banner_src = queryGoodsBannerById.getBanner_src();
+		boolean deleteimg = deleteimg(deleteServer, banner_src);
+		if (deleteimg==true) {
+			goodsService.delete_goodsbanner(bannerid);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 

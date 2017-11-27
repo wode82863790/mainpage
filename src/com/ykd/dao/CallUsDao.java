@@ -37,5 +37,9 @@ public interface CallUsDao {
 
 	Callus_img queryCallUsImgById(String bankid);
 
+	void updatehelp(String id, String helpask, String helpans);
+
+	void updateally(String id, String allyname, String allycall);
+
 
 }

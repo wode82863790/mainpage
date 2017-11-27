@@ -93,5 +93,13 @@ public interface AboutUsService {
 
 	void delete_blogimg(String blogimgid);
 
+	void update_news(String id, String title, String lit, String date,String inner);
+
+	News_img queryNewsImgById(String id);
+
+	void delete_newsimg(String id);
+
+	void updatehonor(String id,String title, String inner, String date, String src);
+
 
 }

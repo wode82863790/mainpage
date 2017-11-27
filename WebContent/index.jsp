@@ -56,6 +56,7 @@
 										<li><a href="${contextPath}/queryAboutUsBlog">企业风采</a></li>
 									</ul></li>
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
+								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
 								<li><a href="#">会员入口</a></li>
 								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
@@ -76,8 +77,7 @@
 				</div>
 			</div>
 		</nav>
-		<header id="fh5co-header" class="fh5co-cover js-fullheight"
-			role="banner">
+		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
 
 			<!-- 轮播 -->
@@ -119,36 +119,37 @@
 			<a class="carousel-control right" href="#myCarousel"
 				data-slide="next"></a> -->
 			</div>
-			<div style="margin-top: 50px">
-				<div class="row">
-					<div class="col-xs-3">
-						<div class="text-center">
-							<a href="#"> <i class="fa fa-user-o fa-3x"></i><br>个人支付
-							</a>
-						</div>
 
+		</header>
+		<div style="margin-bottom: 50px; margin-top: 50px">
+			<div class="row">
+				<div class="col-xs-3">
+					<div class="text-center">
+						<a href="#"> <i class="fa fa-user-o fa-3x"></i><br>个人支付
+						</a>
 					</div>
-					<div class="col-xs-3">
-						<div class="text-center">
-							<a href="#"> <i class="fa fa-paypal fa-3x"></i><br>跨境支付
-							</a>
-						</div>
+
+				</div>
+				<div class="col-xs-3">
+					<div class="text-center">
+						<a href="#"> <i class="fa fa-paypal fa-3x"></i><br>跨境支付
+						</a>
 					</div>
-					<div class="col-xs-3">
-						<div class="text-center">
-							<a href="#"> <i class="fa fa-money fa-3x"></i><br>商户收单
-							</a>
-						</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="text-center">
+						<a href="#"> <i class="fa fa-money fa-3x"></i><br>商户收单
+						</a>
 					</div>
-					<div class="col-xs-3">
-						<div class="text-center">
-							<a href="#"> <i class="fa fa-file-text-o fa-3x"></i><br>挥付信整
-							</a>
-						</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="text-center">
+						<a href="#"> <i class="fa fa-file-text-o fa-3x"></i><br>挥付信整
+						</a>
 					</div>
 				</div>
 			</div>
-		</header>
+		</div>
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
 				<div class="row copyright">

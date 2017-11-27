@@ -57,6 +57,7 @@
 										<li><a href="${contextPath}/queryAboutUsBlog">企业风采</a></li>
 									</ul></li>
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
+								<li class="active"><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
 								<li><a href="#">会员入口</a></li>
 								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
@@ -99,7 +100,7 @@
 				<div class="col-md-12"
 					style="padding-bottom: 20px; margin-top: -50px">
 					<h3>
-						下载中心<span>.</span>
+						<i class="fa fa-cloud-download"></i>下载中心
 					</h3>
 				</div>
 				<div class="row"
@@ -107,22 +108,29 @@
 					<c:forEach items="${requestScope.queryDown }" var="list"
 						varStatus="num">
 						<div class="col-md-4">
-							<div class="fh5co-blog animate-box">
-								<a class="blog-bg"
-									style="background-image: url(${contextPath}/<c:out value="${list.getDown_img()}" />);"></a>
-								<div class="blog-text">
-									<h3>
-										<c:out value="${list.getDown_name()}" />
-									</h3>
-									<p>
-										<c:out value="${list.getDown_inner()}" />
-									</p>
-									<ul class="stuff">
-										<li><a href="<c:out value="${list.getDown_url()}" />">点击下载<i class="icon-arrow-right22"></i></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
+					<div class="fh5co-team text-center animate-box">
+						<figure>
+							<img src="${contextPath}/<c:out value="${list.getDown_img()}" />" alt="user">
+						</figure>
+						<p><c:out value="${list.getDown_name()}" /> <br></p>
+						<blockquote>
+							<p><c:out value="${list.getDown_inner()}" escapeXml="false"/></p><br>
+							<c:choose>
+								<c:when test="${list.getDown_url_Android()==''||list.getDown_url_Android()==null||list.getDown_url_Android()=='undefined'}"><i class="fa fa-android"></i>暂未上线</c:when>
+								<c:otherwise>
+									<a href="<c:out value="${list.getDown_url_Android()}" />"><i class="fa fa-android"></i>安卓下载</a>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${list.getDown_url_iOS()==''||list.getDown_url_iOS()==null||list.getDown_url_iOS()=='undefined'}"><i class="fa fa-apple"></i>暂未上线</c:when>
+								<c:otherwise>
+								<a href="<c:out value="${list.getDown_url_Android()}" />"><i class="fa fa-apple"></i>苹果下载</a>
+								</c:otherwise>
+							</c:choose>
+						</blockquote>
+						
+					</div>
+				</div>
 					</c:forEach>
 				</div>
 			</div>

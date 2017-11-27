@@ -33,121 +33,135 @@
 		</div>
 	</nav>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<form class="form-inline" id="logo">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加/替换logo</td>
-					</tr>
+				<table class="table ">
+					<caption>添加/替换logo</caption>
+
 					<tr>
 						<td><p>
 								上传文件： <input type="file" name="file" />
-							</p> <input type="button" value="上传" onclick="updatelogo()" /></td>
+							</p></td>
+						<td>
+							<%
+								String logo_src = (String) request.getAttribute("logo_src");
+							%><img src="${contextPath}/<%=logo_src %>" alt="news1"
+							class="img-responsive ">
+						</td>
+					</tr>
+					<tr>
+						<td><input type="button" value="上传" onclick="updatelogo()" />
+						</td>
+						<td></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
-			<%
-				String logo_src = (String) request.getAttribute("logo_src");
-			%>
-			<img src="${contextPath}/<%=logo_src %>" alt="news1"
-				class="img-responsive ">
-		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12">
 			<form class="form-inline" id="s_banner">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加/替换二级头图</td>
-					</tr>
+				<table class="table ">
+					<caption>添加/替换二级头图</caption>
 					<tr>
 						<td><p>
 								上传文件： <input type="file" name="file" />
-							</p> <input type="button" value="上传" onclick="updates_banner()" /></td>
+							</p></td>
+						<td>
+							<%
+								String banner_src = (String) request.getAttribute("banner_src");
+							%>
+							<div class="col-md-6 ">
+								<img src="${contextPath}/<%=banner_src %>" alt="news1"
+									class="img-responsive ">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="button" value="上传"
+							onclick="updates_banner()" /></td>
+						<td></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
-			<%
-				String banner_src = (String) request.getAttribute("banner_src");
-			%>
-			<div class="col-md-6 ">
-				<img src="${contextPath}/<%=banner_src %>" alt="news1"
-					class="img-responsive ">
-			</div>
-		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<form class="form-inline" id="qr">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加/替换二维码</td>
-					</tr>
+				<table class="table">
+					<caption>添加/替换二维码</caption>
 					<tr>
 						<td><p>
 								上传文件： <input type="file" name="file" />
-							</p> <input type="button" value="上传" onclick="update_qr()" /></td>
+							</p></td>
+						<td>
+							<div class="col-md-5 ">
+								<img src="${contextPath}/images/qr.jpg" alt="news1"
+									class="img-responsive " width="50%">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="button" value="上传" onclick="update_qr()" /></td>
+						<td></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
-			<div class="col-md-3 ">
-				<img src="${contextPath}/images/qr.jpg" alt="news1"
-					class="img-responsive ">
-			</div>
-		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<form class="form-inline" id="mbanner">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加/替换首页第一张头图</td>
-					</tr>
+				<table class="table">
+					<caption>添加/替换首页第一张头图</caption>
 					<tr>
 						<td><p>
 								上传文件： <input type="file" name="file" />
-							</p> <input type="button" value="上传" onclick="update_mbanner()" /></td>
+							</p></td>
+						<td>
+							<%
+								String banner_src2 = (String) request.getAttribute("banner_src2");
+							%>
+							<div class="col-md-6 ">
+								<img src="${contextPath}/<%=banner_src2 %>" alt="news1"
+									class="img-responsive ">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="button" value="上传"
+							onclick="update_mbanner()" /></td>
+						<td></td>
 					</tr>
 				</table>
 			</form>
-		</div>
-		<div class="col-md-6 ">
-			<%
-				String banner_src2 = (String) request.getAttribute("banner_src2");
-			%>
-			<div class="col-md-6 ">
-				<img src="${contextPath}/<%=banner_src2 %>" alt="news1"
-					class="img-responsive ">
-			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<form class="form-inline" id="banner1">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加其他头图</td>
-					</tr>
+				<table class="table">
+					<caption>添加首页的其他头图</caption>
 					<tr>
 						<td><p>
 								上传文件： <input type="file" name="file" />
-							</p> <input type="button" value="上传" onclick="updatebanner()" /></td>
+							</p></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="button" value="上传" onclick="updatebanner()" /></td>
+						<td></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<c:forEach items="${requestScope.queryBanner }" var="list"
 				varStatus="num">
-				<div class="col-md-3  animate-box">
+				<div class="col-md-3 text-center animate-box">
 					<img src="${contextPath}/<c:out value="${list.getBanner_src()}" />"
-						alt="news1" class="img-responsive "> <input type="button"
+						alt="news1" class="img-responsive "><hr> <input type="button"
 						value="删除" onclick="delete_banner(${list.getBanner_id()})">
 				</div>
 			</c:forEach>

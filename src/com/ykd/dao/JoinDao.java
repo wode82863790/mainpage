@@ -24,5 +24,8 @@ public interface JoinDao {
 
 	void updatejoin_banner(String src);
 
+	void updatejoin(String id,String join_title, String join_num, String join_back, String join_date, String join_time,
+			String join_class, String join_place, String join_inner, String join_need);
+
 
 }

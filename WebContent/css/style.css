@@ -1093,10 +1093,10 @@ h1, h2, h3, h4, h5, h6, figure {
 	height: 150px;
 	border: 10px solid #fff;
 	background-size: cover;
-	-webkit-border-radius: 50%;
+	/* -webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
-	-ms-border-radius: 50%;
-	border-radius: 50%;
+	-ms-border-radius: 50%;*/
+	border-radius: 25%; 
 }
 
 .fh5co-team>div {

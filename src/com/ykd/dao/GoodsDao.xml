@@ -6,6 +6,7 @@
 	<resultMap type="Goods" id="goodsResultMap"></resultMap>
 	<resultMap type="Goods_intro" id="goods_introResultMap"></resultMap>
 	<resultMap type="Down" id="downResultMap"></resultMap>
+	<resultMap type="CommonwithGoods" id="commonwithGoodsResultMap"></resultMap>
 	<select id="queryGoodsBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
 		select * from banner where banner_name='secend_banner1'
@@ -13,16 +14,29 @@
 
 	<select id="queryGoodsThirdBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
-		select * from banner where banner_outid is not null and banner_name like 'goodsbanner%'order BY
+		select * from banner where banner_outid is not null and
+		banner_name like 'goodsbanner%'order BY
 		banner_id DESC LIMIT 3;
+	</select>
+	<select id="queryGoodsFouthBanner" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_outid is not null and
+		banner_name like 'goodsfloat%'
+	</select>
+	<select id="querygoodSbG" parameterType="java.lang.String"
+		resultMap="bannerResultMap">
+		select * from banner where banner_name =
+		'secend_banner_SbG.jpg'
 	</select>
 	<select id="queryGoodsInnerBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
-		select * from banner where banner_outid =#{0}and banner_name='secend_banner_goods'
+		select * from banner where banner_outid =#{0}and banner_name
+		like'secend_banner_goods%'
 	</select>
 	<select id="queryAllGoodsBanner" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
-		select * from banner where banner_outid is not null and banner_name= 'secend_banner_goods'
+		select * from banner where banner_outid is not null and
+		banner_name like 'secend_banner_goods%'
 	</select>
 	<select id="queryGoodsBannerById" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
@@ -34,9 +48,23 @@
 	</select>
 	<select id="queryGoodsBannerByOutId1" parameterType="java.lang.String"
 		resultMap="bannerResultMap">
-		select * from banner where banner_outid=#{0} and banner_name='secend_banner_goods'
+		select * from banner where banner_outid=#{0} and banner_name
+		like'secend_banner_goods%'
 	</select>
-
+	<select id="queryCommonWithGoods" parameterType="java.lang.String"
+		resultMap="commonwithGoodsResultMap">
+		select g.goods_id,g.goods_name,g.goods_mainimg,i.goodsintro_id,i.goodsintro_inner from ykd_goods g,goods_intro i
+		<where>
+			g.goods_id=i.goodsintro_outid and i.goodsintro_name='main'
+		</where>
+	</select>
+	<select id="queryCommonWithGoods2" parameterType="java.lang.String"
+		resultMap="commonwithGoodsResultMap">
+		select g.goods_id,g.goods_name,g.goods_mainimg,i.goodsintro_id,i.goodsintro_img,i.goodsintro_inner from ykd_goods g,goods_intro i
+		<where>
+			g.goods_id=i.goodsintro_outid and i.goodsintro_name='intro'
+		</where>
+	</select>
 	<select id="queryGoods" parameterType="java.lang.String"
 		resultMap="goodsResultMap">
 		select * from ykd_goods;
@@ -59,6 +87,12 @@
 		select * from goods_intro where goodsintro_outid=#{0} and
 		goodsintro_name like 'intro%'
 	</select>
+	
+	<select id="queryGoodsIntroById" parameterType="java.lang.String"
+		resultMap="goods_introResultMap">
+		select * from goods_intro where goodsintro_id=#{0} and
+		goodsintro_name like 'intro%'
+	</select>
 
 	<select id="queryDown" parameterType="java.lang.String"
 		resultMap="downResultMap">
@@ -68,34 +102,78 @@
 		resultMap="downResultMap">
 		select * from ykd_down where down_id=#{0}
 	</select>
-	<insert id="inserthonor" parameterType="java.lang.String">
-		insert into ykd_down (down_img,down_name,down_inner,down_url) values(#{2},#{0},#{1},#{3})
+	<insert id="insertdown" parameterType="java.lang.String">
+		insert into ykd_down
+		(down_img,down_name,down_inner,down_url_Android,down_url_iOS)
+		values(#{2},#{0},#{1},#{3},#{4})
 	</insert>
 	<update id="updategoodsbanner" parameterType="java.lang.String">
-		update banner set banner_src=#{1} where banner_name='secend_banner_goods' and banner_outid=#{0};
+		update banner set
+		banner_src=#{1} where banner_outid=#{0} and banner_name like
+		'secend_banner_goods%';
+	</update>
+	<update id="updategoodsintromain" parameterType="java.lang.String">
+		update goods_intro set
+		goodsintro_inner=#{1} where goodsintro_id=#{0} and goodsintro_name='main'
+	</update>
+	<update id="updategoodSbG" parameterType="java.lang.String">
+		update banner set
+		banner_src=#{0} where banner_name='secend_banner_SbG.jpg';
+	</update>
+	<update id="updatedown" parameterType="java.lang.String">
+		update ykd_down set
+		down_img=#{3},down_name=#{1},down_inner=#{2},down_url_Android=#{4},down_url_iOS=#{5}
+		where down_id=#{0};
+	</update>
+	<update id="updategoods" parameterType="java.lang.String">
+		update ykd_goods set
+		goods_name=#{1},goods_mainimg=#{2} where goods_id=#{0}
+	</update>
+	<update id="updategoodsintro" parameterType="java.lang.String">
+		update goods_intro set
+		goodsintro_inner=#{1},goodsintro_img=#{2} where goodsintro_id=#{0}
 	</update>
 	<insert id="insertgoods" parameterType="java.lang.String">
-		insert into ykd_goods (goods_name,goods_mainimg) values(#{0},#{1})
+		insert into ykd_goods
+		(goods_name,goods_mainimg) values(#{0},#{1})
 	</insert>
 	<insert id="insertgoodsbanner" parameterType="java.lang.String">
-		insert into banner (banner_name,banner_src,banner_outid) values('secend_banner_goods',#{1},${0})
+		insert into banner
+		(banner_name,banner_src,banner_outid) values(#{1},#{2},#{0})
+	</insert>
+	<insert id="insertgoodSbG" parameterType="java.lang.String">
+		insert into banner
+		(banner_name,banner_src) values('secend_banner_SbG.jpg',${0})
 	</insert>
 	<delete id="delete_goods" parameterType="java.lang.String">
-		DELETE FROM ykd_goods WHERE goods_id=#{0};
+		DELETE FROM ykd_goods
+		WHERE goods_id=#{0};
 	</delete>
 	<delete id="delete_down" parameterType="java.lang.String">
-		DELETE FROM ykd_down WHERE down_id=#{0};
+		DELETE FROM ykd_down
+		WHERE down_id=#{0};
+	</delete>
+	<delete id="delete_goodsintro" parameterType="java.lang.String">
+		DELETE FROM goods_intro
+		WHERE goodsintro_id=#{0};
 	</delete>
 	<insert id="insertgoodsintro" parameterType="java.lang.String">
-		insert into goods_intro (goodsintro_name,goodsintro_inner,goodsintro_outid,goodsintro_img) values('intro',#{0},#{1},#{2})
+		insert into
+		goods_intro
+		(goodsintro_name,goodsintro_inner,goodsintro_outid,goodsintro_img)
+		values('intro',#{0},#{1},#{2})
 	</insert>
 	<insert id="insertgoodsmain" parameterType="java.lang.String">
-		insert into goods_intro (goodsintro_name,goodsintro_inner,goodsintro_outid) values('main',#{1},#{0})
+		insert into
+		goods_intro (goodsintro_name,goodsintro_inner,goodsintro_outid)
+		values('main',#{1},#{0})
 	</insert>
 	<insert id="insert3banner" parameterType="java.lang.String">
-		insert into banner (banner_name,banner_src,banner_outid) values(#{1},#{2},#{0})
+		insert into banner
+		(banner_name,banner_src,banner_outid) values(#{1},#{2},#{0})
 	</insert>
 	<delete id="delete_goodsbanner" parameterType="java.lang.String">
-		DELETE FROM banner WHERE banner_id=#{0};
+		DELETE FROM banner
+		WHERE banner_id=#{0};
 	</delete>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ykd.dao.GoodsDao;
 import com.ykd.entity.Banner;
+import com.ykd.entity.CommonwithGoods;
 import com.ykd.entity.Down;
 import com.ykd.entity.Goods;
 import com.ykd.entity.Goods_intro;
@@ -64,8 +65,8 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 	@Transactional
-	public void inserthonor(String name, String inner, String src,String url) {
-		goodsDao.inserthonor(name,inner,src,url);
+	public void insertdown(String name, String inner, String src,String url1,String url2) {
+		goodsDao.insertdown(name,inner,src,url1,url2);
 
 	}
 
@@ -115,8 +116,8 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 	@Transactional
-	public void insertgoodsbanner(String id,String src) {
-		goodsDao.insertgoodsbanner(id,src);
+	public void insertgoodsbanner(String id,String filename,String src) {
+		goodsDao.insertgoodsbanner(id,filename,src);
 	}
 
 	@Transactional
@@ -153,6 +154,84 @@ public class GoodsServiceImpl implements GoodsService{
 	public List<Banner> queryAllGoodsBanner() {
 		List<Banner> queryAllGoodsBanner = goodsDao.queryAllGoodsBanner();
 		return queryAllGoodsBanner;
+	}
+
+	@Transactional
+	public void updatedown(String id, String name, String inner, String src, String url1, String url2) {
+		goodsDao.updatedown( id,  name,  inner,  src,  url1,  url2);
+		
+	}
+
+	@Transactional
+	public Banner querygoodSbG() {
+		Banner querygoodSbG = goodsDao.querygoodSbG();
+		return querygoodSbG;
+	}
+
+	@Transactional
+	public void updategoodSbG(String src) {
+		goodsDao.updategoodSbG(src);
+		
+	}
+
+	@Transactional
+	public void insertgoodSbG(String src) {
+		goodsDao.insertgoodSbG(src);
+		
+	}
+
+	@Transactional
+	public List<CommonwithGoods> queryCommonWithGoods() {
+		List<CommonwithGoods> queryCommonWithGoods = goodsDao.queryCommonWithGoods();
+		return queryCommonWithGoods;
+	}
+
+	@Transactional
+	public void updategoodsintromain(String oid, String goodsintro_inner) {
+		goodsDao.updategoodsintromain(oid,goodsintro_inner);
+		
+	}
+
+	@Transactional
+	public void updategoods(String id, String goods_name, String src) {
+		goodsDao.updategoods(id,goods_name,src);
+		
+	}
+
+	@Transactional
+	public List<CommonwithGoods> queryCommonWithGoods2() {
+		List<CommonwithGoods> queryCommonWithGoods2 = goodsDao.queryCommonWithGoods2();
+		return queryCommonWithGoods2;
+	}
+
+	@Transactional
+	public Goods_intro queryGoodsIntroById(String oid) {
+		Goods_intro queryGoodsIntroById = goodsDao.queryGoodsIntroById(oid);
+		return queryGoodsIntroById;
+	}
+
+	@Transactional
+	public void updategoodsintro(String id, String goodsintro_inner, String src) {
+		goodsDao.updategoodsintro(id,goodsintro_inner,src);
+		
+	}
+
+	@Transactional
+	public void delete_goodsintro(String goodsintroid) {
+		goodsDao.delete_goodsintro(goodsintroid);
+		
+	}
+
+	@Transactional
+	public void insert4banner(String id, String filename, String src) {
+		goodsDao.insert3banner(id,filename,src);
+		
+	}
+
+	@Transactional
+	public List<Banner> queryGoodsFouthBanner() {
+		List<Banner> queryGoodsFouthBanner = goodsDao.queryGoodsFouthBanner();
+		return queryGoodsFouthBanner;
 	}
 
 

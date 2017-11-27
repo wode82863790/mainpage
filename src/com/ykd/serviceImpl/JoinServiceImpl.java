@@ -65,6 +65,14 @@ public class JoinServiceImpl implements JoinService{
 		
 	}
 
+	@Transactional
+	public void updatejoin(String id,String join_title, String join_num, String join_back, String join_date, String join_time,
+			String join_class, String join_place, String join_inner, String join_need) {
+		joinDao.updatejoin( id,join_title,  join_num,  join_back,  join_date,  join_time,
+				 join_class,  join_place,  join_inner,  join_need);
+		
+	}
+
 	
 
 }

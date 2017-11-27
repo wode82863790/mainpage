@@ -34,30 +34,29 @@ public class JoinController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryJoinBanner = joinService.queryJoinBanner();
-		if (queryJoinBanner==null) {
+		Logo queryLogo = commonService.queryLogo();
+		if (queryJoinBanner==null||queryLogo==null) {
 			String banner_src="";
 			request.setAttribute("banner_src", banner_src);
-		}else {
-			String banner_src = queryJoinBanner.getBanner_src();
-			request.setAttribute("banner_src", banner_src);
+			request.setAttribute("logo_src", "");
+		}else {String logo_src = queryLogo.getLogo_src();
+		String banner_src = queryJoinBanner.getBanner_src();
+		request.setAttribute("banner_src", banner_src);
+		request.setAttribute("logo_src", logo_src);
 		}
 		List<Join> queryAll = joinService.queryAll();
-		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
-		request.setAttribute("logo_src", logo_src);
-		
 		request.setAttribute("queryAll", queryAll);
 		return "callUs_join";
 
 	}
-	
+
 	@RequestMapping(value="queryJoinInner",method=RequestMethod.GET)
 	public String queryJoinInner(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String id = request.getParameter("id");
 		Join queryJoinInner = joinService.queryJoinInner(id);
-		
+
 		String join_title = queryJoinInner.getJoin_title();
 		String join_place = queryJoinInner.getJoin_place();
 		String join_date = queryJoinInner.getJoin_date();
@@ -101,6 +100,28 @@ public class JoinController {
 		joinService.insertjoin(join_title,join_num,join_back,join_date,join_time,join_class,join_place,join_inner,join_need);
 		return true;
 	}
+
+	@RequestMapping(value="updatejoin",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean updatejoin(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		String join_title = request.getParameter("join_title");
+		String join_num = request.getParameter("join_num");
+		String join_back = request.getParameter("join_back");
+		String join_date = request.getParameter("join_date");
+		String join_time = request.getParameter("join_time");
+		String join_class = request.getParameter("join_class");
+		String join_place = request.getParameter("join_place");
+		String join_inner = request.getParameter("join_inner");
+		String join_need = request.getParameter("join_need");
+		joinService.updatejoin(id,join_title,join_num,join_back,join_date,join_time,join_class,join_place,join_inner,join_need);
+		return true;
+	}
+
+
+
 	@RequestMapping(value="deletejoin",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean deletejoin(HttpServletRequest request,HttpServletResponse response) throws IOException {
@@ -156,10 +177,10 @@ public class JoinController {
 		}
 
 	}
-	
-	
-	
-////////
+
+
+
+	////////
 	public  String updateServer() {
 		return "/Library/Tomcat/res/images";
 	}

@@ -249,4 +249,28 @@ public class AboutUsServiceImpl implements AboutUsService{
 		aboutUsDao.delete_blogimg(blogimgid);
 		
 	}
+
+	@Transactional
+	public void update_news(String id, String title, String lit, String date,String inner) {
+		aboutUsDao.update_news(id,title,lit,date,inner);
+		
+	}
+
+	@Transactional
+	public News_img queryNewsImgById(String id) {
+		News_img queryNewsImgById = aboutUsDao.queryNewsImgById(id);
+		return queryNewsImgById;
+	}
+
+	@Transactional
+	public void delete_newsimg(String id) {
+		aboutUsDao.delete_newsimg(id);
+		
+	}
+
+	@Transactional
+	public void updatehonor(String id,String title, String inner, String date, String src) {
+		aboutUsDao.updatehonor(id,title,inner,date,src);
+		
+	}
 }

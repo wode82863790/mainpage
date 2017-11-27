@@ -24,5 +24,7 @@ public interface CallUsService {
 	void insertally(String allyname, String allycall);
 	void deleteally(String allyid);
 	Callus_img queryCallUsImgById(String bankid);
+	void updatehelp(String id, String helpask, String helpans);
+	void updateally(String id, String allyname, String allycall);
 
 }

@@ -50,17 +50,23 @@ public class AboutUsController {
 		response.setContentType("text/html;charset=utf-8");
 		AboutUs queryAboutUsIntro = aboutUsService.queryAboutUsIntro();
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
+		Logo queryLogo = commonService.queryLogo();
+		if (queryAboutUsIntro==null||queryAboutUsBanner==null||queryLogo==null) {
+			request.setAttribute("aboutus_inner", "");
+			request.setAttribute("banner_src", "");
+			request.setAttribute("logo_src", "");
+		}else {
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			String aboutus_inner = queryAboutUsIntro.getAboutus_inner();
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("aboutus_inner", aboutus_inner);
+			request.setAttribute("banner_src", banner_src);
+			request.setAttribute("logo_src", logo_src);
+		}
 		List<AboutUs_Img> queryAboutUsIntroImg = aboutUsService.queryAboutUsIntroImg();
 		List<AboutUs_Img> queryAboutUsIntroImgLit=aboutUsService.queryAboutUsIntroImgLit();
-		String banner_src = queryAboutUsBanner.getBanner_src();
-		String aboutus_inner = queryAboutUsIntro.getAboutus_inner();
-		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		request.setAttribute("queryAboutUsIntroImg", queryAboutUsIntroImg);
 		request.setAttribute("queryAboutUsIntroImgLit", queryAboutUsIntroImgLit);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("aboutus_inner", aboutus_inner);
-		request.setAttribute("banner_src", banner_src);
 		return "aboutUs";
 
 	}
@@ -69,28 +75,37 @@ public class AboutUsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
-		String banner_src = queryAboutUsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		List<Timeline> queryTimeline = aboutUsService.queryTimeline();
+		if (queryAboutUsBanner==null||queryLogo==null) {
+			request.setAttribute("logo_src","");
+			request.setAttribute("banner_src", "");
+		}else {
+			String logo_src = queryLogo.getLogo_src();
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryTimeline", queryTimeline);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
 		return "aboutUs_timeline";
-
 	}
 	@RequestMapping(value="queryAboutUsNews",method=RequestMethod.GET)
 	public String queryAboutUsNews(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
-		String banner_src = queryAboutUsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		List<News> queryNews = aboutUsService.queryNews();
+		if (queryAboutUsBanner==null||queryLogo==null) {
+			request.setAttribute("logo_src", "");
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryNews", queryNews);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
 		return "aboutUs_news";
 
 	}
@@ -122,11 +137,16 @@ public class AboutUsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
-		String banner_src = queryAboutUsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
+		if (queryAboutUsBanner==null||queryLogo==null) {
+			request.setAttribute("logo_src", "");
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		return "aboutUs_culture";
 
 	}
@@ -135,13 +155,18 @@ public class AboutUsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
-		String banner_src = queryAboutUsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		List<Honor> queryHonor = aboutUsService.queryHonor();
+		if (queryAboutUsBanner==null||queryLogo==null) {
+			request.setAttribute("logo_src", "");
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryHonor", queryHonor);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
 		return "aboutUs_honor";
 
 	}
@@ -150,13 +175,18 @@ public class AboutUsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
-		String banner_src = queryAboutUsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
 		List<Blog> queryBlog = aboutUsService.queryBlog();
+		if (queryAboutUsBanner==null||queryLogo==null) {
+			request.setAttribute("logo_src", "");
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryBlog", queryBlog);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
 		return "aboutUs_blog";
 
 	}
@@ -167,12 +197,17 @@ public class AboutUsController {
 		String id = request.getParameter("id");
 		List<Blog_img> queryBlogInner = aboutUsService.queryBlogInner(id);
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
-		String banner_src = queryAboutUsBanner.getBanner_src();
 		Logo queryLogo = commonService.queryLogo();
-		String logo_src = queryLogo.getLogo_src();
+		if (queryAboutUsBanner==null||queryLogo==null) {
+			request.setAttribute("logo_src", "");
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+			request.setAttribute("banner_src", banner_src);
+		}
 		request.setAttribute("queryBlogInner", queryBlogInner);
-		request.setAttribute("logo_src", logo_src);
-		request.setAttribute("banner_src", banner_src);
 		return "aboutUs_bloginner";
 
 	}
@@ -230,7 +265,20 @@ public class AboutUsController {
 		} else {
 			return false;
 		}
-
+	}
+	@RequestMapping(value="update_news",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean update_news(HttpServletRequest request,HttpServletResponse response
+			) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("newsid");
+		String title = request.getParameter("newstitle");
+		String lit = request.getParameter("newslit");
+		String date = request.getParameter("newsdate");
+		String inner = request.getParameter("newsinner");
+		aboutUsService.update_news(id,title,lit,date,inner);
+		return true;
 	}
 	@RequestMapping(value="updateaboutus_in",method=RequestMethod.POST)
 	@ResponseBody
@@ -313,7 +361,6 @@ public class AboutUsController {
 		} else {
 			return false;
 		}
-
 	}
 	@RequestMapping(value="delete_lit",method=RequestMethod.POST)
 	@ResponseBody
@@ -332,7 +379,24 @@ public class AboutUsController {
 		}else {
 			return false;
 		}
-
+	}
+	@RequestMapping(value="delete_newsimg",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean delete_newsimg(HttpServletRequest request,HttpServletResponse response
+			) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		News_img queryNewsImgById = aboutUsService.queryNewsImgById(id);
+		String newsimg_src = queryNewsImgById.getNewsimg_src();
+		String deleteServer = deleteServer();
+		boolean deleteimg = deleteimg(deleteServer, newsimg_src);
+		if (deleteimg==true) {
+			aboutUsService.delete_newsimg(id);
+			return true;
+		}else {
+			return false;
+		}
 	}
 	@RequestMapping(value="delete_timeline",method=RequestMethod.POST)
 	@ResponseBody
@@ -429,34 +493,31 @@ public class AboutUsController {
 		List<Honor> queryHonor = aboutUsService.queryHonor();
 		List<News> queryNews = aboutUsService.queryNews();
 		List<Blog> queryBlog = aboutUsService.queryBlog();
+		List<News_img> queryAllNewsImg = aboutUsService.queryAllNewsImg();
 		List<CommonwithBlog> queryCommonWithBlog = aboutUsService.queryCommonWithBlog();
 		AboutUs_Img queryAboutUsIntroImgIn = aboutUsService.queryAboutUsIntroImgIn();
 		AboutUs_Img queryAboutUsIntroImgOut = aboutUsService.queryAboutUsIntroImgOut();
-		List<News_img> queryAllNewsImg = aboutUsService.queryAllNewsImg();
-		if (queryAboutUsIntroImgLit==null||queryTimeline==null||queryHonor==null||queryNews==null||queryBlog==null) {
-			return null;
+		AboutUs queryAboutUsIntro = aboutUsService.queryAboutUsIntro();
+		if (queryAboutUsIntroImgIn==null||queryAboutUsIntroImgOut==null||queryAboutUsIntro==null) {
+			request.setAttribute("aboutusimg_src2", "");
+			request.setAttribute("aboutusimg_src", "");
+			request.setAttribute("aboutus_inner", "");
 		}else {
-			if (queryAboutUsIntroImgIn==null) {
-				request.setAttribute("aboutusimg_src", null);
-			}else {
-				String aboutusimg_src = queryAboutUsIntroImgIn.getAboutusimg_src();
-				request.setAttribute("aboutusimg_src", aboutusimg_src);
-			}
-			if (queryAboutUsIntroImgOut==null) {
-				request.setAttribute("aboutusimg_src2", null);
-			}else {
-				String aboutusimg_src2 = queryAboutUsIntroImgOut.getAboutusimg_src();
-				request.setAttribute("aboutusimg_src2", aboutusimg_src2);
-			}
-			request.setAttribute("queryBlog", queryBlog);
-			request.setAttribute("queryCommonWithBlog", queryCommonWithBlog);
-			request.setAttribute("queryTimeline", queryTimeline);
-			request.setAttribute("queryAllNewsImg", queryAllNewsImg);
-			request.setAttribute("queryHonor", queryHonor);
-			request.setAttribute("queryNews", queryNews);
-			request.setAttribute("querylit", queryAboutUsIntroImgLit);
-			return "manager/AboutUs";
+			String aboutusimg_src = queryAboutUsIntroImgIn.getAboutusimg_src();
+			String aboutusimg_src2 = queryAboutUsIntroImgOut.getAboutusimg_src();
+			String aboutus_inner = queryAboutUsIntro.getAboutus_inner();
+			request.setAttribute("aboutusimg_src2", aboutusimg_src2);
+			request.setAttribute("aboutusimg_src", aboutusimg_src);
+			request.setAttribute("aboutus_inner", aboutus_inner);
 		}
+		request.setAttribute("queryBlog", queryBlog);
+		request.setAttribute("queryCommonWithBlog", queryCommonWithBlog);
+		request.setAttribute("queryTimeline", queryTimeline);
+		request.setAttribute("queryAllNewsImg", queryAllNewsImg);
+		request.setAttribute("queryHonor", queryHonor);
+		request.setAttribute("queryNews", queryNews);
+		request.setAttribute("querylit", queryAboutUsIntroImgLit);
+		return "manager/AboutUs";
 	}
 	@RequestMapping(value="inserttimeline",method=RequestMethod.POST)
 	@ResponseBody
@@ -539,6 +600,42 @@ public class AboutUsController {
 			return false;
 		}
 	}
+	@RequestMapping(value="update_honor",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean update_honor(HttpServletRequest request,HttpServletResponse response
+			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String id = request.getParameter("id");
+		String title = request.getParameter("title");
+		String date = request.getParameter("date");
+		String inner = request.getParameter("inner");
+		Honor queryHonorById = aboutUsService.queryHonorById(id);
+		String src = queryHonorById.getHonor_src();
+		if(!file.isEmpty()) {
+			//先把老的删了
+			String deleteServer = deleteServer();
+			deleteimg(deleteServer, src);
+			//上传文件路径
+			String path = updateServer();
+			//上传文件名
+			long currentTimeMillis = System.currentTimeMillis();
+			String filename = "honor"+currentTimeMillis+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
+			}
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			src="images/"+filename;
+			aboutUsService.updatehonor(id,title,inner,date,src);
+			return true;
+		} else {
+			aboutUsService.updatehonor(id,title,inner,date,src);
+			return true;
+		}
+	}
 	@RequestMapping(value="insertblog",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean insertblog(HttpServletRequest request,HttpServletResponse response
@@ -567,34 +664,34 @@ public class AboutUsController {
 			return false;
 		}
 	}
-//	@RequestMapping(value="insertblogimg",method=RequestMethod.POST)
-//	@ResponseBody
-//	public boolean insertblogimg(HttpServletRequest request,HttpServletResponse response
-//			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
-//		request.setCharacterEncoding("utf-8");
-//		response.setContentType("text/html;charset=utf-8");
-//		String id = request.getParameter("id");
-//		String intro = request.getParameter("intro");
-//		if(!file.isEmpty()) {
-//			//上传文件路径
-//			String path = updateServer();
-//			//上传文件名
-//			long currentTimeMillis = System.currentTimeMillis();
-//			String filename = "blogintro"+currentTimeMillis+".jpg";
-//			File filepath = new File(path,filename);
-//			//判断路径是否存在，如果不存在就创建一个
-//			if (!filepath.getParentFile().exists()) { 
-//				filepath.getParentFile().mkdirs();
-//			}
-//			//将上传文件保存到一个目标文件当中
-//			file.transferTo(new File(path + File.separator + filename));
-//			String src="images/"+filename;
-//			aboutUsService.insertblogimg(filename,intro,id,src);
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+	//	@RequestMapping(value="insertblogimg",method=RequestMethod.POST)
+	//	@ResponseBody
+	//	public boolean insertblogimg(HttpServletRequest request,HttpServletResponse response
+	//			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+	//		request.setCharacterEncoding("utf-8");
+	//		response.setContentType("text/html;charset=utf-8");
+	//		String id = request.getParameter("id");
+	//		String intro = request.getParameter("intro");
+	//		if(!file.isEmpty()) {
+	//			//上传文件路径
+	//			String path = updateServer();
+	//			//上传文件名
+	//			long currentTimeMillis = System.currentTimeMillis();
+	//			String filename = "blogintro"+currentTimeMillis+".jpg";
+	//			File filepath = new File(path,filename);
+	//			//判断路径是否存在，如果不存在就创建一个
+	//			if (!filepath.getParentFile().exists()) { 
+	//				filepath.getParentFile().mkdirs();
+	//			}
+	//			//将上传文件保存到一个目标文件当中
+	//			file.transferTo(new File(path + File.separator + filename));
+	//			String src="images/"+filename;
+	//			aboutUsService.insertblogimg(filename,intro,id,src);
+	//			return true;
+	//		} else {
+	//			return false;
+	//		}
+	//	}
 	@RequestMapping(value="insertblogimg",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean insertblogimg(HttpServletRequest request,HttpServletResponse response
@@ -603,24 +700,24 @@ public class AboutUsController {
 		response.setContentType("text/html;charset=utf-8");
 		String id = request.getParameter("id");
 		String intro="";
-			for (int i = 0; i < files.length; i++) {
-				MultipartFile file=files[i];
-				//上传文件路径
-				String path = updateServer();
-				//上传文件名
-				int s = (int) (Math.random() * 90000) + 10000;
-				String filename = "blogintro"+s+".jpg";
-				File filepath = new File(path,filename);
-				//判断路径是否存在，如果不存在就创建一个
-				if (!filepath.getParentFile().exists()) { 
-					filepath.getParentFile().mkdirs();
-				}
-				//将上传文件保存到一个目标文件当中
-				file.transferTo(new File(path + File.separator + filename));
-				String src="images/"+filename;
-				aboutUsService.insertblogimg(filename,intro,id,src);
+		for (int i = 0; i < files.length; i++) {
+			MultipartFile file=files[i];
+			//上传文件路径
+			String path = updateServer();
+			//上传文件名
+			int s = (int) (Math.random() * 90000) + 10000;
+			String filename = "blogintro"+s+".jpg";
+			File filepath = new File(path,filename);
+			//判断路径是否存在，如果不存在就创建一个
+			if (!filepath.getParentFile().exists()) { 
+				filepath.getParentFile().mkdirs();
 			}
-			return true;
+			//将上传文件保存到一个目标文件当中
+			file.transferTo(new File(path + File.separator + filename));
+			String src="images/"+filename;
+			aboutUsService.insertblogimg(filename,intro,id,src);
+		}
+		return true;
 	}
 
 

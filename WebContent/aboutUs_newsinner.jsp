@@ -56,6 +56,7 @@
 										<li><a href="${contextPath}/queryAboutUsBlog">企业风采</a></li>
 									</ul></li>
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
+								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
 								<li><a href="#">会员入口</a></li>
 								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>

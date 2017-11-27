@@ -33,28 +33,49 @@
 		</div>
 	</nav>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
+			<form class="form-inline" id="goodSbG">
+				<table class="table">
+					<caption>添加/替换产品中心宽图</caption>
+					<tr>
+						<td><p>
+								上传文件： <input type="file" name="file" />
+							</p></td>
+						<td><%
+								String sbg_src = (String) request.getAttribute("banner_src");
+							%>
+							<div class="col-md-5  animate-box">
+								<img src="${contextPath}/<%= sbg_src%>" alt="news1"
+									class="img-responsive ">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="button" value="上传" onclick="updategoodSbG()" />
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 ">
 			<form class="form-inline" id="insertgoods"
 				enctype="multipart/form-data">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加产品</td>
-					</tr>
+				<table class="table">
+					<caption>添加产品</caption>
 					<tr>
 						<td>产品名称<input id="goods_name">
 						</td>
-					</tr>
-					<tr>
 						<td>产品主图<input type="file" name="file" />
 						</td>
-					</tr>
-					<tr>
 						<td><input type="button" value="提交" onclick="insertgoods()"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
+		<%-- <div class="col-md-6 ">
 			<c:forEach items="${requestScope.queryGoods }" var="list2"
 				varStatus="num">
 				<div class="col-md-3  animate-box">
@@ -65,127 +86,224 @@
 						value="删除" onclick="delete_goods(${list2.getGoods_id()})">
 				</div>
 			</c:forEach>
-		</div>
+		</div> --%>
 	</div>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<form>
-				<table class="table table-bordered">
+				<table class="table ">
+					<caption>添加产品主要介绍</caption>
 					<tr>
-						<td>添加产品主要介绍</td>
-					</tr>
-					<tr>
-						<td><textarea rows="10"
+						<td><p>如需换行可以加入&lt;br&gt;</p> <br> <textarea rows="10"
 								style="width: 400px; padding-top: 1px; font-size: 14px;"
 								name="goodsmain" id="goodsmain"></textarea></td>
+						<td><c:forEach items="${requestScope.queryGoods }"
+								var="list2" varStatus="num">
+								产品名称<c:out value="${list2.getGoods_name()}" />
+								<input type="button" value="上传"
+									onclick="insertgoodsmain(<c:out value="${list2.getGoods_id()}" />)" />
+							</c:forEach></td>
 					</tr>
-					<c:forEach items="${requestScope.queryGoods }" var="list2"
-						varStatus="num">
-						<tr>
-							<td><c:out value="${list2.getGoods_name()}" /><br> <input
-								type="button" value="上传"
-								onclick="insertgoodsmain(<c:out value="${list2.getGoods_id()}" />)" />
-
-							</td>
-						</tr>
-					</c:forEach>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
-			<form id="insertgoodsintro" enctype="multipart/form-data">
-				<table class="table table-bordered">
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<caption>编辑每个产品基本信息</caption>
+				<thead>
 					<tr>
-						<td>添加产品详情(逐条添加)</td>
+						<th>产品名称</th>
+						<th>产品主图</th>
+						<th>产品主要介绍</th>
+						<th></th>
 					</tr>
+				</thead>
+				<c:forEach items="${requestScope.queryCommonWithGoods }" var="list4"
+					varStatus="num">
+					<form class="form-inline" id="updategoods${num.index}"
+						enctype="multipart/form-data">
+						<tbody>
+							<tr>
+								<td><input
+									value="<c:out value="${list4.getGoods_name()}" />"
+									id="goods_name${num.index}"></td>
+								<td><img alt=""
+									src="${contextPath}/<c:out value="${list4.getGoods_mainimg()}" />"
+									style="width: 30%"> <input type="file" name="file" /></td>
+								<td><p>如需换行可以加入&lt;br&gt;</p> <br> <textarea rows="10"
+										style="width: 400px; padding-top: 1px; font-size: 14px;"
+										id="goodsintro_inner${num.index}"><c:out value="${list4.getGoodsintro_inner()}" /></textarea></td>
+								<td><input type="button" value="修改提交"
+									onclick="updategoods(<c:out value="${list4.getGoods_id()}" />,<c:out value="${list4.getGoodsintro_id()}" />,${num.index})">
+									<input type="button" value="删除"
+									onclick="delete_goods(<c:out value="${list4.getGoods_id()}" />)"></td>
+							</tr>
+						</tbody>
+					</form>
+				</c:forEach>
+
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<form id="insertgoodsintro" enctype="multipart/form-data">
+				<table class="table">
+					<caption>添加产品详情(逐条添加)</caption>
 					<tr>
-						<td>详情图片部分<input type="file" name="file" /><br> 详情文字部分<textarea
-								rows="10"
+						<td>详情图片部分<input type="file" name="file" />
+						</td>
+						<td>详情文字部分可以加入&lt;br&gt;换行<br> <textarea rows="10"
 								style="width: 400px; padding-top: 1px; font-size: 14px;"
 								name="goodsintroinner" id="goodsintroinner"></textarea>
 						</td>
+						<td><c:forEach items="${requestScope.queryCommonWithGoods }"
+								var="list4" varStatus="num">
+								<c:out value="${list4.getGoods_name()}" />
+								<input type="button" value="上传"
+									onclick="insertgoodsintro(<c:out value="${list4.getGoods_id()}" />)" />
+							</c:forEach></td>
+						<td></td>
 					</tr>
-					<c:forEach items="${requestScope.queryGoods }" var="list2"
-						varStatus="num">
-						<tr>
-							<td><c:out value="${list2.getGoods_name()}" /><br> <input
-								type="button" value="上传"
-								onclick="insertgoodsintro(<c:out value="${list2.getGoods_id()}" />)" />
-
-							</td>
-						</tr>
-					</c:forEach>
-
 				</table>
 			</form>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 ">
-			<form class="form-inline" id="goodsbanner">
-				<table class="table table-bordered">
+		<div class="col-md-12">
+			<table class="table">
+				<caption>编辑产品每条详情介绍</caption>
+				<thead>
 					<tr>
-						<td>添加/替换产品详情宽图</td>
+						<th>产品名称</th>
+						<th>产品详情图片</th>
+						<th>产品详情介绍</th>
+						<th></th>
 					</tr>
+				</thead>
+				<c:forEach items="${requestScope.queryCommonWithGoods2 }"
+					var="list5" varStatus="num">
+					<form class="form-inline" id="updategoodsintro${num.index}"
+						enctype="multipart/form-data">
+						<tbody>
+							<tr>
+								<td><c:out value="${list5.getGoods_name()}" /></td>
+								<td><img alt=""
+									src="${contextPath}/<c:out value="${list5.getGoodsintro_img()}" />"
+									style="width: 30%"> <input type="file" name="file" /></td>
+								<td><p>如需换行可以加入&lt;br&gt;</p> <br> <textarea rows="10"
+										style="width: 400px; padding-top: 1px; font-size: 14px;"
+										id="goodsintro_innertointro${num.index}"><c:out value="${list5.getGoodsintro_inner()}" /></textarea></td>
+								<td><input type="button" value="修改提交"
+									onclick="updategoodsintro(<c:out value="${list5.getGoodsintro_id()}" />,${num.index})">
+									<input type="button" value="删除"
+									onclick="delete_goodsintro(<c:out value="${list5.getGoodsintro_id()}" />)"></td>
+							</tr>
+						</tbody>
+					</form>
+				</c:forEach>
+
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 ">
+			<form class="form-inline" id="goodsbanner">
+				<table class="table">
+					<caption>添加/替换产品详情宽图</caption>
 					<tr>
 						<td><p>
 								上传文件： <input type="file" name="file" />
-							</p> </td>
-					</tr>
-					<c:forEach items="${requestScope.queryGoods }" var="list2"
-						varStatus="num">
-						<tr>
-							<td><c:out value="${list2.getGoods_name()}" /><br><input type="button" value="上传" onclick="updategoodsbanner(<c:out value="${list2.getGoods_id()}" />)" />
+							</p></td>
+						<c:forEach items="${requestScope.queryGoods }" var="list2"
+							varStatus="num">
+							<td><c:out value="${list2.getGoods_name()}" /><br> <input
+								type="button" value="上传"
+								onclick="updategoodsbanner(<c:out value="${list2.getGoods_id()}" />)" />
 							</td>
-						</tr>
-					</c:forEach>
+						</c:forEach>
+					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
+	</div>
+	<div class="row">
+		<div class="col-md-12 ">
 			<c:forEach items="${requestScope.queryAllGoodsBanner }" var="list8"
 				varStatus="num">
-				<div class="col-md-5  animate-box">
+				<div class="col-md-3  animate-box">
 					<img
 						src="${contextPath}/<c:out value="${list8.getBanner_src()}" />"
-						alt="news1" class="img-responsive "> 
+						alt="news1" class="img-responsive ">
+					<hr>
 				</div>
 			</c:forEach>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<form class="form-inline" id="thirdbanner"
 				enctype="multipart/form-data">
-				<table class="table table-bordered">
-					<tr>
-						<td>添加三个主宣</td>
-					</tr>
+				<table class="table ">
+					<caption>添加三个主宣</caption>
 					<tr>
 						<td>主宣图<input type="file" name="file" />
 						</td>
+						<td><c:forEach items="${requestScope.queryGoods }"
+								var="list2" varStatus="num">
+								<c:out value="${list2.getGoods_name()}" />
+								<br>
+								<input type="button" value="上传"
+									onclick="insert3banner(<c:out value="${list2.getGoods_id()}" />)" />
+							</c:forEach></td>
 					</tr>
-					<c:forEach items="${requestScope.queryGoods }" var="list2"
-						varStatus="num">
-						<tr>
-							<td><c:out value="${list2.getGoods_name()}" /><br> <input
-								type="button" value="上传"
-								onclick="insert3banner(<c:out value="${list2.getGoods_id()}" />)" />
 
-							</td>
-						</tr>
-					</c:forEach>
 				</table>
 			</form>
 		</div>
-		<div class="col-md-6 ">
+		<div class="col-md-12 ">
 			<c:forEach items="${requestScope.queryGoodsThirdBanner }" var="list3"
 				varStatus="num">
-				<div class="col-md-3  animate-box">
+				<div class="col-md-4 text-center animate-box">
 					<img alt=""
 						src="${contextPath}/<c:out value="${list3.getBanner_src()}" />"
-						class="img-responsive"> <input type="button" value="删除"
+						class="img-responsive"> <hr><input type="button" value="删除"
 						onclick="delete_goodsbanner(${list3.getBanner_id()})">
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 ">
+			<form class="form-inline" id="fouthbanner"
+				enctype="multipart/form-data">
+				<table class="table ">
+					<caption>添加产品滚动宣传</caption>
+					<tr>
+						<td><input type="file" name="file" />
+						</td>
+						<td><c:forEach items="${requestScope.queryGoods }"
+								var="list2" varStatus="num">
+								<c:out value="${list2.getGoods_name()}" />
+								<br>
+								<input type="button" value="上传"
+									onclick="insert4banner(<c:out value="${list2.getGoods_id()}" />)" />
+							</c:forEach></td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+		<div class="col-md-12 ">
+			<c:forEach items="${requestScope.queryGoodsFouthBanner }" var="list3"
+				varStatus="num">
+				<div class="col-md-4 text-center animate-box">
+					<img alt=""
+						src="${contextPath}/<c:out value="${list3.getBanner_src()}" />"
+						class="img-responsive"> <hr><input type="button" value="删除"
+						onclick="delete_4banner(${list3.getBanner_id()})">
 				</div>
 			</c:forEach>
 		</div>
@@ -195,11 +313,74 @@
 	<!-- Bootstrap -->
 	<script src="${contextPath}/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
+		function updategoodSbG(id) {
+			var formData = new FormData($("#goodSbG")[0]);
+			$.ajax({
+				url : '${contextPath}/updategoodSbG',
+				type : 'POST',
+				data : formData,
+				async : false,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(returndata) {
+					alert('OK👌');
+					window.location.reload();
+				},
+				error : function(returndata) {
+					alert('怎么可能会失败呢请联系技术');
+				}
+			});
+		};
 		function updategoodsbanner(id) {
 			var formData = new FormData($("#goodsbanner")[0]);
 			formData.append("id",id);
 			$.ajax({
 				url : '${contextPath}/updategoodsbanner',
+				type : 'POST',
+				data : formData,
+				async : false,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(returndata) {
+					alert('OK👌');
+					window.location.reload();
+				},
+				error : function(returndata) {
+					alert('怎么可能会失败呢请联系技术');
+				}
+			});
+		};
+		function updategoods(id,oid,num) {
+			var formData = new FormData($("#updategoods"+num)[0]);
+			formData.append("id",id);
+			formData.append("oid",oid);
+			formData.append("goods_name",$('#goods_name'+num).val());
+			formData.append("goodsintro_inner",$('#goodsintro_inner'+num).val());
+			$.ajax({
+				url : '${contextPath}/updategoods',
+				type : 'POST',
+				data : formData,
+				async : false,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(returndata) {
+					alert('OK👌');
+					window.location.reload();
+				},
+				error : function(returndata) {
+					alert('怎么可能会失败呢请联系技术');
+				}
+			});
+		};
+		function updategoodsintro(oid_intro,num_intro) {
+			var formData = new FormData($("#updategoodsintro"+num_intro)[0]);
+			formData.append("oid",oid_intro);
+			formData.append("goodsintro_innertointro",$('#goodsintro_innertointro'+num_intro).val());
+			$.ajax({
+				url : '${contextPath}/updategoodsintro',
 				type : 'POST',
 				data : formData,
 				async : false,
@@ -240,6 +421,34 @@
 				"${contextPath}/delete_goods",
 				{
 					goodsid : id,
+				},
+				function(data, textStatus) {
+					if (data) {
+						alert('OK👌');
+						window.location.reload();
+					}
+				}
+			);
+		};
+		function delete_4banner(id) {
+			$.post(
+				"${contextPath}/delete_4banner",
+				{
+					id : id,
+				},
+				function(data, textStatus) {
+					if (data) {
+						alert('OK👌');
+						window.location.reload();
+					}
+				}
+			);
+		};
+		function delete_goodsintro(id_intro) {
+			$.post(
+				"${contextPath}/delete_goodsintro",
+				{
+					goodsintroid : id_intro,
 				},
 				function(data, textStatus) {
 					if (data) {
@@ -292,6 +501,26 @@
 			formData.append("id",id);
 			$.ajax({
 				url : '${contextPath}/insert3banner',
+				type : 'POST',
+				data : formData,
+				async : false,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(returndata) {
+					alert('OK👌');
+					window.location.reload();
+				},
+				error : function(returndata) {
+					alert('怎么可能会失败呢请联系技术');
+				}
+			});
+		};
+		function insert4banner(id) {
+			var formData = new FormData($("#fouthbanner")[0]);
+			formData.append("id",id);
+			$.ajax({
+				url : '${contextPath}/insert4banner',
 				type : 'POST',
 				data : formData,
 				async : false,

@@ -57,6 +57,9 @@
 		insert into ykd_help
 		(help_ask,help_ans) values(#{0},#{1})
 	</insert>
+	<update id="updatehelp" parameterType="java.lang.String">
+		update ykd_help set help_ask=#{1},help_ans=#{2} where help_id=#{0}
+	</update>
 	<delete id="deletehelp" parameterType="java.lang.String">
 		DELETE FROM ykd_help WHERE
 		help_id=#{0};
@@ -65,6 +68,9 @@
 		insert into ykd_ally
 		(ally_name,ally_call) values(#{0},#{1})
 	</insert>
+	<update id="updateally" parameterType="java.lang.String">
+		update ykd_ally set ally_name=#{1},ally_call=#{2} where ally_id=#{0}
+	</update>
 	<delete id="deleteally" parameterType="java.lang.String">
 		DELETE FROM ykd_ally WHERE
 		ally_id=#{0};

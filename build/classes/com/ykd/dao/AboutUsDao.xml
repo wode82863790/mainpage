@@ -80,6 +80,10 @@
 		select * from news_img where
 		newsimg_outid=#{0}
 	</select>
+	<select id="queryNewsImgById" parameterType="java.lang.String" resultMap="news_imgResultMap">
+		select * from news_img where
+		newsimg_id=#{0}
+	</select>
 	<select id="queryAllNewsImg" parameterType="java.lang.String" resultMap="news_imgResultMap">
 		select * from news_img 
 	</select>
@@ -154,18 +158,27 @@
 	<delete id="delete_blog" parameterType="java.lang.String">
 		DELETE FROM ykd_blog WHERE blog_id=#{0};
 	</delete>
+	<delete id="delete_newsimg" parameterType="java.lang.String">
+		DELETE FROM news_img WHERE newsimg_id=#{0};
+	</delete>
 	<insert id="inserttimeline" parameterType="java.lang.String">
 		insert into ykd_timeline (timeline_title,timeline_inner,timeline_date) values(#{0},#{2},#{1})
 	</insert>
 	<insert id="insertnews" parameterType="java.lang.String">
 		insert into ykd_news (news_title,news_date,news_lit,news_inner) values(#{0},#{1},#{2},#{3})
 	</insert>
+	<update id="update_news" parameterType="java.lang.String" >
+		update ykd_news set news_title=#{1},news_date=#{3},news_lit=#{2},news_inner=#{4} where news_id=#{0};
+	</update>
 	<insert id="insertnewsimg" parameterType="java.lang.String">
 		insert into news_img (newsimg_name,newsimg_src,newsimg_outid) values(#{0},#{1},#{2})
 	</insert>
 	<insert id="inserthonor" parameterType="java.lang.String">
 		insert into ykd_honor (honor_title,honor_inner,honor_date,honor_src) values(#{0},#{1},#{2},#{3})
 	</insert>
+	<update id="updatehonor" parameterType="java.lang.String" >
+		update ykd_honor set honor_title=#{1},honor_inner=#{2},honor_date=#{3},honor_src=#{4} where honor_id=#{0};
+	</update>
 	<insert id="insertblog" parameterType="java.lang.String">
 		insert into ykd_blog (blog_title,blog_date,blog_banner) values(#{0},#{1},#{2})
 	</insert>
