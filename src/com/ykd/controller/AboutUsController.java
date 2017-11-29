@@ -51,16 +51,22 @@ public class AboutUsController {
 		AboutUs queryAboutUsIntro = aboutUsService.queryAboutUsIntro();
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
 		Logo queryLogo = commonService.queryLogo();
-		if (queryAboutUsIntro==null||queryAboutUsBanner==null||queryLogo==null) {
+		if (queryAboutUsIntro==null) {
 			request.setAttribute("aboutus_inner", "");
+		}else {
+			String aboutus_inner = queryAboutUsIntro.getAboutus_inner();
+			request.setAttribute("aboutus_inner", aboutus_inner);
+		}
+		if (queryAboutUsBanner==null) {
 			request.setAttribute("banner_src", "");
-			request.setAttribute("logo_src", "");
 		}else {
 			String banner_src = queryAboutUsBanner.getBanner_src();
-			String aboutus_inner = queryAboutUsIntro.getAboutus_inner();
-			String logo_src = queryLogo.getLogo_src();
-			request.setAttribute("aboutus_inner", aboutus_inner);
 			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
+			request.setAttribute("logo_src", "");
+		}else {
+			String logo_src = queryLogo.getLogo_src();
 			request.setAttribute("logo_src", logo_src);
 		}
 		List<AboutUs_Img> queryAboutUsIntroImg = aboutUsService.queryAboutUsIntroImg();
@@ -77,14 +83,17 @@ public class AboutUsController {
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
 		Logo queryLogo = commonService.queryLogo();
 		List<Timeline> queryTimeline = aboutUsService.queryTimeline();
-		if (queryAboutUsBanner==null||queryLogo==null) {
-			request.setAttribute("logo_src","");
+		if (queryAboutUsBanner==null) {
 			request.setAttribute("banner_src", "");
 		}else {
-			String logo_src = queryLogo.getLogo_src();
 			String banner_src = queryAboutUsBanner.getBanner_src();
-			request.setAttribute("logo_src", logo_src);
 			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
+			request.setAttribute("logo_src","");
+		}else {
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
 		}
 		request.setAttribute("queryTimeline", queryTimeline);
 		return "aboutUs_timeline";
@@ -96,14 +105,17 @@ public class AboutUsController {
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
 		Logo queryLogo = commonService.queryLogo();
 		List<News> queryNews = aboutUsService.queryNews();
-		if (queryAboutUsBanner==null||queryLogo==null) {
-			request.setAttribute("logo_src", "");
+		if (queryAboutUsBanner==null) {
 			request.setAttribute("banner_src", "");
-		}else {
+		} else {
 			String banner_src = queryAboutUsBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
+			request.setAttribute("logo_src", "");
+		}else {
 			String logo_src = queryLogo.getLogo_src();
 			request.setAttribute("logo_src", logo_src);
-			request.setAttribute("banner_src", banner_src);
 		}
 		request.setAttribute("queryNews", queryNews);
 		return "aboutUs_news";
@@ -138,14 +150,17 @@ public class AboutUsController {
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
 		Logo queryLogo = commonService.queryLogo();
-		if (queryAboutUsBanner==null||queryLogo==null) {
-			request.setAttribute("logo_src", "");
+		if (queryAboutUsBanner==null) {
 			request.setAttribute("banner_src", "");
-		}else {
+		} else {
 			String banner_src = queryAboutUsBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
+			request.setAttribute("logo_src", "");
+		}else {
 			String logo_src = queryLogo.getLogo_src();
 			request.setAttribute("logo_src", logo_src);
-			request.setAttribute("banner_src", banner_src);
 		}
 		return "aboutUs_culture";
 
@@ -157,14 +172,17 @@ public class AboutUsController {
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
 		Logo queryLogo = commonService.queryLogo();
 		List<Honor> queryHonor = aboutUsService.queryHonor();
-		if (queryAboutUsBanner==null||queryLogo==null) {
-			request.setAttribute("logo_src", "");
+		if (queryAboutUsBanner==null) {
 			request.setAttribute("banner_src", "");
 		}else {
 			String banner_src = queryAboutUsBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
+			request.setAttribute("logo_src", "");
+		}else {
 			String logo_src = queryLogo.getLogo_src();
 			request.setAttribute("logo_src", logo_src);
-			request.setAttribute("banner_src", banner_src);
 		}
 		request.setAttribute("queryHonor", queryHonor);
 		return "aboutUs_honor";
@@ -177,14 +195,17 @@ public class AboutUsController {
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
 		Logo queryLogo = commonService.queryLogo();
 		List<Blog> queryBlog = aboutUsService.queryBlog();
-		if (queryAboutUsBanner==null||queryLogo==null) {
-			request.setAttribute("logo_src", "");
+		if (queryAboutUsBanner==null) {
 			request.setAttribute("banner_src", "");
-		}else {
+		} else {
 			String banner_src = queryAboutUsBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
+			request.setAttribute("logo_src", "");
+		}else {
 			String logo_src = queryLogo.getLogo_src();
 			request.setAttribute("logo_src", logo_src);
-			request.setAttribute("banner_src", banner_src);
 		}
 		request.setAttribute("queryBlog", queryBlog);
 		return "aboutUs_blog";
@@ -198,14 +219,17 @@ public class AboutUsController {
 		List<Blog_img> queryBlogInner = aboutUsService.queryBlogInner(id);
 		Banner queryAboutUsBanner = aboutUsService.queryAboutUsBanner();
 		Logo queryLogo = commonService.queryLogo();
-		if (queryAboutUsBanner==null||queryLogo==null) {
-			request.setAttribute("logo_src", "");
+		if (queryAboutUsBanner==null) {
+			request.setAttribute("banner_src", "");
+		} else {
+			String banner_src = queryAboutUsBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
 			request.setAttribute("banner_src", "");
 		}else {
-			String banner_src = queryAboutUsBanner.getBanner_src();
 			String logo_src = queryLogo.getLogo_src();
 			request.setAttribute("logo_src", logo_src);
-			request.setAttribute("banner_src", banner_src);
 		}
 		request.setAttribute("queryBlogInner", queryBlogInner);
 		return "aboutUs_bloginner";
@@ -498,16 +522,22 @@ public class AboutUsController {
 		AboutUs_Img queryAboutUsIntroImgIn = aboutUsService.queryAboutUsIntroImgIn();
 		AboutUs_Img queryAboutUsIntroImgOut = aboutUsService.queryAboutUsIntroImgOut();
 		AboutUs queryAboutUsIntro = aboutUsService.queryAboutUsIntro();
-		if (queryAboutUsIntroImgIn==null||queryAboutUsIntroImgOut==null||queryAboutUsIntro==null) {
-			request.setAttribute("aboutusimg_src2", "");
-			request.setAttribute("aboutusimg_src", "");
+		if (queryAboutUsIntroImgIn==null) {
 			request.setAttribute("aboutus_inner", "");
-		}else {
+		} else {
 			String aboutusimg_src = queryAboutUsIntroImgIn.getAboutusimg_src();
-			String aboutusimg_src2 = queryAboutUsIntroImgOut.getAboutusimg_src();
-			String aboutus_inner = queryAboutUsIntro.getAboutus_inner();
-			request.setAttribute("aboutusimg_src2", aboutusimg_src2);
 			request.setAttribute("aboutusimg_src", aboutusimg_src);
+		}
+		if (queryAboutUsIntroImgOut==null) {
+			request.setAttribute("aboutusimg_src2", "");
+		} else {
+			String aboutusimg_src2 = queryAboutUsIntroImgOut.getAboutusimg_src();
+			request.setAttribute("aboutusimg_src2", aboutusimg_src2);
+		}
+		if (queryAboutUsIntro==null) {
+			request.setAttribute("aboutusimg_src", "");
+		}else {
+			String aboutus_inner = queryAboutUsIntro.getAboutus_inner();
 			request.setAttribute("aboutus_inner", aboutus_inner);
 		}
 		request.setAttribute("queryBlog", queryBlog);

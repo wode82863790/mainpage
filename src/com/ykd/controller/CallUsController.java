@@ -39,14 +39,17 @@ public class CallUsController {
 		List<Callus_img> queryStore = callUsService.queryStore();
 		Logo queryLogo = commonService.queryLogo();
 		Banner queryCallBanner=callUsService.queryCallBanner();
-		if (queryLogo==null||queryCallBanner==null) {
-			request.setAttribute("banner_src", "");
+		if (queryLogo==null) {
 			request.setAttribute("logo_src", "");
-		}else {
+		} else {
 			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+		}
+		if (queryCallBanner==null) {
+			request.setAttribute("banner_src", "");
+		}else {
 			String banner_src = queryCallBanner.getBanner_src();
 			request.setAttribute("banner_src", banner_src);
-			request.setAttribute("logo_src", logo_src);
 		}
 		request.setAttribute("queryBank", queryBank);
 		request.setAttribute("queryStore", queryStore);
@@ -60,14 +63,18 @@ public class CallUsController {
 		Logo queryLogo = commonService.queryLogo();
 		Banner queryCallBanner=callUsService.queryCallBanner();
 		List<Help> queryHelp = callUsService.queryHelp();
-		if (queryLogo==null||queryCallBanner==null) {
-			request.setAttribute("banner_src", "");
+		if (queryLogo==null) {
 			request.setAttribute("logo_src", "");
 		}else {
 			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+			
+		}
+		if (queryCallBanner==null) {
+			request.setAttribute("banner_src", "");
+		}else {
 			String banner_src = queryCallBanner.getBanner_src();
 			request.setAttribute("banner_src", banner_src);
-			request.setAttribute("logo_src", logo_src);
 		}
 		request.setAttribute("queryHelp", queryHelp);
 		return "callUs_help";
@@ -81,13 +88,16 @@ public class CallUsController {
 		Logo queryLogo = commonService.queryLogo();
 		Banner queryCallBanner=callUsService.queryCallBanner();
 		List<Ally> queryAlly = callUsService.queryAlly();
-		if (queryLogo==null||queryCallBanner==null) {
-			request.setAttribute("banner_src", "");
+		if (queryLogo==null) {
 			request.setAttribute("logo_src", "");
-		}else {
+		} else {
 			String logo_src = queryLogo.getLogo_src();
-			String banner_src = queryCallBanner.getBanner_src();
 			request.setAttribute("logo_src", logo_src);
+		}
+		if (queryCallBanner==null) {
+			request.setAttribute("banner_src", "");
+		}else {
+			String banner_src = queryCallBanner.getBanner_src();
 			request.setAttribute("banner_src", banner_src);
 		}
 		request.setAttribute("queryAlly1", queryAlly);

@@ -17,13 +17,13 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://127.0.0.1:3306/ykd</value>
+			<value>jdbc:mysql://127.0.0.1:3306/ykd?characterEncoding=utf-8</value>
 		</property>
 		<property name="username">
 			<value>root</value>
 		</property>
 		<property name="password">
-			<value>123</value>
+			<value>root</value>
 		</property>
 		<!-- 初始化连接数量 -->
 		<property name="initialSize" value="10" />

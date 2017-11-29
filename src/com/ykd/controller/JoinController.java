@@ -35,14 +35,17 @@ public class JoinController {
 		response.setContentType("text/html;charset=utf-8");
 		Banner queryJoinBanner = joinService.queryJoinBanner();
 		Logo queryLogo = commonService.queryLogo();
-		if (queryJoinBanner==null||queryLogo==null) {
-			String banner_src="";
+		if (queryJoinBanner==null) {
+			request.setAttribute("banner_src", "");
+		} else {
+			String banner_src = queryJoinBanner.getBanner_src();
 			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
 			request.setAttribute("logo_src", "");
-		}else {String logo_src = queryLogo.getLogo_src();
-		String banner_src = queryJoinBanner.getBanner_src();
-		request.setAttribute("banner_src", banner_src);
-		request.setAttribute("logo_src", logo_src);
+		}else {
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
 		}
 		List<Join> queryAll = joinService.queryAll();
 		request.setAttribute("queryAll", queryAll);

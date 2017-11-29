@@ -84,7 +84,7 @@
 			</div>
 		</nav>
 		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			style="background: aqua;">
+			>
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -147,7 +147,7 @@
 								</ul>
 							</div>
 							<div class="text-right ">
-								<a href="mailto:596164394@qq.com">直接投递</a>
+								<a href="mailto:596164394@qq.com"><i class="fa fa-send-o"></i>直接投递</a>
 							</div>
 						</div>
 					</div>

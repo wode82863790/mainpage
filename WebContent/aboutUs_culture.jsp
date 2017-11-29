@@ -23,10 +23,8 @@
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <!-- Flexslider  -->
 <link rel="stylesheet" href="${contextPath}/css/flexslider.css">
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="${contextPath}/css/style.css">
-
 <!-- Modernizr JS -->
 <script src="${contextPath}/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
@@ -83,7 +81,7 @@
 			</div>
 		</nav>
 		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			style="background: aqua;">
+			>
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -160,7 +158,6 @@
 			</div>
 		</footer>
 	</div>
-
 	<!-- jQuery -->
 	<script src="${contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -173,6 +170,5 @@
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
-
 </body>
 </html>

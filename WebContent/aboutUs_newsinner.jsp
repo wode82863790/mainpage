@@ -73,7 +73,7 @@
 								<%
 									String logo_src = (String) request.getAttribute("logo_src");
 								%>
-								<a href="${contextPath}/index"><img alt=""
+								<a href="${contextPath}/index"><img id="logo" alt=""
 									src="${contextPath}/<%=logo_src %>"></a>
 							</div>
 						</div>
@@ -108,20 +108,30 @@
 						</p>
 						<p><%=news_inner%></p>
 						<hr>
-						<div class="bshare-custom">
-							<a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博"
-								class="bshare-sinaminiblog"></a><a title="分享到人人网"
-								class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a
-								title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台"
-								class="bshare-more bshare-more-icon more-style-addthis"></a><span
-								class="BSHARE_COUNT bshare-share-count">0</span>
+						<div class="text-center">
+							<small>分享：</small><a onclick="sharetoweibo('<%=news_title%>')"><i
+								class="fa fa-weibo fa-"></i></a>&nbsp;&nbsp; <a
+								 data-toggle="modal" data-target="#qr"><i
+								class="fa fa-weixin fa-"></i></a>
 						</div>
 						<hr style="border-style: dashed; width: 75%;">
 					</div>
 				</div>
 			</div>
 		</div>
-
+		<div class="modal fade" id="qr" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						微信扫一扫下面的二维码
+					</div>
+					<div class="modal-body text-center" id="qrcode"></div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
 				<div class="row copyright">
@@ -158,9 +168,24 @@
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="http://static.bshare.cn/b/bshareC0.js"></script>
+	<!--QR -->
+	<script src="${contextPath}/js/jquery-qrcode.min.js"></script>
+	<script type="text/javascript">
+		jQuery(function() {
+			jQuery('#qrcode').qrcode({
+				text : window.location.href
+			});
+		})
+		$(function() {
+			$("[data-toggle='popover']").popover();
+		});
+		function sharetoweibo(title) {
+			var url = window.location.href;
+			var img = document.getElementById("logo").src;
+			location.href = 'http://service.weibo.com/share/share.php?url='
+					+ url + '&appkey = 新闻 -挥付&title=' + '《' + title + '》来自山东挥付'
+					+ '&pic=' + img + '';
+		}
+	</script>
 </body>
 </html>

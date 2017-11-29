@@ -12,9 +12,10 @@
 <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"
 	rel="stylesheet">
-<link
+<!-- <link
 	href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
+	rel="stylesheet"> -->
+	<link rel="stylesheet" href="${contextPath}/css/font-awesome.css">
 <!-- Animate.css -->
 <link rel="stylesheet" href="${contextPath}/css/animate.css">
 <!-- Icomoon Icon Fonts-->
@@ -83,7 +84,7 @@
 			</div>
 		</nav>
 		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			style="background: aqua;">
+			>
 			<div class="overlay"></div>
 			<p>
 				<%

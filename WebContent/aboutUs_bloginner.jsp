@@ -81,8 +81,7 @@
 				</div>
 			</div>
 		</nav>
-		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			style="background: aqua;">
+		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -104,13 +103,6 @@
 									style="background-image: url(${contextPath}/<c:out value="${list.getBlogimg_src()}" />);"
 									data-toggle="modal" data-target="#myModal${num.index }"></div>
 							</div>
-							<%-- 	<img
-								src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
-								alt="banner" class="img-responsive img-rounded "
-								data-toggle="modal" data-target="#myModal${num.index }">
-							<p>
-								<c:out value="${list.getBlogimg_intro()}" />
-							</p> --%>
 						</div>
 					</c:forEach>
 				</div>
@@ -150,7 +142,7 @@
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal${num.index }" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-body">
 							<img alt=""
@@ -163,19 +155,20 @@
 				<!-- /.modal -->
 			</div>
 		</c:forEach>
-		<!-- jQuery -->
-		<script src="${contextPath}/js/jquery.min.js"></script>
-		<!-- jQuery Easing -->
-		<script src="${contextPath}/js/jquery.easing.1.3.js"></script>
-		<!-- Bootstrap -->
-		<script src="${contextPath}/js/bootstrap.min.js"></script>
-		<!-- Waypoints -->
-		<script src="${contextPath}/js/jquery.waypoints.min.js"></script>
-		<!-- Flexslider -->
-		<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
-		<!-- Main -->
-		<script src="${contextPath}/js/main.js"></script>
-		<script type="text/javascript">
+	</div>
+	<!-- jQuery -->
+	<script src="${contextPath}/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="${contextPath}/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${contextPath}/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${contextPath}/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
+	<!-- Main -->
+	<script src="${contextPath}/js/main.js"></script>
+	<script type="text/javascript">
 			function back2top() {
 				location.href = "${contextPath}/queryAboutUsBlog";
 			};

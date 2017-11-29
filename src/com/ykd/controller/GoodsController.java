@@ -40,13 +40,16 @@ public class GoodsController {
 		List<Banner> queryGoodsThirdBanner = goodsService.queryGoodsThirdBanner();
 		List<Goods> queryGoods = goodsService.queryGoods();
 		Banner querygoodSbG = goodsService.querygoodSbG();
-		if (queryLogo==null||querygoodSbG==null) {
+		if (queryLogo==null) {
 			request.setAttribute("logo_src", "");
+		} else {
+			String logo_src = queryLogo.getLogo_src();
+			request.setAttribute("logo_src", logo_src);
+		}
+		if (querygoodSbG==null) {
 			request.setAttribute("banner_src2", "");
 		}else {
-			String logo_src = queryLogo.getLogo_src();
 			String banner_src2 = querygoodSbG.getBanner_src();
-			request.setAttribute("logo_src", logo_src);
 			request.setAttribute("banner_src2", banner_src2);
 		}
 		request.setAttribute("queryGoodsThirdBanner", queryGoodsThirdBanner);
@@ -92,14 +95,17 @@ public class GoodsController {
 		Banner queryGoodsBanner = goodsService.queryGoodsBanner();
 		List<Down> queryDown = goodsService.queryDown();
 		Logo queryLogo = commonService.queryLogo();
-		if (queryGoodsBanner==null||queryLogo==null) {
-			request.setAttribute("logo_src", "");
+		if (queryGoodsBanner==null) {
 			request.setAttribute("banner_src", "");
 		}else {
 			String banner_src = queryGoodsBanner.getBanner_src();
+			request.setAttribute("banner_src", banner_src);
+		}
+		if (queryLogo==null) {
+			request.setAttribute("logo_src", "");
+		}else {
 			String logo_src = queryLogo.getLogo_src();
 			request.setAttribute("logo_src", logo_src);
-			request.setAttribute("banner_src", banner_src);
 		}
 		request.setAttribute("queryDown", queryDown);
 		return "download";

@@ -82,7 +82,7 @@
 			</div>
 		</nav>
 		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			style="background: aqua;">
+			>
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -129,7 +129,7 @@
 						<div class="row">
 							<c:forEach items="${requestScope.queryAboutUsIntroImg }"
 								var="list" varStatus="num">
-								<div class="col-md-6  animate-box">
+								<div class="col-md-6  animate-box" style="cursor:pointer;">
 									<img
 										src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
 										alt="news" class="img-responsive img-rounded	"
@@ -140,7 +140,7 @@
 						<div class="row" style="padding-top: 20px">
 							<c:forEach items="${requestScope.queryAboutUsIntroImgLit }"
 								var="list2" varStatus="num2">
-								<div class="col-md-3  animate-box">
+								<div class="col-md-3  animate-box" style="cursor:pointer;">
 									<img
 										src="${contextPath}/<c:out value="${list2.getAboutusimg_src()}" />"
 										alt="news1" class="img-responsive img-rounded"
@@ -182,7 +182,7 @@
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal${num.index }" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-body">
 							<img alt=""
@@ -200,7 +200,7 @@
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModallit${num2.index }" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-body">
 							<img alt=""

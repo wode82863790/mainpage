@@ -83,7 +83,7 @@
 			</div>
 		</nav>
 		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			style="background: aqua;">
+			>
 			<div class="overlay"></div>
 			<p>
 				<%
