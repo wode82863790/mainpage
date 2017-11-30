@@ -98,7 +98,7 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2  animate-box">
+					<div class="col-md-2  animate-box" id ="leftbar">
 						<ul>
 							<li
 								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a

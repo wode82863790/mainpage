@@ -45,8 +45,8 @@
 						<td><p>
 								编辑内容：<br>
 								<textarea rows="10"
-									style="width: 400px; padding-top: 1px; font-size: 14px;"
-									name="text"></textarea>
+									style="width: 30%; padding-top: 1px; font-size: 14px;"
+									name="text" id="aboutusinner"></textarea>
 							</p></td>
 						<td>
 							<%
@@ -192,7 +192,7 @@
 					</tr>
 					<tr>
 						<td colspan=3><p>
-								编辑内容（要使用换行请输入&lt;br&gt;）：<br>
+								编辑内容：<br>
 								<textarea rows="10"
 									style="width: 80%; padding-top: 1px; font-size: 14px;"
 									name="newsinner" id="newsinner"></textarea>
@@ -242,7 +242,7 @@
 									</tr>
 									<tr>
 										<td colspan=3><p>
-												编辑内容（要使用换行请输入&lt;br&gt;）：<br>
+												编辑内容：<br>
 												<textarea rows="10"
 													style="width: 80%; padding-top: 1px; font-size: 14px;"
 													name="newsinner${num.index}" id="newsinner${num.index}"><c:out value="${list3.getNews_inner()}" /></textarea>
@@ -383,47 +383,6 @@
 			</c:forEach>
 		</div>
 	</div>
-	<%-- <div class="row">
-		<div class="col-md-6 ">
-			<form id="insertblogimg" enctype="multipart/form-data">
-				<table class="table table-bordered">
-					<tr>
-						<td>上传团建图片</td>
-					</tr>
-					<tr>
-						<td>选择上传的图片并在相应新闻标题下点击上传： <input type="file" name="file" /></td>
-					</tr>
-					<tr>
-						<td>图片描述<input id="blogimg_intro">
-						</td>
-					</tr>
-					<c:forEach items="${requestScope.queryBlog }" var="list5"
-						varStatus="num">
-						<tr>
-							<td><c:out value="${list5.getBlog_title()}" /><br> <input
-								type="button" value="上传"
-								onclick="insertblogimg(<c:out value="${list5.getBlog_id()}" />)" />
-
-							</td>
-						</tr>
-					</c:forEach>
-
-				</table>
-			</form>
-		</div>
-		<div class="col-md-6 ">
-			<c:forEach items="${requestScope.queryCommonWithBlog }" var="list9"
-				varStatus="num">
-				<div class="col-md-3  animate-box">
-					<c:out value="${list9.getBlog_title()}" />
-					<br> <img
-						src="${contextPath}/<c:out value="${list9.getBlogimg_src()}" />"
-						alt="news1" class="img-responsive "> <input type="button"
-						value="删除" onclick="delete_blogimg(${list9.getBlogimg_id()})">
-				</div>
-			</c:forEach>
-		</div>
-	</div> --%>
 	<div class="row">
 		<div class="col-md-12 panel panel-default">
 			<form enctype="multipart/form-data">
@@ -460,23 +419,21 @@
 	<script src="${contextPath}/js/fileinput_zh.js"></script>
 	<script type="text/javascript">
 		function updateaboutUSinner() {
-			var formData = new FormData($("#aboutUSinner")[0]);
-			$.ajax({
-				url : '${contextPath}/updateaboutUsinner',
-				type : 'POST',
-				data : formData,
-				async : false,
-				cache : false,
-				contentType : false,
-				processData : false,
-				success : function(returndata) {
-					alert('OK👌');
-					window.location.reload();
+			var aboutusinner=$('#aboutusinner').val();
+			aboutusinner=aboutusinner.replace(/\n/g,'<br/>');
+			aboutusinner=aboutusinner.replace(/\s/g, '&nbsp;');
+			$.post(
+				"${contextPath}/updateaboutUsinner",
+				{
+					aboutusinner : aboutusinner,
 				},
-				error : function(returndata) {
-					alert('怎么可能会失败呢请联系技术');
+				function(data, textStatus) {
+					if (data) {
+						alert('OK👌');
+						window.location.reload();
+					}
 				}
-			});
+			);
 		};
 		function updates_banner() {
 			var formData = new FormData($("#s_banner")[0]);
@@ -657,13 +614,16 @@
 			);
 		};
 		function insertnews() {
+			var newsinner = $("#newsinner").val();   
+			newsinner=newsinner.replace(/\n/g,'<br/>');
+			newsinner=newsinner.replace(/\s/g, '&nbsp;');
 			$.post(
 				"${contextPath}/insertnews",
 				{
 					newstitle:$("#newstitle").val(),
 					newslit:$("#newslit").val(),
 					newsdate:$("#newsdate").val(),
-					newsinner:$("#newsinner").val()
+					newsinner:newsinner
 				},
 				function(data, textStatus) {
 					if (data) {
@@ -676,6 +636,9 @@
 			);
 		};
 		function update_news(id,news_num) {
+			var newsinner=$("#newsinner"+news_num).val();
+			newsinner=newsinner.replace(/\n/g,'<br/>');
+			newsinner=newsinner.replace(/\s/g, '&nbsp;');
 			$.post(
 				"${contextPath}/update_news",
 				{
@@ -683,7 +646,7 @@
 					newstitle:$("#newstitle"+news_num).val(),
 					newslit:$("#newslit"+news_num).val(),
 					newsdate:$("#newsdate"+news_num).val(),
-					newsinner:$("#newsinner"+news_num).val()
+					newsinner:newsinner
 				},
 				function(data, textStatus) {
 					if (data) {
@@ -800,7 +763,7 @@
 		 $(document).ready(function() {
 		        $("#test-upload").fileinput({
 		            'showPreview' : false,
-		            'allowedFileExtensions' : ['jpg', 'png','gif'],
+		            'allowedFileExtensions' : ['jpg', 'png','gif','jpeg'],
 		            'elErrorContainer': '#errorBlock'
 		        });
 		    });
@@ -825,27 +788,6 @@
 		          }  
 		     });  
 		};
-		/* function insertblogimg(id) {
-			var formData = new FormData($('#insertblogimg')[0]);
-			formData.append("intro",$('#blogimg_intro').val());
-			formData.append("id",id);
-			$.ajax({  
-		          url: '${contextPath}/insertblogimg' ,  
-		          type: 'POST',  
-		          data: formData,  
-		          async: false,  
-		          cache: false,  
-		          contentType: false,  
-		          processData: false,  
-		          success: function (returndata) {  
-		        	 		alert('OK👌');
-						window.location.reload();
-		          },  
-		          error: function (returndata) {  
-		              alert(returndata);  
-		          }  
-		     });  
-		}; */
 		$("#loginout").on("click",function(){
 			localStorage.removeItem("token");
 			location.href="${contextPath}/manager/back.jsp";
@@ -854,7 +796,7 @@
 		$('#file-zh').fileinput({
 	        language: 'zh',
 	        uploadUrl: '${contextPath}/insertblogimg',
-	        allowedFileExtensions : ['jpg', 'png','gif'],
+	        allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
 	        uploadExtraData: function(previewId, index) {   //额外参数的关键点
                 var obj = {
 	        			id :$("#blogimg_idd").val(),

@@ -110,12 +110,16 @@
 						<hr>
 						<div class="text-center">
 							<small>分享：</small><a onclick="sharetoweibo('<%=news_title%>')"><i
-								class="fa fa-weibo fa-"></i></a>&nbsp;&nbsp; <a
+								class="fa fa-weibo fa-"></i></a>&nbsp; <a
 								 data-toggle="modal" data-target="#qr"><i
 								class="fa fa-weixin fa-"></i></a>
 						</div>
 						<hr style="border-style: dashed; width: 75%;">
 					</div>
+				</div>
+				<div class="col-md-12 text-center">
+					<a onclick="back2top()"><i
+						class="fa fa-caret-square-o-up"></i>关闭页面</a>
 				</div>
 			</div>
 		</div>
@@ -124,7 +128,7 @@
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-header">
-						微信扫一扫下面的二维码
+						微信扫一扫二维码
 					</div>
 					<div class="modal-body text-center" id="qrcode"></div>
 				</div>
@@ -185,7 +189,10 @@
 			location.href = 'http://service.weibo.com/share/share.php?url='
 					+ url + '&appkey = 新闻 -挥付&title=' + '《' + title + '》来自山东挥付'
 					+ '&pic=' + img + '';
-		}
+		};
+		function back2top() {
+			location.href = "${contextPath}/queryAboutUsNews";
+		};
 	</script>
 </body>
 </html>

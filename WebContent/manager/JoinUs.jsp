@@ -89,12 +89,12 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td>工作介绍（要使用换行请输入&lt;br&gt; ,例如“1.条件&lt;br&gt;2.条件”）：<br>
+						<td>工作介绍：<br>
 							<textarea rows="10"
 								style="width: 400px; padding-top: 1px; font-size: 14px;"
 								name="join_inner" id="join_inner"></textarea>
 						</td>
-						<td>职位需求（要使用换行请输入&lt;br&gt; ,例如“1.条件&lt;br&gt;2.条件”）：<br>
+						<td>职位需求：<br>
 							<textarea rows="10"
 								style="width: 400px; padding-top: 1px; font-size: 14px;"
 								name="join_need" id="join_need"></textarea>
@@ -170,12 +170,12 @@
 											<td></td>
 										</tr>
 										<tr>
-											<td>工作介绍（要使用换行请输入&lt;br&gt; ,例如“1.条件&lt;br&gt;2.条件”）：<br>
+											<td>工作介绍：<br>
 												<textarea rows="10"
 													style="width: 400px; padding-top: 1px; font-size: 14px;"
 													name="join_inner${num.index}" id="join_inner${num.index}"><c:out value="${list.getJoin_inner()}" /></textarea>
 											</td>
-											<td>职位需求（要使用换行请输入&lt;br&gt; ,例如“1.条件&lt;br&gt;2.条件”）：<br>
+											<td>职位需求：<br>
 												<textarea rows="10"
 													style="width: 400px; padding-top: 1px; font-size: 14px;"
 													name="join_need${num.index}" id="join_need${num.index}"><c:out value="${list.getJoin_need()}" /></textarea>
@@ -196,6 +196,12 @@
 	<script src="${contextPath}/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		function insertjoin() {
+			var join_inner=$('#join_inner').val();
+			join_inner=join_inner.replace(/\n/g,'<br/>');
+			join_inner=join_inner.replace(/\s/g, '&nbsp;');
+			var join_need=$('#join_need').val();
+			join_need=join_need.replace(/\n/g,'<br/>');
+			join_need=join_need.replace(/\s/g, '&nbsp;');
 			$.post("${contextPath}/insertjoin", {
 				join_title : $("#join_title").val(),
 				join_num : $("#join_num").val(),
@@ -204,8 +210,8 @@
 				join_time : $("#join_time").val(),
 				join_class : $("#join_class").val(),
 				join_place : $("#join_place").val(),
-				join_inner : $("#join_inner").val(),
-				join_need : $("#join_need").val(),
+				join_inner :join_inner,
+				join_need :join_need,
 			}, function(data, textStatus) {
 				if (data) {
 					alert('OK👌');
@@ -216,6 +222,12 @@
 			});
 		};
 		function update_join(id,num) {
+			var join_inner=$('#join_inner'+num).val();
+			join_inner=join_inner.replace(/\n/g,'<br/>');
+			join_inner=join_inner.replace(/\s/g, '&nbsp;');
+			var join_need=$('#join_need'+num).val();
+			join_need=join_need.replace(/\n/g,'<br/>');
+			join_need=join_need.replace(/\s/g, '&nbsp;');
 			$.post("${contextPath}/updatejoin", {
 				id:id,
 				join_title : $("#join_title"+num).val(),
@@ -225,8 +237,8 @@
 				join_time : $("#join_time"+num).val(),
 				join_class : $("#join_class"+num).val(),
 				join_place : $("#join_place"+num).val(),
-				join_inner : $("#join_inner"+num).val(),
-				join_need : $("#join_need"+num).val(),
+				join_inner : join_inner,
+				join_need : join_need,
 			}, function(data, textStatus) {
 				if (data) {
 					alert('OK👌');

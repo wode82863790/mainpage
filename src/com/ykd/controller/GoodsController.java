@@ -236,7 +236,7 @@ public class GoodsController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String oid = request.getParameter("oid");
-		String goodsintro_inner = request.getParameter("goodsintro_innertointro");
+		String goods_intro = request.getParameter("goods_intro");
 		Goods_intro queryGoodsIntroById = goodsService.queryGoodsIntroById(oid);
 		String src = queryGoodsIntroById.getGoodsintro_img();
 		if(!file.isEmpty()) {
@@ -256,9 +256,9 @@ public class GoodsController {
 			//将上传文件保存到一个目标文件当中
 			file.transferTo(new File(path + File.separator + filename));
 			src="images/"+filename;
-			goodsService.updategoodsintro(oid,goodsintro_inner,src);
+			goodsService.updategoodsintro(oid,goods_intro,src);
 		} else {
-			goodsService.updategoodsintro(oid,goodsintro_inner,src);
+			goodsService.updategoodsintro(oid,goods_intro,src);
 
 		}
 		return true;
@@ -449,7 +449,7 @@ public class GoodsController {
 			,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String goodsintroinner = request.getParameter("goodsintroinner");
+		String goodsintro = request.getParameter("goodsintro");
 		String id = request.getParameter("id");
 		if(!file.isEmpty()) {
 			//上传文件路径
@@ -465,7 +465,7 @@ public class GoodsController {
 			//将上传文件保存到一个目标文件当中
 			file.transferTo(new File(path + File.separator + filename));
 			String src="images/"+filename;
-			goodsService.insertgoodsintro(goodsintroinner,id,src);
+			goodsService.insertgoodsintro(goodsintro,id,src);
 			return true;
 		} else {
 			return false;

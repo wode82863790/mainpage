@@ -79,28 +79,30 @@
 					varStatus="num">
 					<form class="form-inline" id="updatedown${num.index}"
 						enctype="multipart/form-data">
-					<tbody>
-						<tr>
-							<td><input value="<c:out value="${list4.getDown_name()}" />"
-								id="down_name${num.index}"></td>
-							<td><img alt=""
-								src="${contextPath}/<c:out value="${list4.getDown_img()}" />"
-								style="width: 10%"> <input type="file" name="file" /></td>
-							<td><input
-								value="<c:out value="${list4.getDown_url_Android()}" />"
-								id="down_url_1${num.index}"></td>
-							<td><input
-								value="<c:out value="${list4.getDown_url_iOS()}" />"
-								id="down_url_2${num.index}"></td>
-							<td><input
-								value="<c:out value="${list4.getDown_inner()}" />"
-								id="down_inner${num.index}"></td>
-							<td><input type="button" value="修改提交"
-								onclick="update_down(<c:out value="${list4.getDown_id()}" />,${num.index})">
-								<input type="button" value="删除"
-								onclick="delete_down(<c:out value="${list4.getDown_id()}" />)"></td>
-						</tr>
-					</tbody>
+						<tbody>
+							<tr>
+								<td><input
+									value="<c:out value="${list4.getDown_name()}" />"
+									id="down_name${num.index}"></td>
+								<td><img alt=""
+									src="${contextPath}/<c:out value="${list4.getDown_img()}" />"
+									style="width: 10%"> <input type="file" name="file" /></td>
+								<td><input
+									value="<c:out value="${list4.getDown_url_Android()}" />"
+									id="down_url_1${num.index}"></td>
+								<td><input
+									value="<c:out value="${list4.getDown_url_iOS()}" />"
+									id="down_url_2${num.index}"></td>
+								<td><textarea rows="10"
+										style="width: 200px; padding-top: 1px; font-size: 14px;"
+										name="down_inner" id="down_inner${num.index}"><c:out value="${list4.getDown_inner()}" /></textarea>
+								</td>
+								<td><input type="button" value="修改提交"
+									onclick="update_down(<c:out value="${list4.getDown_id()}" />,${num.index})">
+									<input type="button" value="删除"
+									onclick="delete_down(<c:out value="${list4.getDown_id()}" />)"></td>
+							</tr>
+						</tbody>
 					</form>
 				</c:forEach>
 
@@ -114,9 +116,12 @@
 	<script src="${contextPath}/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	function insertdown() {
+		var down_inner=$('#down_inner').val();
+		down_inner=down_inner.replace(/\n/g,'<br/>');
+		down_inner=down_inner.replace(/\s/g, '&nbsp;');
 		var formData = new FormData($('#insertdown')[0]);
 		formData.append("name",$('#down_name').val());
-		formData.append("inner",$('#down_inner').val());
+		formData.append("inner",down_inner);
 		formData.append("url1",$('#down_url_1').val());
 		formData.append("url2",$('#down_url_2').val());
 		$.ajax({  
@@ -137,10 +142,13 @@
 	     });  
 	};
 	function update_down(id,num) {
+		var down_inner=$('#down_inner'+num).val();
+		down_inner=down_inner.replace(/\n/g,'<br/>');
+		down_inner=down_inner.replace(/\s/g, '&nbsp;');
 		var formData = new FormData($('#updatedown'+num)[0]);
 		formData.append("id",id);
 		formData.append("name",$('#down_name'+num).val());
-		formData.append("inner",$('#down_inner'+num).val());
+		formData.append("inner",down_inner);
 		formData.append("url1",$('#down_url_1'+num).val());
 		formData.append("url2",$('#down_url_2'+num).val());
 		$.ajax({  

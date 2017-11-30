@@ -96,7 +96,7 @@
 					<tr>
 						<td>问题:<input id="helpask" /></td>
 						<td><p>
-								回答内容：（要使用换行请输入&lt;br&gt; ,例如“1.条件&lt;br&gt;2.条件”）<br>
+								回答内容：<br>
 								<textarea rows="10"
 									style="width: 400px; padding-top: 1px; font-size: 14px;"
 									id="helpans"></textarea>
@@ -249,9 +249,12 @@
 			});
 		};
 		function inserthelp() {
+			var helpans=$('#helpans').val();
+			helpans=helpans.replace(/\n/g,'<br/>');
+			helpans=helpans.replace(/\s/g, '&nbsp;');
 			$.post("${contextPath}/inserthelp", {
 				helpask:$('#helpask').val(),
-				helpans:$('#helpans').val(),	
+				helpans:helpans,	
 			}, function(data, textStatus) {
 				if (data) {
 					alert('OK👌');
@@ -262,10 +265,13 @@
 			});
 		};
 		function update_help(id,help_num) {
+			var helpans=$('#helpans'+help_num).val();
+			helpans=helpans.replace(/\n/g,'<br/>');
+			helpans=helpans.replace(/\s/g, '&nbsp;');
 			$.post("${contextPath}/updatehelp", {
 				id:id,
 				helpask:$('#helpask'+help_num).val(),
-				helpans:$('#helpans'+help_num).val(),	
+				helpans:helpans,	
 			}, function(data, textStatus) {
 				if (data) {
 					alert('OK👌');

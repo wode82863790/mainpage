@@ -107,7 +107,7 @@
 					</c:forEach>
 				</div>
 				<div class="col-md-12 text-center">
-					<a href="#" onclick="back2top()"><i
+					<a onclick="back2top()"><i
 						class="fa fa-caret-square-o-up"></i>关闭页面</a>
 				</div>
 			</div>

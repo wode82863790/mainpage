@@ -41,7 +41,8 @@
 						<td><p>
 								上传文件： <input type="file" name="file" />
 							</p></td>
-						<td><%
+						<td>
+							<%
 								String sbg_src = (String) request.getAttribute("banner_src");
 							%>
 							<div class="col-md-5  animate-box">
@@ -75,18 +76,6 @@
 				</table>
 			</form>
 		</div>
-		<%-- <div class="col-md-6 ">
-			<c:forEach items="${requestScope.queryGoods }" var="list2"
-				varStatus="num">
-				<div class="col-md-3  animate-box">
-					<c:out value="${list2.getGoods_name()}" />
-					<img
-						src="${contextPath}/<c:out value="${list2.getGoods_mainimg()}" />"
-						alt="news1" class="img-responsive "><input type="button"
-						value="删除" onclick="delete_goods(${list2.getGoods_id()})">
-				</div>
-			</c:forEach>
-		</div> --%>
 	</div>
 	<div class="row">
 		<div class="col-md-12 ">
@@ -94,8 +83,8 @@
 				<table class="table ">
 					<caption>添加产品主要介绍</caption>
 					<tr>
-						<td><p>如需换行可以加入&lt;br&gt;</p> <br> <textarea rows="10"
-								style="width: 400px; padding-top: 1px; font-size: 14px;"
+						<td><textarea rows="10"
+								style="width: 60%; padding-top: 1px; font-size: 14px;"
 								name="goodsmain" id="goodsmain"></textarea></td>
 						<td><c:forEach items="${requestScope.queryGoods }"
 								var="list2" varStatus="num">
@@ -155,9 +144,9 @@
 					<tr>
 						<td>详情图片部分<input type="file" name="file" />
 						</td>
-						<td>详情文字部分可以加入&lt;br&gt;换行<br> <textarea rows="10"
+						<td>详情文字<br> <textarea rows="10"
 								style="width: 400px; padding-top: 1px; font-size: 14px;"
-								name="goodsintroinner" id="goodsintroinner"></textarea>
+								name="goods_intro" id="goods_intro"></textarea>
 						</td>
 						<td><c:forEach items="${requestScope.queryCommonWithGoods }"
 								var="list4" varStatus="num">
@@ -193,9 +182,9 @@
 								<td><img alt=""
 									src="${contextPath}/<c:out value="${list5.getGoodsintro_img()}" />"
 									style="width: 30%"> <input type="file" name="file" /></td>
-								<td><p>如需换行可以加入&lt;br&gt;</p> <br> <textarea rows="10"
+								<td><textarea rows="10"
 										style="width: 400px; padding-top: 1px; font-size: 14px;"
-										id="goodsintro_innertointro${num.index}"><c:out value="${list5.getGoodsintro_inner()}" /></textarea></td>
+										id="goods_intro${num.index}"><c:out value="${list5.getGoodsintro_inner()}" /></textarea></td>
 								<td><input type="button" value="修改提交"
 									onclick="updategoodsintro(<c:out value="${list5.getGoodsintro_id()}" />,${num.index})">
 									<input type="button" value="删除"
@@ -269,7 +258,9 @@
 				<div class="col-md-4 text-center animate-box">
 					<img alt=""
 						src="${contextPath}/<c:out value="${list3.getBanner_src()}" />"
-						class="img-responsive"> <hr><input type="button" value="删除"
+						class="img-responsive">
+					<hr>
+					<input type="button" value="删除"
 						onclick="delete_goodsbanner(${list3.getBanner_id()})">
 				</div>
 			</c:forEach>
@@ -282,8 +273,7 @@
 				<table class="table ">
 					<caption>添加产品滚动宣传</caption>
 					<tr>
-						<td><input type="file" name="file" />
-						</td>
+						<td><input type="file" name="file" /></td>
 						<td><c:forEach items="${requestScope.queryGoods }"
 								var="list2" varStatus="num">
 								<c:out value="${list2.getGoods_name()}" />
@@ -302,7 +292,9 @@
 				<div class="col-md-4 text-center animate-box">
 					<img alt=""
 						src="${contextPath}/<c:out value="${list3.getBanner_src()}" />"
-						class="img-responsive"> <hr><input type="button" value="删除"
+						class="img-responsive">
+					<hr>
+					<input type="button" value="删除"
 						onclick="delete_4banner(${list3.getBanner_id()})">
 				</div>
 			</c:forEach>
@@ -353,11 +345,14 @@
 			});
 		};
 		function updategoods(id,oid,num) {
+			var goodsintro_inner=$('#goodsintro_inner'+num).val();
+			goodsintro_inner=goodsintro_inner.replace(/\n/g,'<br/>');
+			goodsintro_inner=goodsintro_inner.replace(/\s/g, '&nbsp;');
 			var formData = new FormData($("#updategoods"+num)[0]);
 			formData.append("id",id);
 			formData.append("oid",oid);
 			formData.append("goods_name",$('#goods_name'+num).val());
-			formData.append("goodsintro_inner",$('#goodsintro_inner'+num).val());
+			formData.append("goodsintro_inner",goodsintro_inner);
 			$.ajax({
 				url : '${contextPath}/updategoods',
 				type : 'POST',
@@ -376,9 +371,12 @@
 			});
 		};
 		function updategoodsintro(oid_intro,num_intro) {
+			var goods_intro=$('#goods_intro'+num_intro).val();
+			goods_intro=goods_intro.replace(/\n/g,'<br/>');
+			goods_intro=goods_intro.replace(/\s/g, '&nbsp;');
 			var formData = new FormData($("#updategoodsintro"+num_intro)[0]);
 			formData.append("oid",oid_intro);
-			formData.append("goodsintro_innertointro",$('#goodsintro_innertointro'+num_intro).val());
+			formData.append("goods_intro",goods_intro);
 			$.ajax({
 				url : '${contextPath}/updategoodsintro',
 				type : 'POST',
@@ -459,8 +457,11 @@
 			);
 		};
 		function insertgoodsintro(id) {
+			var goodsintro=$('#goods_intro').val();
+			goodsintro=goodsintro.replace(/\n/g,'<br/>');
+			goodsintro=goodsintro.replace(/\s/g, '&nbsp;');
 			var formData = new FormData($("#insertgoodsintro")[0]);
-			formData.append("goodsintroinner",$('#goodsintroinner').val());
+			formData.append("goodsintro",goodsintro);
 			formData.append("id",id);
 			$.ajax({
 				url : '${contextPath}/insertgoodsintro',
@@ -480,10 +481,13 @@
 			});
 		};
 		function insertgoodsmain(id) {
+			var goodsmain=$('#goodsmain').val();
+			goodsmain=goodsmain.replace(/\n/g,'<br/>');
+			goodsmain=goodsmain.replace(/\s/g, '&nbsp;');
 			$.post(
 				"${contextPath}/insertgoodsmain",
 				{
-					goodsmain:$("#goodsmain").val(),
+					goodsmain:goodsmain,
 					id:id,
 				},
 				function(data, textStatus) {
