@@ -32,6 +32,58 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+<style type="text/css">
+#box {
+	display: flex;
+	justify-content: start;
+	width: 100%;
+	flex-wrap: wrap;
+	margin: 20px auto;
+}
+
+#box div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 30%;
+	margin-bottom: 25px;
+	margin-left: 20px;
+}
+#box
+
+ 
+
+div
++
+div
+
+
+:not
+
+ 
+
+(
+:nth-child(5n)
+
+ 
+
+)
+{
+margin-left
+
+
+:
+
+ 
+
+5
+px
+
+
+;
+}
+</style>
 </head>
 <body>
 	<!--载入动画-->
@@ -95,20 +147,30 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row animate-box">
-					<c:forEach items="${requestScope.queryBlogInner }" var="list"
+					<div id="box" class="layer-photos-demo col-md-12">
+						<c:forEach items="${requestScope.queryBlogInner }" var="list"
+							varStatus="num">
+							<div class="animate-box">
+								<img
+									layer-src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
+									src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
+									alt="图片名" class="img-rounded img-responsive">
+							</div>
+						</c:forEach>
+					</div>
+					<%-- <c:forEach items="${requestScope.queryBlogInner }" var="list"
 						varStatus="num">
 						<div class="col-md-4 text-center">
 							<div class="fh5co-portfolio animate-box">
-								<div class="portfolio-entry"
+								<div class="portfolio-entry" id="usimg"
 									style="background-image: url(${contextPath}/<c:out value="${list.getBlogimg_src()}" />);"
 									data-toggle="modal" data-target="#myModal${num.index }"></div>
 							</div>
 						</div>
-					</c:forEach>
+					</c:forEach> --%>
 				</div>
 				<div class="col-md-12 text-center">
-					<a onclick="back2top()"><i
-						class="fa fa-caret-square-o-up"></i>关闭页面</a>
+					<a onclick="back2top()"><i class="fa fa-caret-square-o-up"></i>关闭页面</a>
 				</div>
 			</div>
 
@@ -137,7 +199,7 @@
 				</div>
 			</div>
 		</footer>
-		<c:forEach items="${requestScope.queryBlogInner }" var="list"
+		<%-- <c:forEach items="${requestScope.queryBlogInner }" var="list"
 			varStatus="num">
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal${num.index }" tabindex="-1"
@@ -154,7 +216,7 @@
 				</div>
 				<!-- /.modal -->
 			</div>
-		</c:forEach>
+		</c:forEach> --%>
 	</div>
 	<!-- jQuery -->
 	<script src="${contextPath}/js/jquery.min.js"></script>
@@ -166,12 +228,28 @@
 	<script src="${contextPath}/js/jquery.waypoints.min.js"></script>
 	<!-- Flexslider -->
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
 	<script type="text/javascript">
-			function back2top() {
-				location.href = "${contextPath}/queryAboutUsBlog";
-			};
-		</script>
+		function back2top() {
+			location.href = "${contextPath}/queryAboutUsBlog";
+		};
+		layer.photos({
+			photos : '.layer-photos-demo',
+			anim : 5
+		//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+		});
+		window.onload = function() {
+			var box = document.getElementById("box");
+			var imgs = box.getElementsByTagName('img');
+			for (let i = 0; i < imgs.length; i++) {
+				var w = imgs[i].offsetWidth, h = imgs[i].offsetHeight
+				w > h ? imgs[i].style.width = '100%'
+						: imgs[i].style.height = '100%'
+			}
+		}
+	</script>
 </body>
 </html>

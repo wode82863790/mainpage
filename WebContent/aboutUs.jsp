@@ -23,7 +23,6 @@
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <!-- Flexslider  -->
 <link rel="stylesheet" href="${contextPath}/css/flexslider.css">
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="${contextPath}/css/style.css">
 <!-- Modernizr JS -->
@@ -81,8 +80,7 @@
 				</div>
 			</div>
 		</nav>
-		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			>
+		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -96,29 +94,35 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2  animate-box">
-						<ul>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsIntro"><small>公司介绍</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsTimeline"><small>发展历程</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsNews"><small>新闻中心</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsCulture"><small>企业文化</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsHonor"><small>企业荣誉</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsBlog"><small>企业风采</small></a></li>
-						</ul>
+					<div class="col-md-1  animate-box" id="leftbar">
+						<table>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsIntro"><small>公司介绍</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsTimeline"><small>发展历程</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsNews"><small>新闻中心</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsCulture"><small>企业文化</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsHonor"><small>企业荣誉</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsBlog"><small>企业风采</small></a></td>
+
+							</tr>
+						</table>
 					</div>
-					<div class="col-md-10  animate-box" id="about-us">
+					<div class="col-md-11 animate-box" id="about-us">
 						<div class="page-header">
 							<h4>公司介绍</h4>
 						</div>
@@ -127,26 +131,45 @@
 						%>
 						<p><%=aboutus_inner%></p>
 						<div class="row">
-							<c:forEach items="${requestScope.queryAboutUsIntroImg }"
+							<div id="layer-photos-demo" class="layer-photos-demo col-md-12">
+								<c:forEach items="${requestScope.queryAboutUsIntroImg }"
+									var="list" varStatus="num">
+									<div class="col-md-6 animate-box"><img
+										layer-src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
+										src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
+										alt="图片名" class="img-rounded img-responsive"></div>
+									
+								</c:forEach>
+							</div>
+							<%-- <c:forEach items="${requestScope.queryAboutUsIntroImg }"
 								var="list" varStatus="num">
-								<div class="col-md-6  animate-box" style="cursor:pointer;">
+								<div class="col-md-6  animate-box" style="cursor: pointer;">
 									<img
 										src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
 										alt="news" class="img-responsive img-rounded	"
 										data-toggle="modal" data-target="#myModal${num.index }">
 								</div>
-							</c:forEach>
+							</c:forEach> --%>
 						</div>
 						<div class="row" style="padding-top: 20px">
-							<c:forEach items="${requestScope.queryAboutUsIntroImgLit }"
+						<div id="layer-photos-demo" class="layer-photos-demo col-md-12">
+								<c:forEach items="${requestScope.queryAboutUsIntroImgLit }"
+									var="list" varStatus="num">
+									<div class="col-md-3 animate-box"><img
+										layer-src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
+										src="${contextPath}/<c:out value="${list.getAboutusimg_src()}" />"
+										alt="图片名" class="img-rounded img-responsive"></div>
+								</c:forEach>
+							</div>
+							<%-- <c:forEach items="${requestScope.queryAboutUsIntroImgLit }"
 								var="list2" varStatus="num2">
-								<div class="col-md-3  animate-box" style="cursor:pointer;">
+								<div class="col-md-3  animate-box" style="cursor: pointer;">
 									<img
 										src="${contextPath}/<c:out value="${list2.getAboutusimg_src()}" />"
 										alt="news1" class="img-responsive img-rounded"
 										data-toggle="modal" data-target="#myModallit${num2.index }">
 								</div>
-							</c:forEach>
+							</c:forEach> --%>
 						</div>
 
 					</div>
@@ -177,7 +200,7 @@
 				</div>
 			</div>
 		</footer>
-		<c:forEach items="${requestScope.queryAboutUsIntroImg }" var="list"
+<%-- 		<c:forEach items="${requestScope.queryAboutUsIntroImg }" var="list"
 			varStatus="num">
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal${num.index }" tabindex="-1"
@@ -212,9 +235,8 @@
 				</div>
 				<!-- /.modal -->
 			</div>
-		</c:forEach>
+		</c:forEach> --%>
 	</div>
-
 	<!-- jQuery -->
 	<script src="${contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -227,8 +249,14 @@
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<script type="text/javascript">
-		
+		layer.photos({
+			photos : '.layer-photos-demo',
+			anim : 5
+		//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+		});
 	</script>
 </body>
 </html>

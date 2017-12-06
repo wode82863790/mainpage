@@ -67,7 +67,7 @@
 										<li><a href="${contextPath}/queryAlly">加盟代理</a></li>
 										<li><a href="${contextPath}/queryCall">合作伙伴</a></li>
 									</ul></li>
-								<li> 
+								<li>
 							</ul>
 						</div>
 						<div class="col-md-2">
@@ -83,8 +83,7 @@
 				</div>
 			</div>
 		</nav>
-		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			>
+		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -98,20 +97,23 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2  animate-box" id="lbar">
-						<ul>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryHelp"><small>帮助中心</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAlly"><small>加盟代理</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryCall"><small>合作伙伴</small></a></li>
-						</ul>
+					<div class="col-md-1  animate-box">
+						<table>
+							<tr>
+								<td><a href="${contextPath}/queryHelp"><small>帮助中心</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAlly"><small>加盟代理</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryCall"><small>合作伙伴</small></a></td>
+
+							</tr>
+						</table>
 					</div>
-					<div class="col-md-10  animate-box" id="call-us">
+					<div class="col-md-11 animate-box" id="call-us">
 						<ul id="myTab" class="nav nav-tabs">
 							<li class="active"><a href="#cash" data-toggle="tab"> 金融
 							</a></li>

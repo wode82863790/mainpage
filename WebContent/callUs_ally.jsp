@@ -98,21 +98,23 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2  animate-box">
-						<ul>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryHelp"><small>帮助中心</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAlly"><small>加盟代理</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryCall"><small>合作伙伴</small></a></li>
+					<div class="col-md-1  animate-box">
+						<table>
+							<tr>
+								<td><a href="${contextPath}/queryHelp"><small>帮助中心</small></a></td>
 
-						</ul>
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAlly"><small>加盟代理</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryCall"><small>合作伙伴</small></a></td>
+
+							</tr>
+						</table>
 					</div>
-					<div class="col-md-10  animate-box">
+					<div class="col-md-11 animate-box" id="call-us">
 						<div class="column">
 							<div class="col-md-12">
 								<div class="page-header">

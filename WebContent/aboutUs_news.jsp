@@ -59,14 +59,13 @@
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
 								<li><a href="#">会员入口</a></li>
-								<li class="has-dropdown"><a
-									href="${contextPath}/queryCall">联系我们</a>
+								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
 										<li><a href="${contextPath}/queryAlly">加盟代理</a></li>
 										<li><a href="${contextPath}/queryCall">合作伙伴</a></li>
 									</ul></li>
-								<li> 
+								<li>
 							</ul>
 						</div>
 						<div class="col-md-2">
@@ -82,8 +81,7 @@
 				</div>
 			</div>
 		</nav>
-		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			>
+		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -96,81 +94,58 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2  animate-box">
-						<ul>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsIntro"><small>公司介绍</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsTimeline"><small>发展历程</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsNews"><small>新闻中心</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsCulture"><small>企业文化</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsHonor"><small>企业荣誉</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsBlog"><small>企业风采</small></a></li>
-						</ul>
+					<div class="col-md-1  animate-box" id="leftbar">
+						<table>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsIntro"><small>公司介绍</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsTimeline"><small>发展历程</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsNews"><small>新闻中心</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsCulture"><small>企业文化</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsHonor"><small>企业荣誉</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsBlog"><small>企业风采</small></a></td>
+
+							</tr>
+						</table>
 					</div>
-					<div class="col-md-10  animate-box" style="margin-top: -40px">
+					<div class="col-md-11  animate-box" style="margin-top: -40px">
 						<div class="column">
 							<div class="animate-box">
 								<div class="page-header">
 									<h4>新闻中心</h4>
 								</div>
-								<%-- <div id="about-us">
-									<h4>
-										<a href="${contextPath}/aboutUs_newsinner.jsp" style="color: #4bbaf3;">新闻标题</a>
-									</h4>
-									<div class="row">
-										<div class="col-md-8">
-											<small style="color: gray;">2017-03-03</small>
-											<h5>北京卫视2017《跨界歌王》开播以来，收视一路飘红，拉卡拉在节目中所设立的全民梦想基金累计金额已近500万元。跨界歌手陈建斌、姚晨、江珊等明星也纷纷出镜录制梦想公益短片，表达出敢于挑战自我、打破心中界限的追梦心声。</h5>
-										</div>
-										<div class="col-md-4">
-											<p>
-												<img alt="" src="${contextPath}/images/blog-1.jpg"
-													class="img-responsive center-block">
-											</p>
-										</div>
-									</div>
-								</div> --%>
 							</div>
-							<c:forEach items="${requestScope.queryNews }" var="list" varStatus="num">
-							<div class="animate-box">
-								<div id="about-us">
+							<c:forEach items="${requestScope.queryNews }" var="list"
+								varStatus="num">
+								<div class="animate-box" id="about-us">
 									<h4>
-										<a href="${contextPath}/queryAboutUsNewsInner?id=<c:out value="${list.getNews_id()}" />" style="color: #4bbaf3;"><c:out value="${list.getNews_title()}" /></a>
+										<a
+											href="${contextPath}/queryAboutUsNewsInner?id=<c:out value="${list.getNews_id()}" />"
+											style="color: #4bbaf3;"><c:out
+												value="${list.getNews_title()}" /></a>
 									</h4>
-									<small style="color: gray;"><c:out value="${list.getNews_date()}" /></small>
-									<h5><c:out value="${list.getNews_lit()}" /></h5>
+									<small style="color: gray;"><c:out
+											value="${list.getNews_date()}" /></small>
+									<h5>
+										<c:out value="${list.getNews_lit()}" />
+									</h5>
 								</div>
-							</div>
 							</c:forEach>
 						</div>
-						<!-- <div class="text-right">
-							<nav aria-label="Page navigation">
-								<ul class="pagination pagination-sm">
-									<li><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div> -->
 					</div>
 				</div>
 			</div>

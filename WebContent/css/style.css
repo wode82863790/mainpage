@@ -625,7 +625,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 #fh5co-hero {
 	height: 500px !important;
-	background: url(../images/loader.gif) no-repeat center center;
+	/* background: url(../images/loader.gif) no-repeat center center; */
 }
 
 #fh5co-hero .btn {
@@ -928,12 +928,25 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 #call-us {
+	background:white;
 	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.06);
 	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.06);
 	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.06);
 }
 
 #about-us {
+	padding:4px 4px 4px 4px;
+	background:white;
+	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
+}
+
+.fh5co-leftbar{
+	list-style: none;
+}
+
+#usimg{
 	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
 	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
 	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.05);
@@ -1741,16 +1754,9 @@ input[type="text"] {
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: url(../images/loader.gif) center no-repeat #fff;
+	/* background: url(../images/loader.gif) center no-repeat #fff; */
 }
 
 .js .animate-box {
 	opacity: 0;
 }
-
-#help {
-	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.06);
-	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.06);
-	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.06);
-}
-

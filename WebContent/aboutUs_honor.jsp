@@ -98,29 +98,35 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2  animate-box">
-						<ul>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsIntro"><small>公司介绍</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsTimeline"><small>发展历程</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsNews"><small>新闻中心</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsCulture"><small>企业文化</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsHonor"><small>企业荣誉</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAboutUsBlog"><small>企业风采</small></a></li>
-						</ul>
+					<div class="col-md-1  animate-box" id="leftbar">
+						<table >
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsIntro"><small>公司介绍</small></a></td>
+								
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsTimeline"><small>发展历程</small></a></td>
+								
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsNews"><small>新闻中心</small></a></td>
+								
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsCulture"><small>企业文化</small></a></td>
+								
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsHonor"><small>企业荣誉</small></a></td>
+								
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAboutUsBlog"><small>企业风采</small></a></td>
+								
+							</tr>
+						</table>
 					</div>
-					<div class="col-md-10  animate-box" id="about-us">
+					<div class="col-md-11  animate-box" id="about-us">
 						<div class="page-header">
 							<h4>企业荣誉</h4>
 						</div>

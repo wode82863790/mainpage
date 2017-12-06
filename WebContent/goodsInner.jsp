@@ -126,7 +126,7 @@
 								<%
 									String getGoodsintro_inner = (String) request.getAttribute("getGoodsintro_inner");
 								%>
-								<small><%=getGoodsintro_inner%></small><a href="#">了解详情</a>
+								<small><%=getGoodsintro_inner%></small>
 							</div>
 						</div>
 						<c:forEach items="${requestScope.queryGoodsIntro }" var="list3"

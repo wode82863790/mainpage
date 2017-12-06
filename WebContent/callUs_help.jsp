@@ -98,25 +98,27 @@
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2  animate-box">
-						<ul>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryHelp"><small>帮助中心</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryAlly"><small>加盟代理</small></a></li>
-							<li
-								style="line-height: 200%; border-bottom: 1px solid #9CB0B3; list-style: none"><a
-								href="${contextPath}/queryCall"><small>合作伙伴</small></a></li>
+					<div class="col-md-1  animate-box">
+						<table>
+							<tr>
+								<td><a href="${contextPath}/queryHelp"><small>帮助中心</small></a></td>
 
-						</ul>
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryAlly"><small>加盟代理</small></a></td>
+
+							</tr>
+							<tr>
+								<td><a href="${contextPath}/queryCall"><small>合作伙伴</small></a></td>
+
+							</tr>
+						</table>
 					</div>
-					<div class="col-md-10  animate-box">
+					<div class="col-md-11 animate-box">
 						<div class="column">
 							<c:forEach items="${requestScope.queryHelp }" var="list"
 								varStatus="num">
-								<div id="help" style="padding: 0px 5px;">
+								<div id="call-us" >
 									<div class="page-header">
 										<h4>
 											<i class="fa  fa-hand-o-down fa-2x" style="color: #DD356E;"></i>问：
@@ -124,8 +126,8 @@
 										</h4>
 									</div>
 									<p>
-										<i class="fa  fa-comment-o fa-1x" style="color: #DD356E;"></i>
-										<c:out value="${list.getHelp_ans()}" />
+										<i class="fa  fa-comment-o fa-1x" style="color: #DD356E;"></i><br>
+										<c:out value="${list.getHelp_ans()}" escapeXml="false" />
 									</p>
 								</div>
 							</c:forEach>

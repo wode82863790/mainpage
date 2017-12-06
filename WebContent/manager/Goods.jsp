@@ -245,7 +245,7 @@
 								<c:out value="${list2.getGoods_name()}" />
 								<br>
 								<input type="button" value="上传"
-									onclick="insert3banner(<c:out value="${list2.getGoods_id()}" />)" />
+									onclick="insert3banner(<c:out value="${list2.getGoods_id()}" />)" /><br>
 							</c:forEach></td>
 					</tr>
 
