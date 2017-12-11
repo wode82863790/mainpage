@@ -57,7 +57,7 @@
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
 								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
@@ -176,7 +176,6 @@
 				</div>
 			</div>
 		</div>
-
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
 				<div class="row copyright">
@@ -257,6 +256,9 @@
 			anim : 5
 		//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
 		});
+		function erreor(){
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
 	</script>
 </body>
 </html>

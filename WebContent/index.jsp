@@ -16,8 +16,6 @@
 	rel="stylesheet">
 <!-- Animate.css -->
 <link rel="stylesheet" href="${contextPath}/css/animate.css">
-
-
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <link rel="stylesheet" href="${contextPath}/css/carousel-ani.css">
@@ -33,7 +31,6 @@
 	<![endif]-->
 </head>
 <body>
-
 	<!--载入动画-->
 	<div class="fh5co-loader"></div>
 	<div id="page">
@@ -58,7 +55,7 @@
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
 								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
@@ -79,16 +76,8 @@
 		</nav>
 		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
-
 			<!-- 轮播 -->
 			<div id="myCarousel" class="carousel slide carousel-fade">
-				<!-- 轮播（Carousel）指标 -->
-				<!-- <ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol> -->
-				<!-- 轮播（Carousel）项目 -->
 				<div class="carousel-inner">
 					<%
 						String mbanner_src = (String) request.getAttribute("mbanner_src");
@@ -105,21 +94,8 @@
 								alt="First slide" class="img-rounded"></a>
 						</div>
 					</c:forEach>
-					<%-- <div class="item">
-						<a href="#"><img src="${contextPath}/images/banner.png"
-							alt="Second slide" class="img-rounded"></a>
-					</div>
-					<div class="item">
-						<a href="#"><img src="${contextPath}/images/banner.png"
-							alt="Third slide" class="img-rounded"></a>
-					</div> --%>
 				</div>
-				<!-- 轮播（Carousel）导航 -->
-				<!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
-			<a class="carousel-control right" href="#myCarousel"
-				data-slide="next"></a> -->
 			</div>
-
 		</header>
 		<div style="margin-bottom: 50px; margin-top: 50px">
 			<div class="row">
@@ -174,7 +150,6 @@
 			</div>
 		</footer>
 	</div>
-
 	<!-- jQuery -->
 	<script src="${contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -187,6 +162,8 @@
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<script>
 		$(function() {
 			$().ready(function() {
@@ -195,6 +172,13 @@
 				});
 			});
 		})
+		function erreor() {
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
 	</script>
 </body>
+<!--
+author:张鼎
+made with love and joy：）
+  -->
 </html>

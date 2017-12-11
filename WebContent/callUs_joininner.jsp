@@ -23,10 +23,8 @@
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <!-- Flexslider  -->
 <link rel="stylesheet" href="${contextPath}/css/flexslider.css">
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="${contextPath}/css/style.css">
-
 <!-- Modernizr JS -->
 <script src="${contextPath}/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
@@ -59,15 +57,14 @@
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li class="active"><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
-								<li class="has-dropdown"><a
-									href="${contextPath}/queryCall">联系我们</a>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
+								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
 										<li><a href="${contextPath}/queryAlly">加盟代理</a></li>
 										<li><a href="${contextPath}/queryCall">合作伙伴</a></li>
 									</ul></li>
-								<li> 
+								<li>
 							</ul>
 						</div>
 						<div class="col-md-2">
@@ -83,8 +80,7 @@
 				</div>
 			</div>
 		</nav>
-		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			>
+		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -94,7 +90,6 @@
 					class="img-responsive img-rounded ">
 			</p>
 		</header>
-
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
@@ -132,7 +127,7 @@
 								</div>
 								<dl>
 									<dt>职位描述</dt>
-									
+
 									<dd><%=join_inner%></dd>
 									<dt>岗位要求</dt>
 									<dd><%=join_need%></dd>
@@ -154,7 +149,6 @@
 				</div>
 			</div>
 		</div>
-
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
 				<div class="row copyright">
@@ -191,8 +185,12 @@
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<script type="text/javascript">
-		
+		function erreor(){
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
 	</script>
 </body>
 </html>

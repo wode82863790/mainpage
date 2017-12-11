@@ -59,7 +59,7 @@
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li class="active"><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
 								<li class="has-dropdown "><a
 									href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
@@ -67,7 +67,7 @@
 										<li><a href="${contextPath}/queryAlly">加盟代理</a></li>
 										<li><a href="${contextPath}/queryCall">合作伙伴</a></li>
 									</ul></li>
-								<li> 
+								<li>
 							</ul>
 						</div>
 						<div class="col-md-2">
@@ -83,8 +83,7 @@
 				</div>
 			</div>
 		</nav>
-		<header id="fh5co-header" class="fh5co-cover " role="banner"
-			>
+		<header id="fh5co-header" class="fh5co-cover " role="banner">
 			<div class="overlay"></div>
 			<p>
 				<%
@@ -94,11 +93,9 @@
 					class="img-responsive img-rounded ">
 			</p>
 		</header>
-
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
-
 					<div class="col-md-12  animate-box" id="call-us">
 						<table class="table">
 							<caption>诚聘英才</caption>
@@ -121,17 +118,16 @@
 										<td><c:out value="${list.getJoin_num()}" /></td>
 										<td><c:out value="${list.getJoin_back()}" /></td>
 										<td><c:out value="${list.getJoin_date()}" /></td>
-										<td><a href="${contextPath}/queryJoinInner?id=<c:out value="${list.getJoin_id()}" />">查看详情>></a></td>
+										<td><a
+											href="${contextPath}/queryJoinInner?id=<c:out value="${list.getJoin_id()}" />">查看详情>></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
 				<div class="row copyright">
@@ -168,6 +164,12 @@
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
-
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
+	<script type="text/javascript">
+		function erreor() {
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
+	</script>
 </body>
 </html>

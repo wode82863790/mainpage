@@ -187,31 +187,31 @@
 	<!-- Bootstrap -->
 	<script src="${contextPath}/js/bootstrap.min.js"></script>
 	<script>
-		$('#login').on('click',function (e) {
-			window.event.returnValue=false;
-			var userName=$.trim($('#userName').val());
-			var password=$.trim($('#password').val());
+		$('#login').on('click', function(e) {
+			window.event.returnValue = false;
+			var userName = $.trim($('#userName').val());
+			var password = $.trim($('#password').val());
 			$.ajax({
-				type:"post",
-				url:"${contextPath}/back_login",
-				data:{
-					userName:userName,
-					password:password
+				type : "post",
+				url : "${contextPath}/back_login",
+				data : {
+					userName : userName,
+					password : password
 				},
-				dataType:'json',
-				success:function (resp) {
+				dataType : 'json',
+				success : function(resp) {
 					alert(resp.msg);
-					if(resp.success){
+					if (resp.success) {
 						//将token存在本地存储，然后跳转到主页面
-						localStorage.setItem('token',resp.token);
-						location.href="${contextPath}/querycommon";
+						localStorage.setItem('token', resp.token);
+						location.href = "${contextPath}/querycommon";
 					}
 				},
 				error : function(resp) {
 					alert('怎么可能会失败呢请联系技术');
 				}
 			});
-		}) 
+		})
 	</script>
 </body>
 </html>

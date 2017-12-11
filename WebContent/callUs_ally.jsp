@@ -23,10 +23,8 @@
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <!-- Flexslider  -->
 <link rel="stylesheet" href="${contextPath}/css/flexslider.css">
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="${contextPath}/css/style.css">
-
 <!-- Modernizr JS -->
 <script src="${contextPath}/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
@@ -59,7 +57,7 @@
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
 								<li class="has-dropdown active"><a
 									href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
@@ -94,7 +92,6 @@
 					class="img-responsive img-rounded ">
 			</p>
 		</header>
-
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
@@ -102,7 +99,6 @@
 						<table>
 							<tr>
 								<td><a href="${contextPath}/queryHelp"><small>帮助中心</small></a></td>
-
 							</tr>
 							<tr>
 								<td><a href="${contextPath}/queryAlly"><small>加盟代理</small></a></td>
@@ -110,7 +106,6 @@
 							</tr>
 							<tr>
 								<td><a href="${contextPath}/queryCall"><small>合作伙伴</small></a></td>
-
 							</tr>
 						</table>
 					</div>
@@ -155,8 +150,6 @@
 										</c:forEach>
 									</tbody>
 								</table>
-
-
 							</div>
 						</div>
 					</div>
@@ -199,8 +192,12 @@
 	<script src="${contextPath}/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<script type="text/javascript">
-		
+		function erreor(){
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
 	</script>
 </body>
 </html>

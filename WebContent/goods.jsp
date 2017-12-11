@@ -23,12 +23,10 @@
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <!-- Flexslider  -->
 <link rel="stylesheet" href="${contextPath}/css/flexslider.css">
-
 <!-- Swiper -->
 <link rel="stylesheet" href="${contextPath}/css/swiper-3.4.2.min.css">
 <!-- Theme style  -->
 <link rel="stylesheet" href="${contextPath}/css/style.css">
-
 <!-- Modernizr JS -->
 <script src="${contextPath}/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
@@ -61,14 +59,14 @@
 								<li class="active"><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
 								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
 										<li><a href="${contextPath}/queryAlly">加盟代理</a></li>
 										<li><a href="${contextPath}/queryCall">合作伙伴</a></li>
 									</ul></li>
-								<li> 
+								<li>
 							</ul>
 						</div>
 						<div class="col-md-2">
@@ -98,7 +96,8 @@
 					varStatus="num">
 					<div class="col-md-4">
 						<div class="fh5co-portfolio animate-box">
-							<a href="${contextPath}/queryGoodsInner?id=<c:out value="${list.getBanner_outid()}" />">
+							<a
+								href="${contextPath}/queryGoodsInner?id=<c:out value="${list.getBanner_outid()}" />">
 								<div class="portfolio-entry"
 									style="background-image: url(${contextPath}/<c:out value="${list.getBanner_src()}" />);"></div>
 							</a>
@@ -107,13 +106,12 @@
 				</c:forEach>
 			</div>
 		</header>
-
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 animate-box ">
 						<h4 class="text-center">
-						<i class="fa fa-shopping-bag" style="color: #DD356E;"></i>产品列表
+							<i class="fa fa-shopping-bag" style="color: #DD356E;"></i>产品列表
 						</h4>
 						<ul>
 							<c:forEach items="${requestScope.queryGoods }" var="list2"
@@ -136,7 +134,9 @@
 									<c:forEach items="${requestScope.queryGoods }" var="list3"
 										varStatus="num">
 										<div class="swiper-slide">
-											<a href="${contextPath}/queryGoodsInner?id=<c:out value="${list3.getGoods_id()}" />"><img alt="a1"
+											<a
+												href="${contextPath}/queryGoodsInner?id=<c:out value="${list3.getGoods_id()}" />"><img
+												alt="a1"
 												src="${contextPath}/<c:out value="${list3.getGoods_mainimg()}" />"
 												class=" img-responsive "></a>
 										</div>
@@ -188,6 +188,8 @@
 	<script src="${contextPath}/js/main.js"></script>
 	<!-- Swiper -->
 	<script src="${contextPath}/js/swiper-3.4.2.min.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<!-- Initialize Swiper -->
 	<script>
 		var swiper = new Swiper('.swiper-container', {
@@ -216,6 +218,11 @@
 			autoplay : 2500,
 			autoplayDisableOnInteraction : false
 		});
+	</script>
+	<script type="text/javascript">
+		function erreor() {
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
 	</script>
 </body>
 </html>

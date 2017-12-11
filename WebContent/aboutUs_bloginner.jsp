@@ -23,7 +23,6 @@
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <!-- Flexslider  -->
 <link rel="stylesheet" href="${contextPath}/css/flexslider.css">
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="${contextPath}/css/style.css">
 <!-- Modernizr JS -->
@@ -40,8 +39,8 @@
 	flex-wrap: wrap;
 	margin: 20px auto;
 }
-
 #box div {
+	background:aqua;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -50,39 +49,7 @@
 	margin-bottom: 25px;
 	margin-left: 20px;
 }
-#box
 
- 
-
-div
-+
-div
-
-
-:not
-
- 
-
-(
-:nth-child(5n)
-
- 
-
-)
-{
-margin-left
-
-
-:
-
- 
-
-5
-px
-
-
-;
-}
 </style>
 </head>
 <body>
@@ -110,7 +77,7 @@ px
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
 								<li class="has-dropdown"><a href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
 										<li><a href="${contextPath}/queryHelp">帮助中心</a></li>
@@ -143,22 +110,20 @@ px
 					class="img-responsive img-rounded ">
 			</p>
 		</header>
-
 		<div id="fh5co-contact">
 			<div class="container">
-				<div class="row animate-box">
-					<div id="box" class="layer-photos-demo col-md-12">
-						<c:forEach items="${requestScope.queryBlogInner }" var="list"
-							varStatus="num">
-							<div class="animate-box">
-								<img
-									layer-src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
-									src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
-									alt="图片名" class="img-rounded img-responsive">
-							</div>
-						</c:forEach>
-					</div>
-					<%-- <c:forEach items="${requestScope.queryBlogInner }" var="list"
+				<div id="box" class="layer-photos-demo" style="">
+					<c:forEach items="${requestScope.queryBlogInner }" var="list"
+						varStatus="num">
+						<div class="animate-box">
+							<img
+								layer-src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
+								src="${contextPath}/<c:out value="${list.getBlogimg_src()}" />"
+								alt="图片名" class="img-rounded img-responsive">
+						</div>
+					</c:forEach>
+				</div>
+				<%-- <c:forEach items="${requestScope.queryBlogInner }" var="list"
 						varStatus="num">
 						<div class="col-md-4 text-center">
 							<div class="fh5co-portfolio animate-box">
@@ -168,14 +133,11 @@ px
 							</div>
 						</div>
 					</c:forEach> --%>
-				</div>
 				<div class="col-md-12 text-center">
 					<a onclick="back2top()"><i class="fa fa-caret-square-o-up"></i>关闭页面</a>
 				</div>
 			</div>
-
 		</div>
-
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
 				<div class="row copyright">
@@ -232,7 +194,12 @@ px
 	<script src="${contextPath}/js/layer.js"></script>
 	<!-- Main -->
 	<script src="${contextPath}/js/main.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<script type="text/javascript">
+		function erreor() {
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
 		function back2top() {
 			location.href = "${contextPath}/queryAboutUsBlog";
 		};

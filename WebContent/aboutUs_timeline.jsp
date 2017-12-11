@@ -60,7 +60,7 @@
 								<li><a href="${contextPath}/queryGoods">产品中心</a></li>
 								<li><a href="${contextPath}/queryDown">下载中心</a></li>
 								<li><a href="${contextPath}/queryJoin">诚聘英才</a></li>
-								<li><a href="#">会员入口</a></li>
+								<li><a href="#" onclick="erreor()">会员入口</a></li>
 								<li class="has-dropdown"><a
 									href="${contextPath}/queryCall">联系我们</a>
 									<ul class="dropdown">
@@ -95,7 +95,6 @@
 					class="img-responsive img-rounded ">
 			</p>
 		</header>
-
 		<div id="fh5co-contact">
 			<div class="container">
 				<div class="row">
@@ -153,7 +152,6 @@
 				</div>
 			</div>
 		</div>
-
 		<footer id="fh5co-footer" role="contentinfo">
 			<div class="container">
 				<div class="row copyright">
@@ -192,6 +190,8 @@
 	<script src="${contextPath}/js/main.js"></script>
 	<!--timeline-->
 	<script src="${contextPath}/js/jquery.eeyellow.Timeline.js"></script>
+	<!-- Layer -->
+	<script src="${contextPath}/js/layer.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.VivaTimeline').vivaTimeline({
@@ -199,6 +199,9 @@
 				carouselTime : 3000
 			});
 		});
+		function erreor(){
+			layer.msg('十分抱歉，此功能尚未上线。');
+		}
 	</script>
 </body>
 </html>
